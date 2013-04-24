@@ -1,0 +1,666 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="AddressInDevice" xml:space="preserve">
+    <value>Address in device</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="CanRead" xml:space="preserve">
+    <value>Can read</value>
+  </data>
+  <data name="CantChangeSelectorMessage" xml:space="preserve">
+    <value>Can't change selector when module has uncommited changes.</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="ContinueQuestion" xml:space="preserve">
+    <value>Continue?</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="DeleteRowsQuestion" xml:space="preserve">
+    <value>Delete selected rows?</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="DigitalTags" xml:space="preserve">
+    <value>Digital tags</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="Exit" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="HasChangesMessage" xml:space="preserve">
+    <value>Module has uncommited changes.</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>Import</value>
+  </data>
+  <data name="IoDevice" xml:space="preserve">
+    <value>I/O device</value>
+  </data>
+  <data name="IoDevices" xml:space="preserve">
+    <value>I/O devices</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="NewProject" xml:space="preserve">
+    <value>New project</value>
+  </data>
+  <data name="NumericTags" xml:space="preserve">
+    <value>Numeric tags</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="Options" xml:space="preserve">
+    <value>Options</value>
+  </data>
+  <data name="Paste" xml:space="preserve">
+    <value>Paste</value>
+  </data>
+  <data name="Project" xml:space="preserve">
+    <value>Project</value>
+  </data>
+  <data name="Reload" xml:space="preserve">
+    <value>Reload</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="SaveChangesQuestion" xml:space="preserve">
+    <value>Save changes?</value>
+  </data>
+  <data name="Tags" xml:space="preserve">
+    <value>Tags</value>
+  </data>
+  <data name="ThereAreChangesMessage" xml:space="preserve">
+    <value>There are uncommited changes.</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="UniqueErrorMessage" xml:space="preserve">
+    <value>Field "{0}" must be unique. Dublicate items are:</value>
+  </data>
+  <data name="ValidationError" xml:space="preserve">
+    <value>Validation error</value>
+  </data>
+  <data name="ValidationErrorMessage" xml:space="preserve">
+    <value>Required fields are not set or invalid data is entered</value>
+  </data>
+  <data name="ColumnsCountNotMatchMessage" xml:space="preserve">
+    <value>Columns count does not match</value>
+  </data>
+  <data name="ItemWithIdNotFoundMessage" xml:space="preserve">
+    <value>Item with specified id "{0}" was not found</value>
+  </data>
+  <data name="NotValidIdMessage" xml:space="preserve">
+    <value>"{0}" is not valid id</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="NotPHmiDatabaseMessage" xml:space="preserve">
+    <value>Database "{0}" is not PHmi project database</value>
+  </data>
+  <data name="OpenProject" xml:space="preserve">
+    <value>Open project</value>
+  </data>
+  <data name="Remember" xml:space="preserve">
+    <value>Remember</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="DotNetNameMessage" xml:space="preserve">
+    <value>Field "{0}" should be a valid .NET variable name</value>
+  </data>
+  <data name="RequiredErrorMessage" xml:space="preserve">
+    <value>Field "{0}" is required</value>
+  </data>
+  <data name="EngUnit" xml:space="preserve">
+    <value>Engineer unit</value>
+  </data>
+  <data name="Format" xml:space="preserve">
+    <value>Format</value>
+  </data>
+  <data name="TagType" xml:space="preserve">
+    <value>Tag type</value>
+  </data>
+  <data name="Database" xml:space="preserve">
+    <value>Database</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="Port" xml:space="preserve">
+    <value>Port</value>
+  </data>
+  <data name="Server" xml:space="preserve">
+    <value>Server</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>User name</value>
+  </data>
+  <data name="EngMax" xml:space="preserve">
+    <value>Eng max</value>
+  </data>
+  <data name="EngMin" xml:space="preserve">
+    <value>Eng min</value>
+  </data>
+  <data name="InvalidDoubleMessage" xml:space="preserve">
+    <value>Field "{0}" should contain a valid double value</value>
+  </data>
+  <data name="RawMax" xml:space="preserve">
+    <value>Raw max</value>
+  </data>
+  <data name="RawMin" xml:space="preserve">
+    <value>Raw min</value>
+  </data>
+  <data name="RowInEditingMode" xml:space="preserve">
+    <value>Row is in editing mode</value>
+  </data>
+  <data name="AlarmCategories" xml:space="preserve">
+    <value>Alarm categories</value>
+  </data>
+  <data name="AlarmTags" xml:space="preserve">
+    <value>Alarm tags</value>
+  </data>
+  <data name="InvalidTimeSpanMessage" xml:space="preserve">
+    <value>Field "{0}" should contain a valid time span value. Example: "{1}"</value>
+  </data>
+  <data name="TimeToStore" xml:space="preserve">
+    <value>Time to store</value>
+  </data>
+  <data name="AddAlarmCategory" xml:space="preserve">
+    <value>Add alarm category</value>
+  </data>
+  <data name="AddAlarmTag" xml:space="preserve">
+    <value>Add alarm tag</value>
+  </data>
+  <data name="AddDigitalTag" xml:space="preserve">
+    <value>Add digital tag</value>
+  </data>
+  <data name="AddIoDevice" xml:space="preserve">
+    <value>Add I/O device</value>
+  </data>
+  <data name="AddNumericTag" xml:space="preserve">
+    <value>Add numeric tag</value>
+  </data>
+  <data name="EditAlarmCategory" xml:space="preserve">
+    <value>Edit alarm category</value>
+  </data>
+  <data name="EditAlarmTag" xml:space="preserve">
+    <value>Edit alarm tag</value>
+  </data>
+  <data name="EditDigitalTag" xml:space="preserve">
+    <value>Edit digital tag</value>
+  </data>
+  <data name="EditIoDevice" xml:space="preserve">
+    <value>Edit I/O device</value>
+  </data>
+  <data name="EditNumericTag" xml:space="preserve">
+    <value>Edit numeric tag</value>
+  </data>
+  <data name="DigitalTagPresentMessage" xml:space="preserve">
+    <value>Digital tag with the same field "{0}" is present for items:</value>
+  </data>
+  <data name="NumericTagPresentMessage" xml:space="preserve">
+    <value>Numeric tag with the same field "{0}" is present for items:</value>
+  </data>
+  <data name="Alarms" xml:space="preserve">
+    <value>Alarms</value>
+  </data>
+  <data name="AlarmCategory" xml:space="preserve">
+    <value>Alarm category</value>
+  </data>
+  <data name="DigitalTag" xml:space="preserve">
+    <value>Digital tag</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="Acknowledgeable" xml:space="preserve">
+    <value>Acknowledgeable</value>
+  </data>
+  <data name="Privilege" xml:space="preserve">
+    <value>Privilege</value>
+  </data>
+  <data name="AddTrendCategory" xml:space="preserve">
+    <value>Add trend category</value>
+  </data>
+  <data name="AddTrendTag" xml:space="preserve">
+    <value>Add trend tag</value>
+  </data>
+  <data name="EditTrendCategory" xml:space="preserve">
+    <value>Edit trend category</value>
+  </data>
+  <data name="EditTrendTag" xml:space="preserve">
+    <value>Edit trend tag</value>
+  </data>
+  <data name="TrendCategories" xml:space="preserve">
+    <value>Trend categories</value>
+  </data>
+  <data name="TrendCategory" xml:space="preserve">
+    <value>Trend category</value>
+  </data>
+  <data name="Trends" xml:space="preserve">
+    <value>Trends</value>
+  </data>
+  <data name="TrendTag" xml:space="preserve">
+    <value>Trend tag</value>
+  </data>
+  <data name="TrendTags" xml:space="preserve">
+    <value>Trend tags</value>
+  </data>
+  <data name="NumericTag" xml:space="preserve">
+    <value>Numeric tag</value>
+  </data>
+  <data name="Trigger" xml:space="preserve">
+    <value>Trigger</value>
+  </data>
+  <data name="TriggerIoDevice" xml:space="preserve">
+    <value>Trigger I/O device</value>
+  </data>
+  <data name="PasteRowErrorMessage" xml:space="preserve">
+    <value>Error occured when inserting row where "{0}"="{1}" and "{2}"="{3}": {4}</value>
+  </data>
+  <data name="System" xml:space="preserve">
+    <value>System</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>Users</value>
+  </data>
+  <data name="AddUser" xml:space="preserve">
+    <value>Add user</value>
+  </data>
+  <data name="CanChange" xml:space="preserve">
+    <value>Entry editable</value>
+  </data>
+  <data name="EditUser" xml:space="preserve">
+    <value>Edit user</value>
+  </data>
+  <data name="Photo" xml:space="preserve">
+    <value>Photo</value>
+  </data>
+  <data name="UserEnabled" xml:space="preserve">
+    <value>User enabled</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="StandByServer" xml:space="preserve">
+    <value>Stand by server</value>
+  </data>
+  <data name="ServerNameMessage" xml:space="preserve">
+    <value>Field "{0}" must be in format "Server:Port"</value>
+  </data>
+  <data name="About" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="TablesStored" xml:space="preserve">
+    <value>Tables</value>
+  </data>
+  <data name="RowsStored" xml:space="preserve">
+    <value>Rows stored</value>
+  </data>
+  <data name="Unselect" xml:space="preserve">
+    <value>Unselect</value>
+  </data>
+  <data name="SelectedRowsStatus" xml:space="preserve">
+    <value>Rows selected: {0:N0}</value>
+  </data>
+  <data name="TotalRowsStatus" xml:space="preserve">
+    <value>Rows total: {0:N0}</value>
+  </data>
+  <data name="BackupFiles" xml:space="preserve">
+    <value>Backup files</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="ImportCompleted" xml:space="preserve">
+    <value>Import сompleted</value>
+  </data>
+  <data name="ExportCompleted" xml:space="preserve">
+    <value>Export completed</value>
+  </data>
+  <data name="AddToolTip" xml:space="preserve">
+    <value>Add (Ctrl+N)</value>
+  </data>
+  <data name="CloseModuleToolTip" xml:space="preserve">
+    <value>Close (Ctrl+Q)</value>
+  </data>
+  <data name="CopyToolTip" xml:space="preserve">
+    <value>Copy (Ctrl+C)</value>
+  </data>
+  <data name="DeleteToolTip" xml:space="preserve">
+    <value>Delete (Ctrl+D)</value>
+  </data>
+  <data name="EditToolTip" xml:space="preserve">
+    <value>Edit (Ctrl+E)</value>
+  </data>
+  <data name="PasteToolTip" xml:space="preserve">
+    <value>Paste (Ctrl+V)</value>
+  </data>
+  <data name="ReloadToolTip" xml:space="preserve">
+    <value>Reload (Ctrl+R)</value>
+  </data>
+  <data name="SaveToolTip" xml:space="preserve">
+    <value>Save (Ctrl+S)</value>
+  </data>
+  <data name="UnselectToolTip" xml:space="preserve">
+    <value>Unselect (Ctrl+U)</value>
+  </data>
+  <data name="TooManyTrendTagsInCategoryMessage" xml:space="preserve">
+    <value>Too many trend tags in a category (max is {0})</value>
+  </data>
+  <data name="ConnectionParameterErrorMessage" xml:space="preserve">
+    <value>Field "{0}" cannot include symbol ";"</value>
+  </data>
+  <data name="LengthMessage" xml:space="preserve">
+    <value>"{0}" length can't be more than {1}</value>
+  </data>
+  <data name="UserId" xml:space="preserve">
+    <value>User ID</value>
+  </data>
+  <data name="AssemblyDoesNotContainInterfaceImplementantionMessage" xml:space="preserve">
+    <value>Assembly "{0}" does not contain type "{1}"</value>
+  </data>
+  <data name="FileNotAssemblyMessage" xml:space="preserve">
+    <value>File "{0}" is not assembly</value>
+  </data>
+  <data name="FileNotFoundMessage" xml:space="preserve">
+    <value>File "{0}" is not found</value>
+  </data>
+  <data name="TypeDoesNotHaveConstructorMessage" xml:space="preserve">
+    <value>Type "{0}" does not have a valid constructor</value>
+  </data>
+  <data name="IoDeviceWithName" xml:space="preserve">
+    <value>I/O device "{0}"</value>
+  </data>
+  <data name="TypeNotSupportedMessage" xml:space="preserve">
+    <value>Type "{0}" not supported</value>
+  </data>
+  <data name="StartError" xml:space="preserve">
+    <value>Start error</value>
+  </data>
+  <data name="StopError" xml:space="preserve">
+    <value>Stop error</value>
+  </data>
+  <data name="IoDeviceStartedMessage" xml:space="preserve">
+    <value>I/O device "{0}" started</value>
+  </data>
+  <data name="EndTime" xml:space="preserve">
+    <value>End time</value>
+  </data>
+  <data name="Message" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="StartTime" xml:space="preserve">
+    <value>Start time</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Time</value>
+  </data>
+  <data name="ProjectStartedMessage" xml:space="preserve">
+    <value>Project "{0}" started</value>
+  </data>
+  <data name="ProjectStartingMessage" xml:space="preserve">
+    <value>Project "{0}" is starting</value>
+  </data>
+  <data name="ProjectStoppedMessage" xml:space="preserve">
+    <value>Project "{0}" stopped</value>
+  </data>
+  <data name="ProjectStoppingMessage" xml:space="preserve">
+    <value>Project "{0}" is stopping</value>
+  </data>
+  <data name="Show" xml:space="preserve">
+    <value>Show</value>
+  </data>
+  <data name="IoDeviceStoppedMessage" xml:space="preserve">
+    <value>I/O device "{0}" stopped</value>
+  </data>
+  <data name="ServiceIsStarted" xml:space="preserve">
+    <value>Service is started</value>
+  </data>
+  <data name="ServiceIsStopped" xml:space="preserve">
+    <value>Service is stopped</value>
+  </data>
+  <data name="BuildComplete" xml:space="preserve">
+    <value>Build complete</value>
+  </data>
+  <data name="BuildClient" xml:space="preserve">
+    <value>Build client</value>
+  </data>
+  <data name="NameSpace" xml:space="preserve">
+    <value>Namespace</value>
+  </data>
+  <data name="Build" xml:space="preserve">
+    <value>Build</value>
+  </data>
+  <data name="Path" xml:space="preserve">
+    <value>Path</value>
+  </data>
+  <data name="Code" xml:space="preserve">
+    <value>Code</value>
+  </data>
+  <data name="Resources" xml:space="preserve">
+    <value>Resources</value>
+  </data>
+  <data name="DotNetNameSpaceMessage" xml:space="preserve">
+    <value>Field "{0}" should be a valid .NET namespace name</value>
+  </data>
+  <data name="DatabaseCreatedMessage" xml:space="preserve">
+    <value>Database "{0}" created</value>
+  </data>
+  <data name="UsersServiceStarted" xml:space="preserve">
+    <value>Users service started</value>
+  </data>
+  <data name="AlarmsStartedMessage" xml:space="preserve">
+    <value>Alarms "{0}" started</value>
+  </data>
+  <data name="AlarmsStoppedMessage" xml:space="preserve">
+    <value>Alarms "{0}" stopped</value>
+  </data>
+  <data name="AddLog" xml:space="preserve">
+    <value>Add log</value>
+  </data>
+  <data name="EditLog" xml:space="preserve">
+    <value>Edit log</value>
+  </data>
+  <data name="Logs" xml:space="preserve">
+    <value>Logs</value>
+  </data>
+  <data name="LogStargedMessage" xml:space="preserve">
+    <value>Log "{0}" started</value>
+  </data>
+  <data name="LogStoppedMessage" xml:space="preserve">
+    <value>Log "{0}" stopped</value>
+  </data>
+  <data name="Run" xml:space="preserve">
+    <value>Run</value>
+  </data>
+  <data name="InstallService" xml:space="preserve">
+    <value>Install service</value>
+  </data>
+  <data name="PressAnyKeyToContinue" xml:space="preserve">
+    <value>Press any key to continue</value>
+  </data>
+  <data name="UninstallService" xml:space="preserve">
+    <value>Uninstall service</value>
+  </data>
+  <data name="UseCustomConnectionString" xml:space="preserve">
+    <value>Use custom connection string</value>
+  </data>
+  <data name="UseProjectConnectionString" xml:space="preserve">
+    <value>Use project connection string</value>
+  </data>
+  <data name="Install" xml:space="preserve">
+    <value>Install</value>
+  </data>
+  <data name="HideAtStart" xml:space="preserve">
+    <value>Hide at start</value>
+  </data>
+  <data name="TrendsStartedMessage" xml:space="preserve">
+    <value>Trends "{0}" started</value>
+  </data>
+  <data name="TrendsStoppedMessage" xml:space="preserve">
+    <value>Trends "{0}" stopped</value>
+  </data>
+  <data name="Period" xml:space="preserve">
+    <value>Period</value>
+  </data>
+  <data name="QuickStartGuide" xml:space="preserve">
+    <value>Quick start guide</value>
+  </data>
+  <data name="Licenses" xml:space="preserve">
+    <value>Licenses</value>
+  </data>
+</root>

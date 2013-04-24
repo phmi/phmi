@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{430D8BD9-A95A-44E6-91F7-B8F4AC157DDF}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PHmiService</RootNamespace>
+    <AssemblyName>PHmiService</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\bin\PHmi\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>PHmiService.exe.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Utils\ServiceHelper.cs" />
+    <Compile Include="Utils\EventLogReporter.cs" />
+    <Compile Include="ProjectInstaller.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ProjectInstaller.Designer.cs">
+      <DependentUpon>ProjectInstaller.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Service.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Service.Designer.cs">
+      <DependentUpon>Service.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ProjectInstaller.resx">
+      <DependentUpon>ProjectInstaller.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Service.resx">
+      <DependentUpon>Service.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PHmiClient\PHmiClient.csproj">
+      <Project>{14b58393-3958-4c32-b52c-5b76e66632eb}</Project>
+      <Name>PHmiClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PHmiIoDeviceTools\PHmiIoDeviceTools.csproj">
+      <Project>{af80e499-7e69-4ea6-a5e4-33e8c070b567}</Project>
+      <Name>PHmiIoDeviceTools</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PHmiModel\PHmiModel.csproj">
+      <Project>{0d2e637a-481b-4483-aff3-ed38b7f7bd02}</Project>
+      <Name>PHmiModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PHmiResources\PHmiResources.csproj">
+      <Project>{9b8f6b21-a5ca-4d6e-b8d9-48f2f70462f5}</Project>
+      <Name>PHmiResources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PHmiRunner\PHmiRunner.csproj">
+      <Project>{d10f5b03-089b-45a9-9482-13f46a4d20ce}</Project>
+      <Name>PHmiRunner</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PHmiTools\PHmiTools.csproj">
+      <Project>{7e878d5e-10e7-4e98-8432-21de131be90f}</Project>
+      <Name>PHmiTools</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\PHmiConfigurator\app.config">
+      <Link>app.config</Link>
+    </None>
+    <None Include="PHmiService.exe.manifest" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

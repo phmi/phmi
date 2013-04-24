@@ -1,0 +1,51 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:Controls="clr-namespace:PHmiClient.Controls;assembly=PHmiClient"
+                    xmlns:Converters="clr-namespace:PHmiClient.Converters;assembly=PHmiClient"
+                    xmlns:Loc="clr-namespace:PHmiResources.Loc">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/PHmiResources;component/Styles/SmallImageStyle.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+    <Style TargetType="DataGrid" x:Key="ModuleDataGridStyle">
+        <Style.Resources>
+            <Converters:EmptyToFalseConverter x:Key="EmptyToFalseConverter"/>
+        </Style.Resources>
+        <Setter Property="RowHeaderTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Grid MinWidth="14">
+                        <Image Grid.Column="0" Margin="-1,-2,-1,-3" Style="{StaticResource SmallImageStyle}" Visibility="Collapsed" x:Name="editingMode" ToolTip="{x:Static Loc:Res.RowInEditingMode}" Source="pack://application:,,,/PHmiResources;component/Images/info.png"/>
+                        <Image Grid.Column="0" Margin="-1,-2,-1,-3" Style="{StaticResource SmallImageStyle}" Visibility="Collapsed" x:Name="validationError" ToolTip="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGridRow}}, Path=DataContext.Error}" Source="pack://application:,,,/PHmiResources;component/Images/stop.png"/>
+                    </Grid>
+                    <DataTemplate.Triggers>
+                        <DataTrigger Value="True" Binding="{Binding Path=IsEditing, RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}}">
+                            <Setter TargetName="editingMode" Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Value="True" Binding="{Binding Path=DataContext.Error, RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}, Converter={StaticResource EmptyToFalseConverter}}">
+                            <Setter TargetName="validationError" Property="Visibility" Value="Visible"/>
+                            <Setter TargetName="editingMode" Property="Visibility" Value="Collapsed"/>
+                        </DataTrigger>
+                    </DataTemplate.Triggers>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="RowValidationErrorTemplate">
+            <Setter.Value>
+                <ControlTemplate>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Controls:DataGridBehavior.SupportIDataErrorInfo" Value="True"/>
+        <Setter Property="Controls:DataGridBehavior.ScrollToSelected" Value="True"/>
+        <Setter Property="Controls:DataGridBehavior.ThreeStateSorting" Value="True"/>
+        <Setter Property="GridLinesVisibility" Value="Vertical"/>
+        <Setter Property="AlternationCount" Value="2"/>
+        <Setter Property="AlternatingRowBackground" Value="#FFEAEFF4"/>
+        <Setter Property="VerticalGridLinesBrush" Value="#FFC9CACA"/>
+        <Setter Property="CanUserAddRows" Value="False"/>
+        <Setter Property="CanUserDeleteRows" Value="False"/>
+        <Setter Property="CanUserResizeRows" Value="False"/>
+        <Setter Property="AutoGenerateColumns" Value="False"/>
+        <Setter Property="ClipboardCopyMode" Value="None"/>
+    </Style>
+</ResourceDictionary>

@@ -1,0 +1,28 @@
+﻿<Application x:Class="PHmiResources.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/PHmiResources;component/Styles/DataGridComboBoxStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/PHmiResources;component/Styles/DataGridTextBlockStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/PHmiResources;component/Styles/DataGridTextBoxStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/PHmiResources;component/Styles/EditorCheckBoxStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/PHmiResources;component/Styles/EditorComboBoxStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/PHmiResources;component/Styles/EditorRootPanelStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/PHmiResources;component/Styles/EditorTextBlockStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/PHmiResources;component/Styles/EditorTextBoxStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/PHmiResources;component/Styles/HorizontalStackPanelStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/PHmiResources;component/Styles/ModuleCloseButtonStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/PHmiResources;component/Styles/ModuleDataGridStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/PHmiResources;component/Styles/ModuleProgressBarStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/PHmiResources;component/Styles/MultilineEditorTextBoxStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/PHmiResources;component/Styles/SmallImageStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/PHmiResources;component/Styles/StatusBarStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/PHmiResources;component/Styles/StatusTextBlockStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/PHmiResources;component/Styles/ToolBarTextBlockStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

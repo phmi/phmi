@@ -1,0 +1,39 @@
+﻿<Window
+    x:Class="PHmiTools.Dialogs.MessageDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Loc="clr-namespace:PHmiResources.Loc;assembly=PHmiResources"
+    Title="MessageWindow"
+    Icon="pack://application:,,,/PHmiResources;component/Images/info.ico"
+    MinHeight="100" MaxHeight="600" MinWidth="200" MaxWidth="800"
+    WindowStartupLocation="CenterOwner"
+    SizeToContent="WidthAndHeight"
+    ResizeMode="NoResize">
+    <Window.InputBindings>
+        <KeyBinding Key="Escape" Command="{Binding Path=NeutralCommand}" />
+    </Window.InputBindings>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Image x:Name="iMessage" Width="32" Height="32" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,10,0,10"/>
+        <TextBox Grid.Column="1" x:Name="tb" IsReadOnly="True" Margin="8" VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap" BorderThickness="0" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Right" Margin="4">
+            <StackPanel.Resources>
+                <Style TargetType="Button">
+                    <Setter Property="MinWidth" Value="70" />
+                    <Setter Property="Margin" Value="4" />
+                </Style>
+            </StackPanel.Resources>
+            <Button x:Name="bOk" Content="{x:Static Loc:Res.Ok}" Command="{Binding Path=PositiveCommand}"/>
+            <Button x:Name="bYes" Content="{x:Static Loc:Res.Yes}" Command="{Binding Path=PositiveCommand}"/>
+            <Button x:Name="bNo" Content="{x:Static Loc:Res.No}" Command="{Binding Path=NegativeCommand}"/>
+            <Button x:Name="bCancel" Content="{x:Static Loc:Res.Cancel}" Command="{Binding Path=NeutralCommand}"/>
+        </StackPanel>
+    </Grid>
+</Window>

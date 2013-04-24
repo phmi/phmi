@@ -1,0 +1,264 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D10F5B03-089B-45A9-9482-13F46A4D20CE}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PHmiRunner</RootNamespace>
+    <AssemblyName>PHmiRunner</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\bin\PHmi\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Images\agt_runit.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>PHmiRunner.exe.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Mono.Security">
+      <HintPath>..\packages\Npgsql.2.0.12.1\lib\net40\Mono.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Npgsql">
+      <HintPath>..\packages\Npgsql.2.0.12.1\lib\net40\Npgsql.dll</HintPath>
+    </Reference>
+    <Reference Include="policy.2.0.Npgsql">
+      <HintPath>..\packages\Npgsql.2.0.12.1\lib\net40\policy.2.0.Npgsql.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Images\ImagesUries.cs" />
+    <Compile Include="MainWindowViewModel.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NotifyIconWrapper.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="NotifyIconWrapper.Designer.cs">
+      <DependentUpon>NotifyIconWrapper.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\Alarms\AlarmsRepository.cs">
+      <DependentUpon>IAlarmsRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\Alarms\AlarmsRunTarget.cs">
+      <DependentUpon>IAlarmsRunTarget.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\Alarms\AlarmsRunTargetFactory.cs">
+      <DependentUpon>IAlarmsRunTargetFactory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\Alarms\IAlarmsRepository.cs" />
+    <Compile Include="Utils\Alarms\IAlarmsRunTarget.cs" />
+    <Compile Include="Utils\Alarms\IAlarmsRunTargetFactory.cs" />
+    <Compile Include="Utils\DataDbCreator.cs">
+      <DependentUpon>IDataDbCreator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\DataDbCreatorFactory.cs">
+      <DependentUpon>IDataDbCreatorFactory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\IDataDbCreator.cs" />
+    <Compile Include="Utils\IDataDbCreatorFactory.cs" />
+    <Compile Include="Utils\IoDeviceRunner\DigTagValueHolder.cs">
+      <DependentUpon>ITagValueHolder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\IoDeviceRunner\IIoDeviceRunTarget.cs" />
+    <Compile Include="Utils\IoDeviceRunner\IIoDeviceRunTargetFactory.cs" />
+    <Compile Include="Utils\IoDeviceRunner\IIoDeviceWrapper.cs" />
+    <Compile Include="Utils\IoDeviceRunner\IIoDeviceWrapperFactory.cs" />
+    <Compile Include="Utils\IoDeviceRunner\IoDeviceRunTarget.cs">
+      <DependentUpon>IIoDeviceRunTarget.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\IoDeviceRunner\IoDeviceRunTargetFactory.cs">
+      <DependentUpon>IIoDeviceRunTargetFactory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\IoDeviceRunner\IoDeviceWrapper.cs">
+      <DependentUpon>IIoDeviceWrapper.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\IoDeviceRunner\IoDeviceWrapperFactory.cs">
+      <DependentUpon>IIoDeviceWrapperFactory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\IoDeviceRunner\ITagValueHolder.cs" />
+    <Compile Include="Utils\IoDeviceRunner\NumTagValueConverter.cs" />
+    <Compile Include="Utils\IoDeviceRunner\NumTagValueHolder.cs">
+      <DependentUpon>ITagValueHolder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\IProject.cs" />
+    <Compile Include="Utils\IProjectRunner.cs" />
+    <Compile Include="Utils\IProjectRunnerFactory.cs" />
+    <Compile Include="Utils\Logs\ILogRepository.cs" />
+    <Compile Include="Utils\Logs\ILogMaintainer.cs" />
+    <Compile Include="Utils\Logs\ILogRunTargetFactory.cs" />
+    <Compile Include="Utils\Logs\LogRepository.cs">
+      <DependentUpon>ILogRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\Logs\LogMaintainer.cs">
+      <DependentUpon>ILogMaintainer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\Logs\LogMaintainerFactory.cs">
+      <DependentUpon>ILogRunTargetFactory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\ProjectRunner.cs">
+      <DependentUpon>IProjectRunner.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\ProjectRunnerFactory.cs">
+      <DependentUpon>IProjectRunnerFactory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\Trends\ITrendsRepository.cs" />
+    <Compile Include="Utils\Trends\ITrendsRepositoryFactory.cs" />
+    <Compile Include="Utils\Trends\ITrendsRunTarget.cs" />
+    <Compile Include="Utils\Trends\ITrendsRunTargetFactory.cs" />
+    <Compile Include="Utils\Trends\ITrendTableSelector.cs" />
+    <Compile Include="Utils\Trends\TrendsRepository.cs">
+      <DependentUpon>ITrendsRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\Trends\TrendsRepositoryFactory.cs">
+      <DependentUpon>ITrendsRepositoryFactory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\Trends\TrendsRunTarget.cs">
+      <DependentUpon>ITrendsRunTarget.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\Trends\TrendsRunTargetFactory.cs">
+      <DependentUpon>ITrendsRunTargetFactory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\Trends\TrendTableSelector.cs">
+      <DependentUpon>ITrendTableSelector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\Users\IUsersRepository.cs" />
+    <Compile Include="Utils\Users\IUsersRunner.cs" />
+    <Compile Include="Utils\Users\IUsersRunnerFactory.cs" />
+    <Compile Include="Utils\Users\UsersRepository.cs">
+      <DependentUpon>IUsersRepository.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\Users\UsersRunner.cs">
+      <DependentUpon>IUsersRunner.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\Users\UsersRunnerFactory.cs">
+      <DependentUpon>IUsersRunnerFactory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\Wcf\IServiceRunnerFactory.cs" />
+    <Compile Include="Utils\Wcf\ServiceRunner.cs" />
+    <Compile Include="Utils\Wcf\Service.cs" />
+    <Compile Include="Utils\Wcf\ServiceRunnerFactory.cs">
+      <DependentUpon>IServiceRunnerFactory.cs</DependentUpon>
+    </Compile>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="..\PHmiClient\Properties\GlobalAssemblyInfo.cs">
+      <Link>Properties\GlobalAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PHmiClient\PHmiClient.csproj">
+      <Project>{14b58393-3958-4c32-b52c-5b76e66632eb}</Project>
+      <Name>PHmiClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PHmiIoDeviceTools\PHmiIoDeviceTools.csproj">
+      <Project>{af80e499-7e69-4ea6-a5e4-33e8c070b567}</Project>
+      <Name>PHmiIoDeviceTools</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PHmiModel\PHmiModel.csproj">
+      <Project>{0d2e637a-481b-4483-aff3-ed38b7f7bd02}</Project>
+      <Name>PHmiModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PHmiResources\PHmiResources.csproj">
+      <Project>{9b8f6b21-a5ca-4d6e-b8d9-48f2f70462f5}</Project>
+      <Name>PHmiResources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PHmiTools\PHmiTools.csproj">
+      <Project>{7e878d5e-10e7-4e98-8432-21de131be90f}</Project>
+      <Name>PHmiTools</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\agt_runit.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\PHmiConfigurator\app.config">
+      <Link>app.config</Link>
+    </None>
+    <None Include="packages.config" />
+    <None Include="PHmiRunner.exe.manifest">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\agt_runit_gray.ico" />
+    <Resource Include="Images\agt_runit_red.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="NotifyIconWrapper.resx">
+      <DependentUpon>NotifyIconWrapper.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,22 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/PHmiClient;component/Themes/AddUserDialog.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/PHmiClient;component/Themes/AlarmsPage.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/PHmiClient;component/Themes/ChangePasswordDialog.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/PHmiClient;component/Themes/DateTimePicker.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/PHmiClient;component/Themes/EditUserDialog.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/PHmiClient;component/Themes/ImageInput.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/PHmiClient;component/Themes/LoadingControl.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/PHmiClient;component/Themes/LogOnDialog.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/PHmiClient;component/Themes/NumericInput.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/PHmiClient;component/Themes/NumericUpDown.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/PHmiClient;component/Themes/Root.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/PHmiClient;component/Themes/SetPasswordDialog.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/PHmiClient;component/Themes/SystemMessagesPage.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/PHmiClient;component/Themes/TimeSpanPicker.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/PHmiClient;component/Themes/TrendViewer.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/PHmiClient;component/Themes/UsersPage.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>

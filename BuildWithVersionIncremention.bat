@@ -1,0 +1,2 @@
+Utils\VersionIncrementor.exe PHmiClient\Properties\GlobalAssemblyInfo.cs
+Build.bat

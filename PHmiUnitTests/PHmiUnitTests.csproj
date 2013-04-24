@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{192D3D50-76B5-4C02-BC9B-27B298E08B8C}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PHmiUnitTests</RootNamespace>
+    <AssemblyName>PHmiUnitTests</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Mono.Security">
+      <HintPath>..\packages\Npgsql.2.0.12.1\lib\net40\Mono.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Moq, Version=4.0.10827.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="Npgsql">
+      <HintPath>..\packages\Npgsql.2.0.12.1\lib\net40\Npgsql.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.6.2.12296, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NUnit.2.6.2\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="policy.2.0.Npgsql">
+      <HintPath>..\packages\Npgsql.2.0.12.1\lib\net40\policy.2.0.Npgsql.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Configurator\Dialogs\EditDialogViewModelTests.cs" />
+    <Compile Include="Configurator\MainWindowViewModelTests.cs" />
+    <Compile Include="Configurator\Modules\Collection\CollectionViewModelTests.cs" />
+    <Compile Include="Configurator\Modules\Collection\Selectable\SelectableCollectionViewModelTests.cs" />
+    <Compile Include="Configurator\Modules\ModuleViewModelTests.cs" />
+    <Compile Include="Configurator\Utils\ResourceBuilderTests.cs" />
+    <Compile Include="IoDevices\GenericTests.cs" />
+    <Compile Include="IoDevices\Mitsubishi\Melsec\Configuration\ConfigTests.cs" />
+    <Compile Include="IoDevices\Mitsubishi\Melsec\Configuration\EnetConfigTests.cs" />
+    <Compile Include="IoDevices\Mitsubishi\Melsec\Configuration\FxComConfigTests.cs" />
+    <Compile Include="IoDevices\Mitsubishi\Melsec\Configuration\QConfigTests.cs" />
+    <Compile Include="IoDevices\Mitsubishi\Melsec\MelsecOptionsEditorViewModelTests.cs" />
+    <Compile Include="Runner\DataDbCreatorFactoryTests.cs" />
+    <Compile Include="Runner\MainWindowViewModelTests.cs" />
+    <Compile Include="Runner\Utils\Alarms\AlarmsRunTargetTests.cs" />
+    <Compile Include="Runner\Utils\DataDbCreatorTests.cs" />
+    <Compile Include="Runner\Utils\IoDeviceRunner\IoDeviceRunTargetFactoryTests.cs" />
+    <Compile Include="Runner\Utils\IoDeviceRunner\IoDeviceRunTargetTests.cs" />
+    <Compile Include="Runner\Utils\IoDeviceRunner\NumTagValueConverterTests.cs" />
+    <Compile Include="Runner\Utils\ProjectRunnerFactoryTests.cs" />
+    <Compile Include="Runner\Utils\ProjectRunnerTests.cs" />
+    <Compile Include="Runner\Utils\Trends\TrendTableSelectorTests.cs" />
+    <Compile Include="Runner\Utils\Wcf\ServiceTests.cs" />
+    <Compile Include="Tools\Dialogs\Project\NewProjectDialogViewModelTests.cs" />
+    <Compile Include="Tools\Dialogs\Project\OpenProjectDialogViewModelTests.cs" />
+    <Compile Include="Tools\Dialogs\Project\ProjectDialogViewModelTests.cs" />
+    <Compile Include="Tools\Utils\Npg\ExIm\NpgExImHelperTests.cs" />
+    <Compile Include="Tools\Utils\Npg\ExIm\NpgTableInfoTests.cs" />
+    <Compile Include="Tools\Utils\Npg\ExIm\SerialHelperTests.cs" />
+    <Compile Include="Tools\Utils\Npg\NpgConnectionParametersTests.cs" />
+    <Compile Include="Tools\Utils\Npg\NpgScriptHelperTests.cs" />
+    <Compile Include="Tools\ViewModels\ViewModelBaseTests.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\IoDevices\Mitsubishi\PHmiIoDevice.Melsec\PHmiIoDevice.Melsec.csproj">
+      <Project>{902f8d25-72ea-4893-a547-40c0a750ab9c}</Project>
+      <Name>PHmiIoDevice.Melsec</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IoDevices\PHmiIoDevice.Generic\PHmiIoDevice.Generic.csproj">
+      <Project>{9804534c-5925-452b-b345-3775a9de33f8}</Project>
+      <Name>PHmiIoDevice.Generic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PHmiClientUnitTests\PHmiClientUnitTests.csproj">
+      <Project>{fb8540bd-1cfe-4d82-b9f1-7b0e1530e182}</Project>
+      <Name>PHmiClientUnitTests</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PHmiClient\PHmiClient.csproj">
+      <Project>{14b58393-3958-4c32-b52c-5b76e66632eb}</Project>
+      <Name>PHmiClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PHmiConfigurator\PHmiConfigurator.csproj">
+      <Project>{f23ffd7f-de24-4c12-9042-9aec6bd226de}</Project>
+      <Name>PHmiConfigurator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PHmiIoDeviceTools\PHmiIoDeviceTools.csproj">
+      <Project>{af80e499-7e69-4ea6-a5e4-33e8c070b567}</Project>
+      <Name>PHmiIoDeviceTools</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PHmiModel\PHmiModel.csproj">
+      <Project>{0d2e637a-481b-4483-aff3-ed38b7f7bd02}</Project>
+      <Name>PHmiModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PHmiResources\PHmiResources.csproj">
+      <Project>{9b8f6b21-a5ca-4d6e-b8d9-48f2f70462f5}</Project>
+      <Name>PHmiResources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PHmiRunner\PHmiRunner.csproj">
+      <Project>{d10f5b03-089b-45a9-9482-13f46a4d20ce}</Project>
+      <Name>PHmiRunner</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PHmiTools\PHmiTools.csproj">
+      <Project>{7e878d5e-10e7-4e98-8432-21de131be90f}</Project>
+      <Name>PHmiTools</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

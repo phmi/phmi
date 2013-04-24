@@ -1,0 +1,50 @@
+﻿<Window
+    x:Class="PHmiTools.Dialogs.AboutDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:loc="clr-namespace:PHmiResources.Loc;assembly=PHmiResources"
+    WindowStartupLocation="CenterOwner"
+    ResizeMode="NoResize" SizeToContent="WidthAndHeight" MinWidth="441"
+    Title="{x:Static loc:Res.About}"
+    Icon="pack://application:,,,/PHmiResources;component/Images/help.ico">
+    <Window.InputBindings>
+        <KeyBinding Key="Escape" Command="{Binding Path=OkCommand}" />
+        <KeyBinding Key="Enter" Command="{Binding Path=OkCommand}" />
+    </Window.InputBindings>
+    <Grid Margin="8">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel>
+            <StackPanel.Resources>
+                <Style TargetType="TextBox">
+                    <Setter Property="Margin" Value="2"/>
+                    <Setter Property="IsReadOnly" Value="True"/>
+                    <Setter Property="BorderThickness" Value="0"/>
+                </Style>
+            </StackPanel.Resources>
+            <TextBox Text="{Binding Path=AssemblyTitle, Mode=OneWay}"/>
+            <TextBox Text="{Binding Path=AssemblyProduct, Mode=OneWay}"/>
+            <TextBox Text="{Binding Path=AssemblyVersion, Mode=OneWay}"/>
+            <TextBox Text="{Binding Path=AssemblyDescription, Mode=OneWay}" TextWrapping="Wrap"/>
+            <TextBox Text="{Binding Path=AssemblyCopyright, Mode=OneWay}"/>
+            <TextBox Text="{Binding Path=AssemblyCompany, Mode=OneWay}"/>
+            <TextBlock/>
+            <TextBox Text="Npgsql: Copyright (c) 2002-2010, The Npgsql Development Team"/>
+            <TextBox Text="Crystal Project Icons: Copyright (c) 2006-2007 Everaldo Coelho"/>
+            <TextBox Text="3 Free 24×24 web development icon sets, by Andrew Zhebrakov"></TextBox>
+            <TextBlock/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Right">
+            <StackPanel.Resources>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="MinWidth" Value="70"/>
+                    <Setter Property="Margin" Value="4,0,0,0"/>
+                </Style>
+            </StackPanel.Resources>
+            <Button Content="{x:Static loc:Res.Licenses}" Command="{Binding Path=LicensesCommand}"/>
+            <Button Content="{x:Static loc:Res.Ok}" Command="{Binding Path=OkCommand}"/>
+        </StackPanel>
+    </Grid>
+</Window>

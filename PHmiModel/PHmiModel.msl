@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PHmiModelStoreContainer" CdmEntityContainer="PHmiModelContext">
+    <EntitySetMapping Name="alarm_categories">
+      <EntityTypeMapping TypeName="PHmiModel.alarm_categories">
+        <MappingFragment StoreEntitySet="alarm_categories">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="time_to_store" ColumnName="time_to_store" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="alarm_tags">
+      <EntityTypeMapping TypeName="PHmiModel.alarm_tags">
+        <MappingFragment StoreEntitySet="alarm_tags">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="ref_dig_tags" ColumnName="ref_dig_tags" />
+          <ScalarProperty Name="location" ColumnName="location" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="privilege" ColumnName="privilege" />
+          <ScalarProperty Name="ref_categories" ColumnName="ref_categories" />
+          <ScalarProperty Name="acknowledgeable" ColumnName="acknowledgeable" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="dig_tags">
+      <EntityTypeMapping TypeName="PHmiModel.dig_tags">
+        <MappingFragment StoreEntitySet="dig_tags">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="ref_io_devices" ColumnName="ref_io_devices" />
+          <ScalarProperty Name="device" ColumnName="device" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="can_read" ColumnName="can_read" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="io_devices">
+      <EntityTypeMapping TypeName="PHmiModel.io_devices">
+        <MappingFragment StoreEntitySet="io_devices">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="options" ColumnName="options" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="logs">
+      <EntityTypeMapping TypeName="PHmiModel.logs">
+        <MappingFragment StoreEntitySet="logs">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="time_to_store" ColumnName="time_to_store" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="num_tag_types">
+      <EntityTypeMapping TypeName="PHmiModel.num_tag_types">
+        <MappingFragment StoreEntitySet="num_tag_types">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="num_tags">
+      <EntityTypeMapping TypeName="PHmiModel.num_tags">
+        <MappingFragment StoreEntitySet="num_tags">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="ref_io_devices" ColumnName="ref_io_devices" />
+          <ScalarProperty Name="ref_tag_types" ColumnName="ref_tag_types" />
+          <ScalarProperty Name="device" ColumnName="device" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="can_read" ColumnName="can_read" />
+          <ScalarProperty Name="eng_unit" ColumnName="eng_unit" />
+          <ScalarProperty Name="raw_min" ColumnName="raw_min" />
+          <ScalarProperty Name="raw_max" ColumnName="raw_max" />
+          <ScalarProperty Name="eng_min" ColumnName="eng_min" />
+          <ScalarProperty Name="eng_max" ColumnName="eng_max" />
+          <ScalarProperty Name="format" ColumnName="format" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="settings">
+      <EntityTypeMapping TypeName="PHmiModel.settings">
+        <MappingFragment StoreEntitySet="settings">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="server" ColumnName="server" />
+          <ScalarProperty Name="stand_by_server" ColumnName="stand_by_server" />
+          <ScalarProperty Name="guid" ColumnName="guid" />
+          <ScalarProperty Name="guid2" ColumnName="guid2" />
+          <ScalarProperty Name="phmi_guid" ColumnName="phmi_guid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="trend_categories">
+      <EntityTypeMapping TypeName="PHmiModel.trend_categories">
+        <MappingFragment StoreEntitySet="trend_categories">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="time_to_store" ColumnName="time_to_store" />
+          <ScalarProperty Name="period" ColumnName="period" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="trend_tags">
+      <EntityTypeMapping TypeName="PHmiModel.trend_tags">
+        <MappingFragment StoreEntitySet="trend_tags">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="ref_num_tags" ColumnName="ref_num_tags" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="ref_categories" ColumnName="ref_categories" />
+          <ScalarProperty Name="ref_triggers" ColumnName="ref_triggers" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="PHmiModel.users">
+        <MappingFragment StoreEntitySet="users">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="photo" ColumnName="photo" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="enabled" ColumnName="enabled" />
+          <ScalarProperty Name="can_change" ColumnName="can_change" />
+          <ScalarProperty Name="privilege" ColumnName="privilege" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

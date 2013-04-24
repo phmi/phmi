@@ -1,0 +1,176 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Trends="clr-namespace:PHmiClient.Controls.Trends"
+    xmlns:Converters="clr-namespace:PHmiClient.Converters"
+    xmlns:Controls="clr-namespace:PHmiClient.Controls"
+    xmlns:Loc="clr-namespace:PHmiClient.Loc">
+    <Style TargetType="{x:Type Trends:TrendViewer}">
+		<Setter Property="BorderBrush" Value="Gray" />
+		<Setter Property="BorderThickness" Value="1" />
+		<Setter Property="Background" Value="White" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Trends:TrendViewer}">
+					<Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="2">
+						<Grid>
+                            <Grid.Resources>
+                                <Converters:FalseToHiddenConverter x:Key="FalseToHiddenConverter"/>
+                            </Grid.Resources>
+                            <Grid.RowDefinitions>
+								<RowDefinition Height="Auto" MinHeight="25" />
+								<RowDefinition />
+								<RowDefinition Height="Auto" />
+								<RowDefinition Height="Auto" />
+								<RowDefinition Height="Auto" />
+							</Grid.RowDefinitions>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto" MinWidth="40" />
+								<ColumnDefinition />
+								<ColumnDefinition Width="Auto" MinWidth="40" />
+							</Grid.ColumnDefinitions>
+							<Slider Grid.Column="1" Name="slSlider" VerticalAlignment="Bottom" />
+							<Rectangle Grid.Column="1" Grid.Row="1" Stroke="Gray" StrokeThickness="1">
+								<Rectangle.Fill>
+									<LinearGradientBrush EndPoint="0.457,0.296" StartPoint="0.459,1.296">
+										<GradientStop Color="#FFCBCBCB" />
+										<GradientStop Color="White" Offset="1" />
+									</LinearGradientBrush>
+								</Rectangle.Fill>
+							</Rectangle>
+							<Grid Name="gVerticalAxes" Grid.Row="1" Grid.RowSpan="2">
+								<Grid.Resources>
+									<Style TargetType="TextBlock">
+										<Setter Property="HorizontalAlignment" Value="Right" />
+									</Style>
+								</Grid.Resources>
+							</Grid>
+							<Canvas Name="cVerticalAxes" Grid.Column="1" Grid.Row="1" />
+							<Canvas Name="cHorizontalAxes" Grid.Column="1" Grid.Row="1" />
+							<Grid Name="gTrendPresenters" Grid.Column="1" Grid.Row="1" Background="Transparent" Cursor="Hand"/>
+							<StackPanel Name="spHorisontalAxes" Orientation="Vertical" Grid.ColumnSpan="3" Grid.Row="2" />
+							<ToolBar Grid.Row="3" Grid.ColumnSpan="3" >
+								<ToolBar.Resources>
+									<Style TargetType="Image">
+                                        <Setter Property="Height" Value="24"/>
+                                        <Setter Property="Width" Value="24"/>
+                                        <Setter Property="RenderOptions.BitmapScalingMode" Value="NearestNeighbor"/>
+										<Style.Triggers>
+											<Trigger Property="IsEnabled" Value="False">
+												<Setter Property="Opacity" Value="0.3" />
+											</Trigger>
+										</Style.Triggers>
+									</Style>
+                                    <Converters:UniversalToLocalTimeConverter x:Key="UniversalToLocalTimeConverter"/>
+								</ToolBar.Resources>
+                                <Button ToolTip="{x:Static Loc:Res.BackForOnePage}" Command="{Binding Path=BackBackCommand, RelativeSource={RelativeSource TemplatedParent}}">
+                                    <Image Source="pack://application:,,,/PHmiClient;component/Images/24/back_blue.png" />
+								</Button>
+                                <Button ToolTip="{x:Static Loc:Res.Back}" Command="{Binding Path=BackCommand, RelativeSource={RelativeSource TemplatedParent}}">
+                                    <Image Source="pack://application:,,,/PHmiClient;component/Images/24/back_green.png" />
+								</Button>
+                                <Button ToolTip="{x:Static Loc:Res.Forward}" Command="{Binding Path=ForwardCommand, RelativeSource={RelativeSource TemplatedParent}}">
+                                    <Image Source="pack://application:,,,/PHmiClient;component/Images/24/forward_green.png" />
+								</Button>
+                                <Button ToolTip="{x:Static Loc:Res.ForwardForOnePage}" Command="{Binding Path=ForwardForwardCommand, RelativeSource={RelativeSource TemplatedParent}}">
+                                    <Image Source="pack://application:,,,/PHmiClient;component/Images/24/forward_blue.png" />
+								</Button>
+								<ToggleButton ToolTip="{x:Static Loc:Res.CurrentData}" IsChecked="{Binding Path=Play, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}">
+                                    <Image Source="pack://application:,,,/PHmiClient;component/Images/24/play.png" />
+								</ToggleButton>
+								<Separator />
+								<ToggleButton ToolTip="{x:Static Loc:Res.Period}" Name="bPeriod" IsChecked="{Binding Path=IsOpen, ElementName=popupPeriod}">
+									<StackPanel Orientation="Horizontal">
+                                        <Image Source="pack://application:,,,/PHmiClient;component/Images/24/period.png" />
+										<TextBlock Text="{Binding Path=Period, RelativeSource={RelativeSource TemplatedParent}}" VerticalAlignment="Center" Margin="2,0" />
+									</StackPanel>
+								</ToggleButton>
+								<Popup Name="popupPeriod" Grid.Row="1" AllowsTransparency="True" StaysOpen="True" Placement="Top" PopupAnimation="Fade" PlacementTarget="{Binding ElementName=bPeriod}">
+									<Border BorderBrush="LightBlue" BorderThickness="1" Background="WhiteSmoke">
+										<GroupBox Header="{x:Static Loc:Res.SetPeriod}" Background="White">
+											<StackPanel Orientation="Horizontal">
+												<Controls:TimeSpanPicker Margin="2" MinWidth="100" MinHeight="24" x:Name="tspSetPeriod" />
+												<Button Margin="2" Name="bSetPeriod" Content="{x:Static Loc:Res.Ok}"/>
+											</StackPanel>
+										</GroupBox>
+									</Border>
+								</Popup>
+								<Separator />
+								<ToggleButton ToolTip="{x:Static Loc:Res.SetTime}" Name="bTime" IsChecked="{Binding Path=IsOpen, ElementName=popupTime}">
+									<StackPanel Orientation="Horizontal">
+                                        <Image Source="pack://application:,,,/PHmiClient;component/Images/24/clock.png" />
+										<TextBlock VerticalAlignment="Center" Text="{Binding Path=EndTime, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource UniversalToLocalTimeConverter}}" Margin="2,0" />
+									</StackPanel>
+								</ToggleButton>
+								<Popup Name="popupTime" Grid.Row="1" AllowsTransparency="True" StaysOpen="True" Placement="Top" PopupAnimation="Fade" PlacementTarget="{Binding ElementName=bTime}">
+									<Border BorderBrush="LightBlue" BorderThickness="1" Background="WhiteSmoke">
+										<GroupBox Header="{x:Static Loc:Res.SetTime}">
+											<StackPanel Orientation="Horizontal">
+                                                <Controls:DateTimePicker Margin="2" x:Name="dtpSetTime" DateTime="{Binding Path=TimeToSet, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource UniversalToLocalTimeConverter}, Mode=TwoWay}"/>
+												<Button Margin="2" Name="bSetTime" Content="{x:Static Loc:Res.Ok}"/>
+											</StackPanel>
+										</GroupBox>
+									</Border>
+								</Popup>
+								<Separator />
+								<ToggleButton ToolTip="{x:Static Loc:Res.ShowCursor}" IsChecked="{Binding Path=ShowCursor, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}">
+                                    <Image Source="pack://application:,,,/PHmiClient;component/Images/24/cursor.png" />
+								</ToggleButton>
+								<ToggleButton ToolTip="{x:Static Loc:Res.ShowFlags}" IsEnabled="{Binding Path=ShowCursor, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}" IsChecked="{Binding Path=ShowCursorPresenters, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}">
+                                    <Image Source="pack://application:,,,/PHmiClient;component/Images/24/cursor_flags.png" />
+								</ToggleButton>
+                                <Separator/>
+                                <ToggleButton ToolTip="{x:Static Loc:Res.ShowPoints}" IsChecked="{Binding Path=ShowPoints, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}">
+                                    <Image Source="pack://application:,,,/PHmiClient;component/Images/24/point.png" />
+                                </ToggleButton>
+							</ToolBar>
+							<DataGrid Grid.Row="4" Grid.ColumnSpan="3" Name="dgTrendPens" MaxHeight="200" BorderThickness="0" HeadersVisibility="Column" CanUserSortColumns="False" AlternationCount="2" AlternatingRowBackground="#FFEAEFF4" GridLinesVisibility="Vertical" VerticalGridLinesBrush="#FFC9CACA" CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False" SelectedItem="{Binding CurrentTrendPen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" SelectionMode="Single" ItemsSource="{Binding Path=Pens, RelativeSource={RelativeSource TemplatedParent}}">
+                                <DataGrid.Resources>
+                                    <Trends:DoubleToStringConverter x:Key="DoubleToStringConverter"/>
+                                </DataGrid.Resources>
+								<DataGrid.Columns>
+									<DataGridTemplateColumn CanUserResize="False" Header="{x:Static Loc:Res.Trend}">
+										<DataGridTemplateColumn.CellTemplate>
+											<DataTemplate>
+												<StackPanel Orientation="Horizontal">
+													<Rectangle Margin="2,0,0,0" Stroke="Gray" StrokeThickness="1" Fill="{Binding Path=Brush}" VerticalAlignment="Center" Width="13" Height="13" />
+													<CheckBox IsChecked="{Binding Path=Visible, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Margin="2" />
+												</StackPanel>
+											</DataTemplate>
+										</DataGridTemplateColumn.CellTemplate>
+									</DataGridTemplateColumn>
+									<DataGridTextColumn Header="{x:Static Loc:Res.Description}" Binding="{Binding Path=TrendTag.Description, Mode=OneWay}" />
+                                    <DataGridTextColumn Binding="{Binding Path=MinValue, Mode=TwoWay, Converter={StaticResource DoubleToStringConverter}}" Header="{x:Static Loc:Res.Minimum}" />
+                                    <DataGridTextColumn Binding="{Binding Path=MaxValue, Mode=TwoWay, Converter={StaticResource DoubleToStringConverter}}" Header="{x:Static Loc:Res.Maximum}" />
+									<DataGridTextColumn Header="{x:Static Loc:Res.EngUnit}" Binding="{Binding Path=TrendTag.EngUnit, Mode=OneWay}" />
+									<DataGridTextColumn Header="{x:Static Loc:Res.CursorTime}" Binding="{Binding Path=CursorTime, StringFormat=dd.MM.yyyy HH:mm:ss.fff, Mode=OneWay}" />
+									<DataGridTextColumn Header="{x:Static Loc:Res.CursorValue}" Binding="{Binding Path=CursorValue, Mode=OneWay}" />
+									<DataGridTemplateColumn CanUserResize="False">
+										<DataGridTemplateColumn.CellTemplate>
+											<DataTemplate>
+                                                <Controls:LoadingControl Visibility="{Binding Path=WaitingSamples, Converter={StaticResource FalseToHiddenConverter}}"/>
+											</DataTemplate>
+										</DataGridTemplateColumn.CellTemplate>
+									</DataGridTemplateColumn>
+								</DataGrid.Columns>
+							</DataGrid>
+							<Grid Name="gSlider" Grid.Column="1" Grid.Row="1">
+								<Grid>
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition x:Name="cdSliderOffset" />
+										<ColumnDefinition Width="Auto" />
+										<ColumnDefinition />
+									</Grid.ColumnDefinitions>
+									<Rectangle Grid.Column="1" Width="1" Fill="Black" />
+									<Canvas Name="cSlider" Grid.Column="2">
+										<StackPanel Name="spSlider" Canvas.Left="100" />
+									</Canvas>
+								</Grid>
+							</Grid>
+						</Grid>
+					</Border>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+</ResourceDictionary>

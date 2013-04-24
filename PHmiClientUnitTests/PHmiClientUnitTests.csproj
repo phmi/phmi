@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FB8540BD-1CFE-4D82-B9F1-7B0E1530E182}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PHmiClientUnitTests</RootNamespace>
+    <AssemblyName>PHmiClientUnitTests</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Moq">
+      <HintPath>..\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.2.6.2\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Client\Alarms\AlarmServiceTests.cs" />
+    <Compile Include="Client\Controls\Input\DelegateCommandTests.cs" />
+    <Compile Include="Client\Controls\RootTests.cs" />
+    <Compile Include="Client\Converters\EmptyToFalseConverterTests.cs" />
+    <Compile Include="Client\Converters\EqualityConverterTests.cs" />
+    <Compile Include="Client\Converters\FalseToCollapsedConverterTests.cs" />
+    <Compile Include="Client\Converters\InvertConverterTests.cs" />
+    <Compile Include="Client\Converters\MultiValueConverters\AndConverterTests.cs" />
+    <Compile Include="Client\Converters\MultiValueConverters\OrConverterTests.cs" />
+    <Compile Include="NotifyPropertyChangedTester.cs" />
+    <Compile Include="Client\PHmiSystem\AfterUpdateRunTargetTests.cs" />
+    <Compile Include="Client\PHmiSystem\PHmiBaseTests.cs" />
+    <Compile Include="Client\PHmiSystem\PHmiRunTargetFactoryTests.cs" />
+    <Compile Include="Client\PHmiSystem\PHmiRunTargetTests.cs" />
+    <Compile Include="Client\PHmiSystem\UpdateStatusRunTargetTests.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="RandomGenerator.cs" />
+    <Compile Include="Specification.cs" />
+    <Compile Include="Stubs\ActionHelperStub.cs" />
+    <Compile Include="Client\Tags\IoDeviceTests.cs" />
+    <Compile Include="Client\Tags\NumericTagTests.cs" />
+    <Compile Include="Client\Tags\TagBaseTests.cs" />
+    <Compile Include="Client\Tags\TagServiceFactoryTests.cs" />
+    <Compile Include="Client\Tags\TagServiceTests.cs" />
+    <Compile Include="Client\Tags\TagTests.cs" />
+    <Compile Include="Client\Users\UsersRunTargetTests.cs" />
+    <Compile Include="Client\Users\UsersTests.cs" />
+    <Compile Include="Client\Utils\ByteConverterTests.cs" />
+    <Compile Include="Client\Utils\CollectionUniters\CollectionsUniterTests.cs" />
+    <Compile Include="Client\Utils\Configuration\SettingsTests.cs" />
+    <Compile Include="Client\Utils\Configuration\StringKeeperTests.cs" />
+    <Compile Include="Client\Utils\Configuration\WindowPositionSettingsTests.cs" />
+    <Compile Include="Client\Utils\ConnectionStringHelperTests.cs" />
+    <Compile Include="Client\Utils\DispatcherServiceTests.cs" />
+    <Compile Include="Client\Utils\EditorHelperTests.cs" />
+    <Compile Include="Client\Utils\EventHelperTests.cs" />
+    <Compile Include="Client\Utils\ListInterfaceExtensionsTests.cs" />
+    <Compile Include="Client\Utils\LocDisplayNameAttributeTests.cs" />
+    <Compile Include="Client\Utils\Notifications\NotificationReporterFactoryTests.cs" />
+    <Compile Include="Client\Utils\Notifications\NotificationReporterTests.cs" />
+    <Compile Include="Client\Utils\Notifications\NotificationTests.cs" />
+    <Compile Include="Client\Utils\Pagination\PaginatorTests.cs" />
+    <Compile Include="Client\Utils\PropertyHelperTests.cs" />
+    <Compile Include="Client\Utils\ReflectionHelperTests.cs" />
+    <Compile Include="Client\Utils\Runner\CyclicRunnerFactoryTests.cs" />
+    <Compile Include="Client\Utils\Runner\CyclicRunnerTests.cs" />
+    <Compile Include="Client\Utils\StatusServiceTests.cs" />
+    <Compile Include="Client\Utils\ValidationAttributes\ValidDoubleAttributeTests.cs" />
+    <Compile Include="Client\Utils\ValidationAttributes\ValidTimeSpanAttributeTests.cs" />
+    <Compile Include="Client\Utils\ValidatorTests.cs" />
+    <None Include="packages.config" />
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PHmiClient\PHmiClient.csproj">
+      <Project>{14b58393-3958-4c32-b52c-5b76e66632eb}</Project>
+      <Name>PHmiClient</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

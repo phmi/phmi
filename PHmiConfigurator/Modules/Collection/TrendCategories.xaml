@@ -1,0 +1,103 @@
+﻿<Modules:Module
+    x:Class="PHmiConfigurator.Modules.Collection.TrendCategories"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:Controls="clr-namespace:PHmiClient.Controls;assembly=PHmiClient"
+    xmlns:Converters="clr-namespace:PHmiClient.Converters;assembly=PHmiClient"
+    xmlns:Loc="clr-namespace:PHmiResources.Loc;assembly=PHmiResources"
+    xmlns:Modules="clr-namespace:PHmiConfigurator.Modules"
+    xmlns:Collection="clr-namespace:PHmiConfigurator.Modules.Collection" mc:Ignorable="d" 
+    ImageSource="pack://application:,,,/PHmiResources;component/Images/trend.ico"
+    d:DesignHeight="300" d:DesignWidth="300">
+    <Modules:Module.Resources>
+        <Collection:TrendCategoriesViewModel x:Key="ViewModel"/>
+        <Converters:FalseToCollapsedConverter x:Key="BooleanToVisibilityConverter"/>
+        <Converters:InvertConverter x:Key="InvertConverter"/>
+    </Modules:Module.Resources>
+    <Modules:Module.DataContext>
+        <Binding Source="{StaticResource ViewModel}"/>
+    </Modules:Module.DataContext>
+    <Modules:Module.Header>
+        <StackPanel Style="{StaticResource HorizontalStackPanelStyle}">
+            <Image Style="{StaticResource SmallImageStyle}" Source="pack://application:,,,/PHmiResources;component/Images/trend.png" />
+            <TextBlock Text="{Binding Path=Name}" Style="{StaticResource ToolBarTextBlockStyle}" />
+            <TextBlock Text="*" Style="{StaticResource ToolBarTextBlockStyle}" Visibility="{Binding Path=HasChanges, Converter={StaticResource BooleanToVisibilityConverter}}" />
+            <Button Style="{StaticResource ModuleCloseButtonStyle}" Command="{Binding Path=CloseCommand}" ToolTip="{x:Static Loc:Res.CloseModuleToolTip}"/>
+        </StackPanel>
+    </Modules:Module.Header>
+    <Grid IsEnabled="{Binding Path=InProgress, Converter={StaticResource InvertConverter}}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <ToolBar>
+            <Button Command="{Binding Path=ReloadCommand}" ToolTip="{x:Static Loc:Res.ReloadToolTip}">
+                <StackPanel Style="{StaticResource HorizontalStackPanelStyle}">
+                    <Image Style="{StaticResource SmallImageStyle}" Source="pack://application:,,,/PHmiResources;component/Images/reload.png" />
+                    <TextBlock Style="{StaticResource ToolBarTextBlockStyle}" Text="{x:Static Loc:Res.Reload}" />
+                </StackPanel>
+            </Button>
+            <Separator/>
+            <Button Command="{Binding Path=SaveCommand}" ToolTip="{x:Static Loc:Res.SaveToolTip}">
+                <StackPanel Style="{StaticResource HorizontalStackPanelStyle}">
+                    <Image Style="{StaticResource SmallImageStyle}" Source="pack://application:,,,/PHmiResources;component/Images/filesave.png" />
+                    <TextBlock Style="{StaticResource ToolBarTextBlockStyle}" Text="{x:Static Loc:Res.Save}" />
+                </StackPanel>
+            </Button>
+            <Separator/>
+            <Button Command="{Binding Path=AddCommand}" ToolTip="{x:Static Loc:Res.AddToolTip}">
+                <StackPanel Style="{StaticResource HorizontalStackPanelStyle}">
+                    <Image Style="{StaticResource SmallImageStyle}" Source="pack://application:,,,/PHmiResources;component/Images/edit_add.png" />
+                    <TextBlock Style="{StaticResource ToolBarTextBlockStyle}" Text="{x:Static Loc:Res.Add}" />
+                </StackPanel>
+            </Button>
+            <Button Command="{Binding Path=EditCommand}" ToolTip="{x:Static Loc:Res.EditToolTip}">
+                <StackPanel Style="{StaticResource HorizontalStackPanelStyle}">
+                    <Image Style="{StaticResource SmallImageStyle}" Source="pack://application:,,,/PHmiResources;component/Images/edit.png" />
+                    <TextBlock Style="{StaticResource ToolBarTextBlockStyle}" Text="{x:Static Loc:Res.Edit}" />
+                </StackPanel>
+            </Button>
+            <Button Command="{Binding Path=DeleteCommand}" ToolTip="{x:Static Loc:Res.DeleteToolTip}">
+                <StackPanel Style="{StaticResource HorizontalStackPanelStyle}">
+                    <Image Style="{StaticResource SmallImageStyle}" Source="pack://application:,,,/PHmiResources;component/Images/edit_remove.png" />
+                    <TextBlock Style="{StaticResource ToolBarTextBlockStyle}" Text="{x:Static Loc:Res.Delete}" />
+                </StackPanel>
+            </Button>
+            <Separator/>
+            <Button Command="{Binding Path=CopyCommand}" ToolTip="{x:Static Loc:Res.CopyToolTip}">
+                <StackPanel Style="{StaticResource HorizontalStackPanelStyle}">
+                    <Image Style="{StaticResource SmallImageStyle}" Source="pack://application:,,,/PHmiResources;component/Images/editcopy.png" />
+                    <TextBlock Style="{StaticResource ToolBarTextBlockStyle}" Text="{x:Static Loc:Res.Copy}" />
+                </StackPanel>
+            </Button>
+            <Button Command="{Binding Path=PasteCommand}" ToolTip="{x:Static Loc:Res.PasteToolTip}">
+                <StackPanel Style="{StaticResource HorizontalStackPanelStyle}">
+                    <Image Style="{StaticResource SmallImageStyle}" Source="pack://application:,,,/PHmiResources;component/Images/editpaste.png" />
+                    <TextBlock Style="{StaticResource ToolBarTextBlockStyle}" Text="{x:Static Loc:Res.Paste}" />
+                </StackPanel>
+            </Button>
+            <Separator/>
+            <Button Command="{Binding Path=UnselectCommand}" ToolTip="{x:Static Loc:Res.UnselectToolTip}">
+                <StackPanel Style="{StaticResource HorizontalStackPanelStyle}">
+                    <Image Style="{StaticResource SmallImageStyle}" Source="pack://application:,,,/PHmiResources;component/Images/editclear.png" />
+                    <TextBlock Style="{StaticResource ToolBarTextBlockStyle}" Text="{x:Static Loc:Res.Unselect}" />
+                </StackPanel>
+            </Button>
+        </ToolBar>
+        <DataGrid Grid.Row="1" Style="{StaticResource ModuleDataGridStyle}" ItemsSource="{Binding Path=Collection}" SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}" Controls:DataGridBehavior.SelectedItems="{Binding Path=SelectedItems}" Controls:DataGridBehavior.ControlCCommand="{Binding Path=CopyCommand}" Controls:DataGridBehavior.ControlVCommand="{Binding Path=PasteCommand}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="{x:Static Loc:Res.Name}" Binding="{Binding Path=name, Mode=TwoWay, ValidatesOnDataErrors=True}" EditingElementStyle="{StaticResource DataGridTextBoxStyle}" ElementStyle="{StaticResource DataGridTextBlockStyle}"/>
+                <DataGridTextColumn Header="{x:Static Loc:Res.Period}" Binding="{Binding Path=Period, Mode=TwoWay, ValidatesOnDataErrors=True}" EditingElementStyle="{StaticResource DataGridTextBoxStyle}" ElementStyle="{StaticResource DataGridTextBlockStyle}"/>
+                <DataGridTextColumn Header="{x:Static Loc:Res.TimeToStore}" Binding="{Binding Path=TimeToStore, Mode=TwoWay, ValidatesOnDataErrors=True}" EditingElementStyle="{StaticResource DataGridTextBoxStyle}" ElementStyle="{StaticResource DataGridTextBlockStyle}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <StatusBar Grid.Row="2" Style="{StaticResource StatusBarStyle}">
+            <TextBlock Text="{Binding Path=SelectedItems.Count, StringFormat={x:Static Loc:Res.SelectedRowsStatus}}" Style="{StaticResource StatusTextBlockStyle}"/>
+            <TextBlock Text="{Binding Path=Collection.Count, StringFormat={x:Static Loc:Res.TotalRowsStatus}}" Style="{StaticResource StatusTextBlockStyle}"/>
+        </StatusBar>
+        <ProgressBar Grid.RowSpan="3" Style="{StaticResource ModuleProgressBarStyle}" Maximum="{Binding Path=ProgressMax}" Value="{Binding Path=Progress, Mode=OneWay}" IsIndeterminate="{Binding Path=ProgressIsIndeterminate}" Visibility="{Binding Path=InProgress, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+    </Grid>
+</Modules:Module>

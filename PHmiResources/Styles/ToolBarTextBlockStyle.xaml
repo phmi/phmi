@@ -1,0 +1,12 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style TargetType="TextBlock" x:Key="ToolBarTextBlockStyle">
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="2"/>
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="Gray"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>

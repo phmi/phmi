@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E5404212-CDB5-406C-B510-626812A46FBA}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PHmiIoDevice.Modbus</RootNamespace>
+    <AssemblyName>PHmiIoDevice.Modbus</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\bin\Debug\IoDevices\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\bin\PHmi\IoDevices\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\PHmiClient\Properties\GlobalAssemblyInfo.cs">
+      <Link>Properties\GlobalAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="BytesConverters\BytesOrder.cs" />
+    <Compile Include="BytesConverters\HLBytesConverter.cs" />
+    <Compile Include="BytesConverters\IBytesToRegisterBytesConverter.cs" />
+    <Compile Include="BytesConverters\LHBytesConverter.cs" />
+    <Compile Include="ConfigType.cs">
+      <DependentUpon>ModbusOptionsEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\AsciiConfig.cs" />
+    <Compile Include="Configuration\AsciiViaTcpConfig.cs" />
+    <Compile Include="Configuration\Config.cs" />
+    <Compile Include="Configuration\ConfigHelper.cs" />
+    <Compile Include="Configuration\EnetConfig.cs" />
+    <Compile Include="Configuration\ComConfig.cs" />
+    <Compile Include="Configuration\RtuConfig.cs" />
+    <Compile Include="Configuration\RtuViaTcpConfig.cs" />
+    <Compile Include="Configuration\TcpConfig.cs" />
+    <Compile Include="Implementation\IHelper.cs" />
+    <Compile Include="Implementation\ModbusASCII.cs" />
+    <Compile Include="Implementation\ModbusBase.cs" />
+    <Compile Include="Implementation\ModbusRTU.cs" />
+    <Compile Include="Implementation\ModbusTCP.cs" />
+    <Compile Include="Implementation\SerialPortHelper.cs" />
+    <Compile Include="Implementation\TcpClientHelper.cs" />
+    <Compile Include="ModbusIoDevice.cs" />
+    <Compile Include="ModbusOptionsEditor.xaml.cs">
+      <DependentUpon>ModbusOptionsEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ModbusOptionsEditorViewModel.cs">
+      <DependentUpon>ModbusOptionsEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <AppDesigner Include="Properties\" />
+    <Compile Include="ReadInfos\SlaveReadInfo.cs" />
+    <Compile Include="ReadInfos\SlaveReadResult.cs" />
+    <Compile Include="WriteInfos\CoilWriteInfo.cs" />
+    <Compile Include="WriteInfos\HoldingRegisterWriteInfo.cs" />
+    <Compile Include="WriteInfos\SlaveWriteInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\PHmiClient\PHmiClient.csproj">
+      <Project>{14b58393-3958-4c32-b52c-5b76e66632eb}</Project>
+      <Name>PHmiClient</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\..\PHmiIoDeviceTools\PHmiIoDeviceTools.csproj">
+      <Project>{af80e499-7e69-4ea6-a5e4-33e8c070b567}</Project>
+      <Name>PHmiIoDeviceTools</Name>
+      <Private>False</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="ModbusOptionsEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\image.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\pdf_document.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PHmiIoDevice.Modbus.docx" />
+    <None Include="PHmiIoDevice.Modbus.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

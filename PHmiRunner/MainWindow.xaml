@@ -1,0 +1,242 @@
+﻿<Window
+    x:Class="PHmiRunner.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:PHmiRunner="clr-namespace:PHmiRunner"
+    xmlns:Loc="clr-namespace:PHmiResources.Loc;assembly=PHmiResources"
+    xmlns:Converters="clr-namespace:PHmiClient.Converters;assembly=PHmiClient"
+    xmlns:MultiValueConverters="clr-namespace:PHmiClient.Converters.MultiValueConverters;assembly=PHmiClient"
+    xmlns:System="clr-namespace:System;assembly=mscorlib" Height="350" Width="525"
+    WindowStartupLocation="CenterScreen"
+    Icon="pack://application:,,,/PHmiRunner;component/Images/agt_runit_gray.ico">
+    <Window.Resources>
+        <PHmiRunner:MainWindowViewModel x:Key="ViewModel"/>
+        <Converters:InvertConverter x:Key="InvertConverter"/>
+    </Window.Resources>
+    <Window.DataContext>
+        <Binding Source="{StaticResource ViewModel}"/>
+    </Window.DataContext>
+    <Window.Title>
+        <Binding Path="Title"/>
+    </Window.Title>
+    <Window.InputBindings>
+        <KeyBinding Key="O" Modifiers="Shift+Alt" Command="{Binding Path=OpenCommand}" />
+        <KeyBinding Key="I" Modifiers="Shift+Alt" Command="{Binding Path=ImportCommand}" />
+        <KeyBinding Key="X" Modifiers="Alt" Command="{Binding Path=ExitCommand}" />
+    </Window.InputBindings>
+    <Window.IsEnabled>
+        <Binding Path="Busy" Converter="{StaticResource InvertConverter}"/>
+    </Window.IsEnabled>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Menu>
+            <MenuItem>
+                <MenuItem.Header>
+                    <StackPanel Style="{StaticResource HorizontalStackPanelStyle}">
+                        <Image Style="{StaticResource SmallImageStyle}" Source="pack://application:,,,/PHmiResources;component/Images/db.png" />
+                        <TextBlock Style="{StaticResource ToolBarTextBlockStyle}" Text="{x:Static Loc:Res.Project}" />
+                    </StackPanel>
+                </MenuItem.Header>
+                <MenuItem.Items>
+                    <MenuItem Header="{x:Static Loc:Res.Open}" Command="{Binding Path=OpenCommand}" InputGestureText="Shift+Alt+O">
+                        <MenuItem.Icon>
+                            <Image Style="{StaticResource SmallImageStyle}" Source="pack://application:,,,/PHmiResources;component/Images/fileopen.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <Separator/>
+                    <MenuItem Header="{x:Static Loc:Res.Close}" Command="{Binding Path=CloseCommand}">
+                        <MenuItem.Icon>
+                            <Image Style="{StaticResource SmallImageStyle}" Source="pack://application:,,,/PHmiResources;component/Images/fileclose.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <Separator/>
+                    <MenuItem Header="{x:Static Loc:Res.Import}" Command="{Binding Path=ImportCommand}" InputGestureText="Shift+Alt+I">
+                        <MenuItem.Icon>
+                            <Image Style="{StaticResource SmallImageStyle}" Source="pack://application:,,,/PHmiResources;component/Images/db_import.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <Separator/>
+                    <MenuItem Header="{x:Static Loc:Res.Exit}" Command="{Binding Path=ExitCommand}" InputGestureText="Alt+X">
+                        <MenuItem.Icon>
+                            <Image Style="{StaticResource SmallImageStyle}" Source="pack://application:,,,/PHmiResources;component/Images/exit.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </MenuItem.Items>
+            </MenuItem>
+            <MenuItem>
+                <MenuItem.Header>
+                    <StackPanel Style="{StaticResource HorizontalStackPanelStyle}">
+                        <Image Style="{StaticResource SmallImageStyle}" Source="pack://application:,,,/PHmiResources;component/Images/settings_gray.png" />
+                        <TextBlock Style="{StaticResource ToolBarTextBlockStyle}" Text="{x:Static Loc:Res.Settings}" />
+                    </StackPanel>
+                </MenuItem.Header>
+                <MenuItem.Items>
+                    <MenuItem Header="{x:Static Loc:Res.HideAtStart}" IsCheckable="True" x:Name="miHideAtStart"/>
+                </MenuItem.Items>
+            </MenuItem>
+            <MenuItem>
+                <MenuItem.Header>
+                    <StackPanel Style="{StaticResource HorizontalStackPanelStyle}">
+                        <Image Style="{StaticResource SmallImageStyle}" Source="pack://application:,,,/PHmiResources;component/Images/help_gray.png" />
+                        <TextBlock Style="{StaticResource ToolBarTextBlockStyle}" Text="{x:Static Loc:Res.Help}" />
+                    </StackPanel>
+                </MenuItem.Header>
+                <MenuItem.Items>
+                    <MenuItem Header="{x:Static Loc:Res.About}" Command="{Binding Path=AboutCommand}">
+                        <MenuItem.Icon>
+                            <Image Style="{StaticResource SmallImageStyle}" Source="pack://application:,,,/PHmiResources;component/Images/help.png" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </MenuItem.Items>
+            </MenuItem>
+        </Menu>
+        <Grid Grid.Row="1" Margin="10">
+            <Grid.Resources>
+                <Style TargetType="Image">
+                    <Setter Property="MaxWidth" Value="256"/>
+                    <Setter Property="MaxHeight" Value="256"/>
+                    <Setter Property="RenderOptions.BitmapScalingMode" Value="Fant"/>
+                </Style>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Margin" Value="10,0,0,0"/>
+                    <Setter Property="FontSize" Value="14"/>
+                </Style>
+                <Style TargetType="Button">
+                    <Setter Property="Margin" Value="10"/>
+                    <Setter Property="MaxWidth" Value="280"/>
+                    <Setter Property="MaxHeight" Value="280"/>
+                </Style>
+            </Grid.Resources>
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <Style.Triggers>
+                        <DataTrigger Value="False">
+                            <DataTrigger.Binding>
+                                <MultiBinding>
+                                    <MultiBinding.Converter>
+                                        <MultiValueConverters:AndConverter/>
+                                    </MultiBinding.Converter>
+                                    <Binding Path="Reporter.Notifications.Count">
+                                        <Binding.ConverterParameter>
+                                            <System:Int32>0</System:Int32>
+                                        </Binding.ConverterParameter>
+                                        <Binding.Converter>
+                                            <Converters:EqualityConverter/>
+                                        </Binding.Converter>
+                                    </Binding>
+                                    <Binding Path="ConnectionParameters" ConverterParameter="{x:Null}">
+                                        <Binding.Converter>
+                                            <Converters:EqualityConverter/>
+                                        </Binding.Converter>
+                                    </Binding>
+                                </MultiBinding>
+                            </DataTrigger.Binding>
+                            <DataTrigger.Setters>
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                            </DataTrigger.Setters>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Row="1" Grid.Column="0" Command="{Binding Path=OpenCommand}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Image Source="pack://application:,,,/PHmiResources;component/Images/256/fileopen.png"/>
+                    <TextBlock Grid.Row="1" Text="{x:Static Loc:Res.Open}"/>
+                </Grid>
+            </Button>
+            <Button Grid.Row="1" Grid.Column="1" Command="{Binding Path=ImportCommand}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Image Source="pack://application:,,,/PHmiResources;component/Images/256/db_import.png"/>
+                    <TextBlock Grid.Row="1" Text="{x:Static Loc:Res.Import}"/>
+                </Grid>
+            </Button>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <Style.Triggers>
+                        <DataTrigger Value="False">
+                            <DataTrigger.Binding>
+                                <MultiBinding>
+                                    <MultiBinding.Converter>
+                                        <MultiValueConverters:OrConverter/>
+                                    </MultiBinding.Converter>
+                                    <Binding Path="Reporter.Notifications.Count">
+                                        <Binding.ConverterParameter>
+                                            <System:Int32>0</System:Int32>
+                                        </Binding.ConverterParameter>
+                                        <Binding.Converter>
+                                            <Converters:InvertConverter>
+                                                <Converters:EqualityConverter/>
+                                            </Converters:InvertConverter>
+                                        </Binding.Converter>
+                                    </Binding>
+                                    <Binding Path="ConnectionParameters" ConverterParameter="{x:Null}">
+                                        <Binding.Converter>
+                                            <Converters:InvertConverter>
+                                                <Converters:EqualityConverter/>
+                                            </Converters:InvertConverter>
+                                        </Binding.Converter>
+                                    </Binding>
+                                </MultiBinding>
+                            </DataTrigger.Binding>
+                            <DataTrigger.Setters>
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                            </DataTrigger.Setters>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
+            <DataGrid x:Name="dgNotifications" Style="{StaticResource ModuleDataGridStyle}" ItemsSource="{Binding Path=Reporter.Notifications}" IsReadOnly="True">
+                <DataGrid.Resources>
+                    <Style TargetType="TextBlock" x:Key="TextBlockStyle">
+                        <Setter Property="Padding" Value="2,0"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=EndTime}" Value="{x:Null}">
+                                <Setter Property="Background" Value="#C0FF0000"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                    <Converters:UniversalToLocalTimeConverter x:Key="UniversalToLocalTimeConverter"/>
+                </DataGrid.Resources>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="{x:Static Loc:Res.Time}" Binding="{Binding Path=StartTime, Converter={StaticResource UniversalToLocalTimeConverter}}" ElementStyle="{StaticResource TextBlockStyle}" SortDirection="Descending"/>
+                    <DataGridTextColumn Header="{x:Static Loc:Res.Message}" Binding="{Binding Path=Message}" ElementStyle="{StaticResource TextBlockStyle}"/>
+                </DataGrid.Columns>
+                <DataGrid.RowDetailsTemplate>
+                    <DataTemplate>
+                        <TextBlock TextWrapping="Wrap" Text="{Binding Path=LongDescription}" Padding="2" Background="Yellow" HorizontalAlignment="Left" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ScrollViewer}}}">
+                            <TextBlock.Visibility>
+                                <Binding Path="LongDescription" ConverterParameter="{x:Null}">
+                                    <Binding.Converter>
+                                        <Converters:FalseToCollapsedConverter>
+                                            <Converters:InvertConverter>
+                                                <Converters:EqualityConverter/>
+                                            </Converters:InvertConverter>
+                                        </Converters:FalseToCollapsedConverter>
+                                    </Binding.Converter>
+                                </Binding>
+                            </TextBlock.Visibility>
+                        </TextBlock>
+                    </DataTemplate>
+                </DataGrid.RowDetailsTemplate>
+            </DataGrid>
+        </Grid>
+    </Grid>
+</Window>

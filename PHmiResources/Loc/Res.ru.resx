@@ -1,0 +1,666 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Add" xml:space="preserve">
+    <value>Добавить</value>
+  </data>
+  <data name="AddressInDevice" xml:space="preserve">
+    <value>Адрес в устройстве</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="CanRead" xml:space="preserve">
+    <value>Разрешить чтение</value>
+  </data>
+  <data name="CantChangeSelectorMessage" xml:space="preserve">
+    <value>Нельзя изменять селектор, если в модуле имеются несохранённые данные.</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Закрыть</value>
+  </data>
+  <data name="ContinueQuestion" xml:space="preserve">
+    <value>Продолжить?</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Копировать</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="DeleteRowsQuestion" xml:space="preserve">
+    <value>Удалить выбранные строки?</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Описание</value>
+  </data>
+  <data name="DigitalTags" xml:space="preserve">
+    <value>Цифровые теги</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Изменить</value>
+  </data>
+  <data name="Exit" xml:space="preserve">
+    <value>Выйти</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>Экспорт</value>
+  </data>
+  <data name="HasChangesMessage" xml:space="preserve">
+    <value>В модуле имеются несохранённые данные.</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>Импорт</value>
+  </data>
+  <data name="IoDevice" xml:space="preserve">
+    <value>Устройство ввода-вывода</value>
+  </data>
+  <data name="IoDevices" xml:space="preserve">
+    <value>Устройства ввода-вывода</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Название</value>
+  </data>
+  <data name="NewProject" xml:space="preserve">
+    <value>Новый проект</value>
+  </data>
+  <data name="NumericTags" xml:space="preserve">
+    <value>Аналоговые теги</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>Ок</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>Открыть</value>
+  </data>
+  <data name="Options" xml:space="preserve">
+    <value>Параметры</value>
+  </data>
+  <data name="Paste" xml:space="preserve">
+    <value>Вставить</value>
+  </data>
+  <data name="Project" xml:space="preserve">
+    <value>Проект</value>
+  </data>
+  <data name="Reload" xml:space="preserve">
+    <value>Обновить</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="SaveChangesQuestion" xml:space="preserve">
+    <value>Сохранить изменения?</value>
+  </data>
+  <data name="Tags" xml:space="preserve">
+    <value>Теги</value>
+  </data>
+  <data name="ThereAreChangesMessage" xml:space="preserve">
+    <value>Имеются несохраненные данные.</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Тип</value>
+  </data>
+  <data name="UniqueErrorMessage" xml:space="preserve">
+    <value>Поле "{0}" должно быть уникальным. Повторяющиеся элементы:</value>
+  </data>
+  <data name="ValidationError" xml:space="preserve">
+    <value>Ошибка валидации</value>
+  </data>
+  <data name="ValidationErrorMessage" xml:space="preserve">
+    <value>Не заполнены обязательные поля или введены неверные данные</value>
+  </data>
+  <data name="ColumnsCountNotMatchMessage" xml:space="preserve">
+    <value>Количество столбцов не совпадает</value>
+  </data>
+  <data name="ItemWithIdNotFoundMessage" xml:space="preserve">
+    <value>Строка с указанным id "{0}" не была найдена</value>
+  </data>
+  <data name="NotValidIdMessage" xml:space="preserve">
+    <value>Формат id "{0}" не верен</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Детали</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Ошибка</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>Нет</value>
+  </data>
+  <data name="NotPHmiDatabaseMessage" xml:space="preserve">
+    <value>База данных "{0}" не является базой данных проекта PHmi</value>
+  </data>
+  <data name="OpenProject" xml:space="preserve">
+    <value>Открыть проект</value>
+  </data>
+  <data name="Remember" xml:space="preserve">
+    <value>Запомнить</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Да</value>
+  </data>
+  <data name="DotNetNameMessage" xml:space="preserve">
+    <value>Поле "{0}" должно быть корректным именем .NET</value>
+  </data>
+  <data name="RequiredErrorMessage" xml:space="preserve">
+    <value>Поле "{0}" не должно быть пустым</value>
+  </data>
+  <data name="EngUnit" xml:space="preserve">
+    <value>Единица измерения</value>
+  </data>
+  <data name="Format" xml:space="preserve">
+    <value>Формат</value>
+  </data>
+  <data name="TagType" xml:space="preserve">
+    <value>Тип тега</value>
+  </data>
+  <data name="Database" xml:space="preserve">
+    <value>База данных</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Пароль</value>
+  </data>
+  <data name="Port" xml:space="preserve">
+    <value>Порт</value>
+  </data>
+  <data name="Server" xml:space="preserve">
+    <value>Сервер</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Имя пользователя</value>
+  </data>
+  <data name="EngMax" xml:space="preserve">
+    <value>Eng max</value>
+  </data>
+  <data name="EngMin" xml:space="preserve">
+    <value>Eng min</value>
+  </data>
+  <data name="InvalidDoubleMessage" xml:space="preserve">
+    <value>Поле "{0}" должно быть значением типа double</value>
+  </data>
+  <data name="RawMax" xml:space="preserve">
+    <value>Raw max</value>
+  </data>
+  <data name="RawMin" xml:space="preserve">
+    <value>Raw min</value>
+  </data>
+  <data name="RowInEditingMode" xml:space="preserve">
+    <value>Строка находится в режиме редактирования</value>
+  </data>
+  <data name="AlarmCategories" xml:space="preserve">
+    <value>Категории аварий</value>
+  </data>
+  <data name="AlarmTags" xml:space="preserve">
+    <value>Теги аварий</value>
+  </data>
+  <data name="InvalidTimeSpanMessage" xml:space="preserve">
+    <value>Поле "{0}" должно быть значением временного интервала. Пример: "{1}"</value>
+  </data>
+  <data name="TimeToStore" xml:space="preserve">
+    <value>Время хранения</value>
+  </data>
+  <data name="AddAlarmCategory" xml:space="preserve">
+    <value>Добавить категорию аварий</value>
+  </data>
+  <data name="AddAlarmTag" xml:space="preserve">
+    <value>Добавить тег аварий</value>
+  </data>
+  <data name="AddDigitalTag" xml:space="preserve">
+    <value>Добавить цифровой тег</value>
+  </data>
+  <data name="AddIoDevice" xml:space="preserve">
+    <value>Добавить устройство ввода-вывода</value>
+  </data>
+  <data name="AddNumericTag" xml:space="preserve">
+    <value>Добавить аналоговый тег</value>
+  </data>
+  <data name="EditAlarmCategory" xml:space="preserve">
+    <value>Изменить категорию аварий</value>
+  </data>
+  <data name="EditAlarmTag" xml:space="preserve">
+    <value>Изменить тег аварий</value>
+  </data>
+  <data name="EditDigitalTag" xml:space="preserve">
+    <value>Изменить цифровой тег</value>
+  </data>
+  <data name="EditIoDevice" xml:space="preserve">
+    <value>Изменить устройство ввода-вывода</value>
+  </data>
+  <data name="EditNumericTag" xml:space="preserve">
+    <value>Изменить аналоговый тег</value>
+  </data>
+  <data name="DigitalTagPresentMessage" xml:space="preserve">
+    <value>Цифровой тег с таким же полем "{0}" существует для строк:</value>
+  </data>
+  <data name="NumericTagPresentMessage" xml:space="preserve">
+    <value>Аналоговый тег с таким же полем "{0}" существует для строк:</value>
+  </data>
+  <data name="Alarms" xml:space="preserve">
+    <value>Аварии</value>
+  </data>
+  <data name="AlarmCategory" xml:space="preserve">
+    <value>Категория аварий</value>
+  </data>
+  <data name="DigitalTag" xml:space="preserve">
+    <value>Цифровой тег</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Расположение</value>
+  </data>
+  <data name="Acknowledgeable" xml:space="preserve">
+    <value>Квитируемая</value>
+  </data>
+  <data name="Privilege" xml:space="preserve">
+    <value>Привилегия</value>
+  </data>
+  <data name="AddTrendCategory" xml:space="preserve">
+    <value>Добавить категорию трендов</value>
+  </data>
+  <data name="AddTrendTag" xml:space="preserve">
+    <value>Добавить тег трендов</value>
+  </data>
+  <data name="EditTrendCategory" xml:space="preserve">
+    <value>Изменить категорию трендов</value>
+  </data>
+  <data name="EditTrendTag" xml:space="preserve">
+    <value>Изменить тег трендов</value>
+  </data>
+  <data name="TrendCategories" xml:space="preserve">
+    <value>Категории трендов</value>
+  </data>
+  <data name="TrendCategory" xml:space="preserve">
+    <value>Категория трендов</value>
+  </data>
+  <data name="Trends" xml:space="preserve">
+    <value>Тренды</value>
+  </data>
+  <data name="TrendTag" xml:space="preserve">
+    <value>Тег трендов</value>
+  </data>
+  <data name="TrendTags" xml:space="preserve">
+    <value>Теги трендов</value>
+  </data>
+  <data name="NumericTag" xml:space="preserve">
+    <value>Аналоговый тег</value>
+  </data>
+  <data name="Trigger" xml:space="preserve">
+    <value>Триггер</value>
+  </data>
+  <data name="TriggerIoDevice" xml:space="preserve">
+    <value>Устройство ввода-вывода триггера</value>
+  </data>
+  <data name="PasteRowErrorMessage" xml:space="preserve">
+    <value>Ошибка при вставке строки, где "{0}"="{1}" и "{2}"="{3}": {4}</value>
+  </data>
+  <data name="System" xml:space="preserve">
+    <value>Система</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>Пользователи</value>
+  </data>
+  <data name="AddUser" xml:space="preserve">
+    <value>Добавить пользователя</value>
+  </data>
+  <data name="CanChange" xml:space="preserve">
+    <value>Запись изменяема</value>
+  </data>
+  <data name="EditUser" xml:space="preserve">
+    <value>Изменить пользователя</value>
+  </data>
+  <data name="Photo" xml:space="preserve">
+    <value>Фото</value>
+  </data>
+  <data name="UserEnabled" xml:space="preserve">
+    <value>Запись активна</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Настройки</value>
+  </data>
+  <data name="StandByServer" xml:space="preserve">
+    <value>Резервный сервер</value>
+  </data>
+  <data name="ServerNameMessage" xml:space="preserve">
+    <value>Поле "{0}" должно быть в формате "Сервер:Порт"</value>
+  </data>
+  <data name="About" xml:space="preserve">
+    <value>О программе</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>Помощь</value>
+  </data>
+  <data name="TablesStored" xml:space="preserve">
+    <value>Таблиц</value>
+  </data>
+  <data name="RowsStored" xml:space="preserve">
+    <value>Строк</value>
+  </data>
+  <data name="Unselect" xml:space="preserve">
+    <value>Снять выделение</value>
+  </data>
+  <data name="SelectedRowsStatus" xml:space="preserve">
+    <value>Строк выбрано: {0:N0}</value>
+  </data>
+  <data name="TotalRowsStatus" xml:space="preserve">
+    <value>Строк всего: {0:N0}</value>
+  </data>
+  <data name="BackupFiles" xml:space="preserve">
+    <value>Файлы бэкап</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>Файл</value>
+  </data>
+  <data name="ImportCompleted" xml:space="preserve">
+    <value>Импорт завершён</value>
+  </data>
+  <data name="ExportCompleted" xml:space="preserve">
+    <value>Экспорт завершен</value>
+  </data>
+  <data name="AddToolTip" xml:space="preserve">
+    <value>Добавить (Ctrl+N)</value>
+  </data>
+  <data name="CloseModuleToolTip" xml:space="preserve">
+    <value>Закрыть (Ctrl+Q)</value>
+  </data>
+  <data name="CopyToolTip" xml:space="preserve">
+    <value>Копировать (Ctrl+C)</value>
+  </data>
+  <data name="DeleteToolTip" xml:space="preserve">
+    <value>Удалить (Ctrl+D)</value>
+  </data>
+  <data name="EditToolTip" xml:space="preserve">
+    <value>Изменить (Ctrl+E)</value>
+  </data>
+  <data name="PasteToolTip" xml:space="preserve">
+    <value>Вставить (Ctrl+V)</value>
+  </data>
+  <data name="ReloadToolTip" xml:space="preserve">
+    <value>Обновить (Ctrl+R)</value>
+  </data>
+  <data name="SaveToolTip" xml:space="preserve">
+    <value>Сохранить (Ctrl+S)</value>
+  </data>
+  <data name="UnselectToolTip" xml:space="preserve">
+    <value>Снять выделение (Ctrl+U)</value>
+  </data>
+  <data name="TooManyTrendTagsInCategoryMessage" xml:space="preserve">
+    <value>Слишком много тегов трендов в категории (максимум {0})</value>
+  </data>
+  <data name="ConnectionParameterErrorMessage" xml:space="preserve">
+    <value>Поле "{0}" не может содержать символ ";"</value>
+  </data>
+  <data name="LengthMessage" xml:space="preserve">
+    <value>Длина поля "{0}" не должно быть больше {1}</value>
+  </data>
+  <data name="UserId" xml:space="preserve">
+    <value>Пользователь</value>
+  </data>
+  <data name="AssemblyDoesNotContainInterfaceImplementantionMessage" xml:space="preserve">
+    <value>Сборка "{0}" не содержит реализацию интерфейса "{1}"</value>
+  </data>
+  <data name="FileNotAssemblyMessage" xml:space="preserve">
+    <value>Файл "{0}" не является сборкой</value>
+  </data>
+  <data name="FileNotFoundMessage" xml:space="preserve">
+    <value>Файл "{0}" не найден</value>
+  </data>
+  <data name="TypeDoesNotHaveConstructorMessage" xml:space="preserve">
+    <value>Тип "{0}" не имеет подходящего конструктора</value>
+  </data>
+  <data name="IoDeviceWithName" xml:space="preserve">
+    <value>Устройство ввода-вывода "{0}"</value>
+  </data>
+  <data name="TypeNotSupportedMessage" xml:space="preserve">
+    <value>Тип "{0}" не поддерживается</value>
+  </data>
+  <data name="StartError" xml:space="preserve">
+    <value>Ошибка запуска</value>
+  </data>
+  <data name="StopError" xml:space="preserve">
+    <value>Ошибка останова</value>
+  </data>
+  <data name="IoDeviceStartedMessage" xml:space="preserve">
+    <value>Устройство ввода-вывода "{0}" запущено</value>
+  </data>
+  <data name="EndTime" xml:space="preserve">
+    <value>Окончание</value>
+  </data>
+  <data name="Message" xml:space="preserve">
+    <value>Сообщение</value>
+  </data>
+  <data name="StartTime" xml:space="preserve">
+    <value>Начало</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Время</value>
+  </data>
+  <data name="ProjectStartedMessage" xml:space="preserve">
+    <value>Проект "{0}" запущен</value>
+  </data>
+  <data name="ProjectStartingMessage" xml:space="preserve">
+    <value>Проект "{0}" запускается</value>
+  </data>
+  <data name="ProjectStoppedMessage" xml:space="preserve">
+    <value>Проект "{0}" остановлен</value>
+  </data>
+  <data name="ProjectStoppingMessage" xml:space="preserve">
+    <value>Проект "{0}" останавливается</value>
+  </data>
+  <data name="Show" xml:space="preserve">
+    <value>Показать</value>
+  </data>
+  <data name="IoDeviceStoppedMessage" xml:space="preserve">
+    <value>Устройство ввода-вывода "{0}" остановлено</value>
+  </data>
+  <data name="ServiceIsStarted" xml:space="preserve">
+    <value>Сервис запущен</value>
+  </data>
+  <data name="ServiceIsStopped" xml:space="preserve">
+    <value>Сервис остановлен</value>
+  </data>
+  <data name="BuildComplete" xml:space="preserve">
+    <value>Строительство закончено</value>
+  </data>
+  <data name="BuildClient" xml:space="preserve">
+    <value>Построить клиент</value>
+  </data>
+  <data name="NameSpace" xml:space="preserve">
+    <value>Пространство имен</value>
+  </data>
+  <data name="Build" xml:space="preserve">
+    <value>Построить</value>
+  </data>
+  <data name="Path" xml:space="preserve">
+    <value>Путь</value>
+  </data>
+  <data name="Code" xml:space="preserve">
+    <value>Код</value>
+  </data>
+  <data name="Resources" xml:space="preserve">
+    <value>Ресурсы</value>
+  </data>
+  <data name="DotNetNameSpaceMessage" xml:space="preserve">
+    <value>Поле "{0}" должно быть корректным пространством имен .NET</value>
+  </data>
+  <data name="DatabaseCreatedMessage" xml:space="preserve">
+    <value>Создана база данных "{0}"</value>
+  </data>
+  <data name="UsersServiceStarted" xml:space="preserve">
+    <value>Служба пользователей запущена</value>
+  </data>
+  <data name="AlarmsStartedMessage" xml:space="preserve">
+    <value>Аварии "{0}" запущены</value>
+  </data>
+  <data name="AlarmsStoppedMessage" xml:space="preserve">
+    <value>Аварии "{0}" остановлены</value>
+  </data>
+  <data name="AddLog" xml:space="preserve">
+    <value>Добавить лог</value>
+  </data>
+  <data name="EditLog" xml:space="preserve">
+    <value>Изменить лог</value>
+  </data>
+  <data name="Logs" xml:space="preserve">
+    <value>Логи</value>
+  </data>
+  <data name="LogStargedMessage" xml:space="preserve">
+    <value>Лог "{0}" запущен</value>
+  </data>
+  <data name="LogStoppedMessage" xml:space="preserve">
+    <value>Лог "{0}" остановлен</value>
+  </data>
+  <data name="Run" xml:space="preserve">
+    <value>Запустить</value>
+  </data>
+  <data name="InstallService" xml:space="preserve">
+    <value>Установить службу</value>
+  </data>
+  <data name="PressAnyKeyToContinue" xml:space="preserve">
+    <value>Для продолжения нажмите любую клавишу</value>
+  </data>
+  <data name="UninstallService" xml:space="preserve">
+    <value>Удалить службу</value>
+  </data>
+  <data name="UseCustomConnectionString" xml:space="preserve">
+    <value>Использовать другую строку соединения</value>
+  </data>
+  <data name="UseProjectConnectionString" xml:space="preserve">
+    <value>Использовать строку соединения проекта</value>
+  </data>
+  <data name="Install" xml:space="preserve">
+    <value>Установить</value>
+  </data>
+  <data name="HideAtStart" xml:space="preserve">
+    <value>Скрывать при запуске</value>
+  </data>
+  <data name="TrendsStartedMessage" xml:space="preserve">
+    <value>Тренды "{0}" запущены</value>
+  </data>
+  <data name="TrendsStoppedMessage" xml:space="preserve">
+    <value>Тренды "{0}" остановлены</value>
+  </data>
+  <data name="Period" xml:space="preserve">
+    <value>Период</value>
+  </data>
+  <data name="QuickStartGuide" xml:space="preserve">
+    <value>Быстрый запуск</value>
+  </data>
+  <data name="Licenses" xml:space="preserve">
+    <value>Лицензии</value>
+  </data>
+</root>

@@ -1,0 +1,279 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PHmiModel.Store" Alias="Self" Provider="Npgsql" ProviderManifestToken="9.2.2" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="PHmiModelStoreContainer">
+    <EntitySet Name="alarm_categories" EntityType="PHmiModel.Store.alarm_categories" store:Type="Tables" Schema="public" />
+    <EntitySet Name="alarm_tags" EntityType="PHmiModel.Store.alarm_tags" store:Type="Tables" Schema="public" />
+    <EntitySet Name="dig_tags" EntityType="PHmiModel.Store.dig_tags" store:Type="Tables" Schema="public" />
+    <EntitySet Name="io_devices" EntityType="PHmiModel.Store.io_devices" store:Type="Tables" Schema="public" />
+    <EntitySet Name="logs" EntityType="PHmiModel.Store.logs" store:Type="Tables" Schema="public" />
+    <EntitySet Name="num_tag_types" EntityType="PHmiModel.Store.num_tag_types" store:Type="Tables" Schema="public" />
+    <EntitySet Name="num_tags" EntityType="PHmiModel.Store.num_tags" store:Type="Tables" Schema="public" />
+    <EntitySet Name="settings" EntityType="PHmiModel.Store.settings" store:Type="Tables" Schema="public" />
+    <EntitySet Name="trend_categories" EntityType="PHmiModel.Store.trend_categories" store:Type="Tables" Schema="public" />
+    <EntitySet Name="trend_tags" EntityType="PHmiModel.Store.trend_tags" store:Type="Tables" Schema="public" />
+    <EntitySet Name="users" EntityType="PHmiModel.Store.users" store:Type="Tables" Schema="public" />
+    <AssociationSet Name="fk_alarm_ta_reference_alarm_ca" Association="PHmiModel.Store.fk_alarm_ta_reference_alarm_ca">
+      <End Role="alarm_categories" EntitySet="alarm_categories" />
+      <End Role="alarm_tags" EntitySet="alarm_tags" />
+    </AssociationSet>
+    <AssociationSet Name="fk_alarm_ta_reference_dig_tags" Association="PHmiModel.Store.fk_alarm_ta_reference_dig_tags">
+      <End Role="dig_tags" EntitySet="dig_tags" />
+      <End Role="alarm_tags" EntitySet="alarm_tags" />
+    </AssociationSet>
+    <AssociationSet Name="fk_dig_tags_reference_io_devic" Association="PHmiModel.Store.fk_dig_tags_reference_io_devic">
+      <End Role="io_devices" EntitySet="io_devices" />
+      <End Role="dig_tags" EntitySet="dig_tags" />
+    </AssociationSet>
+    <AssociationSet Name="fk_num_tags_reference_io_devic" Association="PHmiModel.Store.fk_num_tags_reference_io_devic">
+      <End Role="io_devices" EntitySet="io_devices" />
+      <End Role="num_tags" EntitySet="num_tags" />
+    </AssociationSet>
+    <AssociationSet Name="fk_num_tags_reference_num_tag_" Association="PHmiModel.Store.fk_num_tags_reference_num_tag_">
+      <End Role="num_tag_types" EntitySet="num_tag_types" />
+      <End Role="num_tags" EntitySet="num_tags" />
+    </AssociationSet>
+    <AssociationSet Name="fk_trend_ta_reference_dig_tags" Association="PHmiModel.Store.fk_trend_ta_reference_dig_tags">
+      <End Role="dig_tags" EntitySet="dig_tags" />
+      <End Role="trend_tags" EntitySet="trend_tags" />
+    </AssociationSet>
+    <AssociationSet Name="fk_trend_ta_reference_num_tags" Association="PHmiModel.Store.fk_trend_ta_reference_num_tags">
+      <End Role="num_tags" EntitySet="num_tags" />
+      <End Role="trend_tags" EntitySet="trend_tags" />
+    </AssociationSet>
+    <AssociationSet Name="fk_trend_ta_reference_trend_ca" Association="PHmiModel.Store.fk_trend_ta_reference_trend_ca">
+      <End Role="trend_categories" EntitySet="trend_categories" />
+      <End Role="trend_tags" EntitySet="trend_tags" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="alarm_categories">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int4" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="text" Nullable="false" />
+    <Property Name="description" Type="text" />
+    <Property Name="time_to_store" Type="int8" />
+  </EntityType>
+  <EntityType Name="alarm_tags">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int4" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="text" Nullable="false" />
+    <Property Name="ref_dig_tags" Type="int4" Nullable="false" />
+    <Property Name="location" Type="text" />
+    <Property Name="description" Type="text" />
+    <Property Name="privilege" Type="int4" />
+    <Property Name="ref_categories" Type="int4" Nullable="false" />
+    <Property Name="acknowledgeable" Type="bool" Nullable="false" />
+  </EntityType>
+  <EntityType Name="dig_tags">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int4" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="text" Nullable="false" />
+    <Property Name="ref_io_devices" Type="int4" Nullable="false" />
+    <Property Name="device" Type="text" Nullable="false" />
+    <Property Name="description" Type="text" />
+    <Property Name="can_read" Type="bool" Nullable="false" />
+  </EntityType>
+  <EntityType Name="io_devices">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int4" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="text" Nullable="false" />
+    <Property Name="type" Type="text" Nullable="false" />
+    <Property Name="options" Type="text" />
+  </EntityType>
+  <EntityType Name="logs">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int4" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="text" Nullable="false" />
+    <Property Name="time_to_store" Type="int8" />
+  </EntityType>
+  <EntityType Name="num_tag_types">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int4" Nullable="false" />
+    <Property Name="name" Type="text" Nullable="false" />
+  </EntityType>
+  <EntityType Name="num_tags">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int4" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="text" Nullable="false" />
+    <Property Name="ref_io_devices" Type="int4" Nullable="false" />
+    <Property Name="ref_tag_types" Type="int4" Nullable="false" />
+    <Property Name="device" Type="text" Nullable="false" />
+    <Property Name="description" Type="text" />
+    <Property Name="can_read" Type="bool" Nullable="false" />
+    <Property Name="eng_unit" Type="text" />
+    <Property Name="raw_min" Type="float8" />
+    <Property Name="raw_max" Type="float8" />
+    <Property Name="eng_min" Type="float8" />
+    <Property Name="eng_max" Type="float8" />
+    <Property Name="format" Type="text" />
+  </EntityType>
+  <EntityType Name="settings">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int4" Nullable="false" />
+    <Property Name="server" Type="text" />
+    <Property Name="stand_by_server" Type="text" />
+    <Property Name="guid" Type="text" Nullable="false" />
+    <Property Name="guid2" Type="text" Nullable="false" />
+    <Property Name="phmi_guid" Type="text" Nullable="false" />
+  </EntityType>
+  <EntityType Name="trend_categories">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int4" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="text" Nullable="false" />
+    <Property Name="time_to_store" Type="int8" />
+    <Property Name="period" Type="int8" Nullable="false" />
+  </EntityType>
+  <EntityType Name="trend_tags">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int4" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="text" Nullable="false" />
+    <Property Name="ref_num_tags" Type="int4" Nullable="false" />
+    <Property Name="description" Type="text" />
+    <Property Name="ref_categories" Type="int4" Nullable="false" />
+    <Property Name="ref_triggers" Type="int4" />
+  </EntityType>
+  <EntityType Name="users">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int4" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="text" Nullable="false" />
+    <Property Name="description" Type="text" Nullable="false" />
+    <Property Name="photo" Type="bytea" />
+    <Property Name="password" Type="text" />
+    <Property Name="enabled" Type="bool" Nullable="false" />
+    <Property Name="can_change" Type="bool" Nullable="false" />
+    <Property Name="privilege" Type="int4" />
+  </EntityType>
+  <Association Name="fk_alarm_ta_reference_alarm_ca">
+    <End Role="alarm_categories" Type="PHmiModel.Store.alarm_categories" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="alarm_tags" Type="PHmiModel.Store.alarm_tags" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="alarm_categories">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="alarm_tags">
+        <PropertyRef Name="ref_categories" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_alarm_ta_reference_dig_tags">
+    <End Role="dig_tags" Type="PHmiModel.Store.dig_tags" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="alarm_tags" Type="PHmiModel.Store.alarm_tags" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="dig_tags">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="alarm_tags">
+        <PropertyRef Name="ref_dig_tags" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_dig_tags_reference_io_devic">
+    <End Role="io_devices" Type="PHmiModel.Store.io_devices" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="dig_tags" Type="PHmiModel.Store.dig_tags" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="io_devices">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="dig_tags">
+        <PropertyRef Name="ref_io_devices" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_num_tags_reference_io_devic">
+    <End Role="io_devices" Type="PHmiModel.Store.io_devices" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="num_tags" Type="PHmiModel.Store.num_tags" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="io_devices">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="num_tags">
+        <PropertyRef Name="ref_io_devices" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_num_tags_reference_num_tag_">
+    <End Role="num_tag_types" Type="PHmiModel.Store.num_tag_types" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="num_tags" Type="PHmiModel.Store.num_tags" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="num_tag_types">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="num_tags">
+        <PropertyRef Name="ref_tag_types" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_trend_ta_reference_dig_tags">
+    <End Role="dig_tags" Type="PHmiModel.Store.dig_tags" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="trend_tags" Type="PHmiModel.Store.trend_tags" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="dig_tags">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="trend_tags">
+        <PropertyRef Name="ref_triggers" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_trend_ta_reference_num_tags">
+    <End Role="num_tags" Type="PHmiModel.Store.num_tags" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="trend_tags" Type="PHmiModel.Store.trend_tags" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="num_tags">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="trend_tags">
+        <PropertyRef Name="ref_num_tags" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_trend_ta_reference_trend_ca">
+    <End Role="trend_categories" Type="PHmiModel.Store.trend_categories" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="trend_tags" Type="PHmiModel.Store.trend_tags" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="trend_categories">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="trend_tags">
+        <PropertyRef Name="ref_categories" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

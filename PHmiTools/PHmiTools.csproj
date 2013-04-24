@@ -1,0 +1,281 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7E878D5E-10E7-4E98-8432-21DE131BE90F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PHmiTools</RootNamespace>
+    <AssemblyName>PHmiTools</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\bin\PHmi\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Mono.Security">
+      <HintPath>..\packages\Npgsql.2.0.12.1\lib\net40\Mono.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Npgsql">
+      <HintPath>..\packages\Npgsql.2.0.12.1\lib\net40\Npgsql.dll</HintPath>
+    </Reference>
+    <Reference Include="policy.2.0.Npgsql">
+      <HintPath>..\packages\Npgsql.2.0.12.1\lib\net40\policy.2.0.Npgsql.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\PHmiClient\Properties\GlobalAssemblyInfo.cs">
+      <Link>Properties\GlobalAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Controls\IoDeviceDirectoryItem.xaml.cs">
+      <DependentUpon>IoDeviceDirectoryItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\IoDeviceItem.xaml.cs">
+      <DependentUpon>IoDeviceItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\IoDeviceTypeEditor.xaml.cs">
+      <DependentUpon>IoDeviceTypeEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\AboutDialog.xaml.cs">
+      <DependentUpon>AboutDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\MessageDialog.xaml.cs">
+      <DependentUpon>MessageDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Project\ExportProjectDialogService.cs">
+      <DependentUpon>ExportProjectDialogViewModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Project\IExportProjectDialogService.cs">
+      <DependentUpon>ExportProjectDialogService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Project\IImportProjectDialogService.cs">
+      <DependentUpon>ImportProjectDialogService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Project\ImportProjectDialogService.cs">
+      <DependentUpon>ImportProjectDialogViewModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Project\IOpenProjectDialogService.cs">
+      <DependentUpon>OpenProjectDialogService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Project\IProjectDialogService.cs">
+      <DependentUpon>ProjectDialogService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Project\INewProjectDialogService.cs">
+      <DependentUpon>NewProjectDialogService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Project\OpenProjectDialogService.cs">
+      <DependentUpon>OpenProjectDialogViewModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Project\ProjectDialogService.cs">
+      <DependentUpon>ProjectDialogViewModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Project\NewProjectDialogService.cs">
+      <DependentUpon>NewProjectDialogViewModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\IDialogHelper.cs" />
+    <Compile Include="Utils\IPHmiDatabaseHelper.cs" />
+    <Compile Include="Utils\Npg\INpgsqlConnectionFactory.cs" />
+    <Compile Include="Utils\Npg\NpgsqlConnectionFactory.cs">
+      <DependentUpon>INpgsqlConnectionFactory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\Npg\NpgsqlDataReaderExtensions.cs" />
+    <Compile Include="Utils\Npg\ExIm\INpgExImHelper.cs" />
+    <Compile Include="Utils\Npg\NpgColumnInfo.cs" />
+    <Compile Include="Utils\Npg\ExIm\NpgExImHelper.cs">
+      <DependentUpon>INpgExImHelper.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\Npg\ExIm\NpgScriptConstraint.cs" />
+    <Compile Include="Utils\Npg\NpgDataType.cs" />
+    <Compile Include="Utils\Npg\NpgIndexType.cs" />
+    <Compile Include="Utils\Npg\NpgTableInfo.cs" />
+    <Compile Include="Utils\Npg\ExIm\SerialHelper.cs" />
+    <Compile Include="Utils\Npg\ExIm\TableData.cs" />
+    <Compile Include="Utils\Npg\INpgConnectionParameters.cs" />
+    <Compile Include="Utils\Npg\INpgHelper.cs" />
+    <Compile Include="Utils\Npg\INpgScriptHelper.cs" />
+    <Compile Include="Utils\Npg\INpgQueryHelper.cs" />
+    <Compile Include="Utils\Npg\NpgConnectionParameters.cs">
+      <DependentUpon>INpgConnectionParameters.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\Npg\NpgHelper.cs">
+      <DependentUpon>INpgHelper.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\Npg\NpgScriptHelper.cs">
+      <DependentUpon>INpgScriptHelper.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\Npg\NpgQuery.cs" />
+    <Compile Include="Dialogs\Project\ExportProjectDialogViewModel.cs">
+      <DependentUpon>ExportProjectDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Project\ImportProjectDialogViewModel.cs">
+      <DependentUpon>ImportProjectDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Project\ExportProjectDialog.xaml.cs">
+      <DependentUpon>ExportProjectDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Project\ImportProjectDialog.xaml.cs">
+      <DependentUpon>ImportProjectDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Project\NewProjectDialog.xaml.cs">
+      <DependentUpon>NewProjectDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\ExceptionDialog.xaml.cs">
+      <DependentUpon>ExceptionDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Project\OpenProjectDialog.xaml.cs">
+      <DependentUpon>OpenProjectDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Project\ProjectDialogBase.cs" />
+    <Compile Include="PHmiConstants.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\DialogHelper.cs">
+      <DependentUpon>IDialogHelper.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\Npg\NpgQueryHelper.cs">
+      <DependentUpon>INpgQueryHelper.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\Npg\NpgTableInfoBuilder.cs" />
+    <Compile Include="Utils\Npg\WhereOps\And.cs" />
+    <Compile Include="Utils\Npg\WhereOps\Eq.cs" />
+    <Compile Include="Utils\Npg\WhereOps\Ge.cs" />
+    <Compile Include="Utils\Npg\WhereOps\Gt.cs" />
+    <Compile Include="Utils\Npg\WhereOps\In.cs" />
+    <Compile Include="Utils\Npg\WhereOps\NotNull.cs" />
+    <Compile Include="Utils\Npg\WhereOps\IsNull.cs" />
+    <Compile Include="Utils\Npg\WhereOps\IWhereOp.cs" />
+    <Compile Include="Utils\Npg\WhereOps\Le.cs" />
+    <Compile Include="Utils\Npg\WhereOps\Lt.cs" />
+    <Compile Include="Utils\Npg\WhereOps\NaryOp.cs" />
+    <Compile Include="Utils\Npg\WhereOps\Ne.cs" />
+    <Compile Include="Utils\Npg\WhereOps\Not.cs" />
+    <Compile Include="Utils\Npg\WhereOps\Or.cs" />
+    <Compile Include="Utils\Npg\WhereOps\UnaryOp.cs" />
+    <Compile Include="Utils\Npg\WhereOps\WhereOp.cs" />
+    <Compile Include="Utils\PHmiDatabaseHelper.cs">
+      <DependentUpon>IPHmiDatabaseHelper.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Project\NewProjectDialogViewModel.cs">
+      <DependentUpon>NewProjectDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Project\OpenProjectDialogViewModel.cs">
+      <DependentUpon>OpenProjectDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Project\ProjectDialogViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="Views\IView.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PHmiClient\PHmiClient.csproj">
+      <Project>{14B58393-3958-4C32-B52C-5B76E66632EB}</Project>
+      <Name>PHmiClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PHmiIoDeviceTools\PHmiIoDeviceTools.csproj">
+      <Project>{af80e499-7e69-4ea6-a5e4-33e8c070b567}</Project>
+      <Name>PHmiIoDeviceTools</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PHmiModel\PHmiModel.csproj">
+      <Project>{0D2E637A-481B-4483-AFF3-ED38B7F7BD02}</Project>
+      <Name>PHmiModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PHmiResources\PHmiResources.csproj">
+      <Project>{9B8F6B21-A5CA-4D6E-B8D9-48F2F70462F5}</Project>
+      <Name>PHmiResources</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Controls\IoDeviceDirectoryItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\IoDeviceItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\IoDeviceTypeEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\AboutDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\MessageDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\Project\ExportProjectDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\Project\ImportProjectDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\Project\NewProjectDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\ExceptionDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\Project\OpenProjectDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\LICENSES.txt">
+      <Link>LICENSES.txt</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

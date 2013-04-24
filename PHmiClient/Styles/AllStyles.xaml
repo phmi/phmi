@@ -1,0 +1,12 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/PHmiClient;component/Styles/BackButton.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/PHmiClient;component/Styles/DownButton.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/PHmiClient;component/Styles/ForwardButton.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/PHmiClient;component/Styles/PHmiButton.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/PHmiClient;component/Styles/PHmiToggleButton.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/PHmiClient;component/Styles/ToolBarImage.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/PHmiClient;component/Styles/UpButton.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>

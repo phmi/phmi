@@ -1,0 +1,31 @@
+﻿<UserControl
+    x:Class="PHmiClient.Controls.Trends.SliderPresenter"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Converters="clr-namespace:PHmiClient.Converters">
+	<Grid Margin="0,2">
+        <Grid.Resources>
+            <Converters:UniversalToLocalTimeConverter x:Key="UniversalToLocalTimeConverter"/>
+        </Grid.Resources>
+		<Grid.Background>
+			<LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
+				<GradientStop Color="#EEFFFFAA" />
+				<GradientStop Color="#DDFFFFAA" Offset="1" />
+			</LinearGradientBrush>
+		</Grid.Background>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+		<StackPanel Orientation="Horizontal" Margin="2,2,2,0">
+			<Rectangle Stroke="Gray" StrokeThickness="1" Fill="{Binding Brush}" VerticalAlignment="Center" Width="13" Height="13" />
+			<TextBlock VerticalAlignment="Center" Margin="4,0,0,0" Text="{Binding Path=TrendTag.Description}" />
+		</StackPanel>
+        <TextBlock Grid.Row="1" Text="{Binding Path=CursorTime, Converter={StaticResource UniversalToLocalTimeConverter}}" Margin="2,2,2,0" />
+		<StackPanel Orientation="Horizontal" Grid.Row="2" Margin="2">
+			<TextBlock Text="{Binding Path=CursorValue}" />
+			<TextBlock Text="{Binding Path=TrendTag.EngUnit}" Margin="2,0,0,0" />
+		</StackPanel>
+	</Grid>
+</UserControl>

@@ -1,0 +1,397 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F23FFD7F-DE24-4C12-9042-9AEC6BD226DE}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PHmiConfigurator</RootNamespace>
+    <AssemblyName>PHmiConfigurator</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\bin\PHmi\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Images\package_utilities.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Dialogs\BuildClient.xaml.cs">
+      <DependentUpon>BuildClient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\BuildClientViewModel.cs">
+      <DependentUpon>BuildClient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\EditLog.xaml.cs">
+      <DependentUpon>EditLog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\EditLogViewModel.cs" />
+    <Compile Include="Dialogs\InstallService.xaml.cs">
+      <DependentUpon>InstallService.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\InstallServiceViewModel.cs">
+      <DependentUpon>InstallService.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="IMainWindowService.cs">
+      <DependentUpon>MainWindowService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindowService.cs">
+      <DependentUpon>MainWindowViewModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Collection\CollectionService.cs">
+      <DependentUpon>CollectionViewModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Collection\ICollectionService.cs">
+      <DependentUpon>CollectionService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Collection\Logs.xaml.cs">
+      <DependentUpon>Logs.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Collection\LogsViewModel.cs">
+      <DependentUpon>Logs.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Collection\Selectable\ISelectableCollectionService.cs">
+      <DependentUpon>SelectableCollectionService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Collection\Selectable\SelectableCollectionService.cs">
+      <DependentUpon>SelectableCollectionViewModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\IModuleService.cs">
+      <DependentUpon>ModuleService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\IModuleViewModel.cs">
+      <DependentUpon>ModuleViewModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\ModuleService.cs">
+      <DependentUpon>ModuleViewModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\EditAlarmCategoryViewModel.cs">
+      <DependentUpon>EditAlarmCategory.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\EditAlarmTagViewModel.cs">
+      <DependentUpon>EditAlarmTag.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\EditDigitalTagViewModel.cs">
+      <DependentUpon>EditDigitalTag.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\EditNumericTagViewModel.cs">
+      <DependentUpon>EditNumericTag.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\EditTrendCategoryViewModel.cs">
+      <DependentUpon>EditTrendCategory.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\EditTrendTagViewModel.cs">
+      <DependentUpon>EditTrendTag.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\EditUserViewModel.cs">
+      <DependentUpon>EditUser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Collection\AlarmCategoriesViewModel.cs">
+      <DependentUpon>AlarmCategories.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Collection\ICollectionViewModel.cs">
+      <DependentUpon>CollectionViewModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Collection\Selectable\AlarmTagsViewModel.cs">
+      <DependentUpon>AlarmTags.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Collection\Selectable\DigitalTagsViewModel.cs">
+      <DependentUpon>DigitalTags.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Collection\Selectable\NumericTagsViewModel.cs">
+      <DependentUpon>NumericTags.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Collection\Selectable\SelectableCollectionViewModel.cs" />
+    <Compile Include="Modules\Collection\Selectable\TrendTagsViewModel.cs">
+      <DependentUpon>TrendTags.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Collection\TrendCategoriesViewModel.cs">
+      <DependentUpon>TrendCategories.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Collection\UsersViewModel.cs">
+      <DependentUpon>Users.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\SettingsViewModel.cs">
+      <DependentUpon>Settings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\EditAlarmCategory.xaml.cs">
+      <DependentUpon>EditAlarmCategory.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\EditAlarmTag.xaml.cs">
+      <DependentUpon>EditAlarmTag.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\EditDigitalTag.xaml.cs">
+      <DependentUpon>EditDigitalTag.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\EditIoDevice.xaml.cs">
+      <DependentUpon>EditIoDevice.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\EditNumericTag.xaml.cs">
+      <DependentUpon>EditNumericTag.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\EditTrendCategory.xaml.cs">
+      <DependentUpon>EditTrendCategory.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\EditTrendTag.xaml.cs">
+      <DependentUpon>EditTrendTag.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\EditUser.xaml.cs">
+      <DependentUpon>EditUser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\IEditDialog.cs" />
+    <Compile Include="Modules\Collection\AlarmCategories.xaml.cs">
+      <DependentUpon>AlarmCategories.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Collection\Selectable\AlarmTags.xaml.cs">
+      <DependentUpon>AlarmTags.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Collection\Selectable\DigitalTags.xaml.cs">
+      <DependentUpon>DigitalTags.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Collection\Selectable\TrendTags.xaml.cs">
+      <DependentUpon>TrendTags.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Collection\TrendCategories.xaml.cs">
+      <DependentUpon>TrendCategories.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Collection\Users.xaml.cs">
+      <DependentUpon>Users.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\IModule.cs">
+      <DependentUpon>Module.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Collection\IoDevices.xaml.cs">
+      <DependentUpon>IoDevices.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Module.cs" />
+    <Compile Include="Dialogs\EditDialogViewModel.cs" />
+    <Compile Include="Dialogs\EditIoDeviceViewModel.cs">
+      <DependentUpon>EditIoDevice.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Collection\IoDevicesViewModel.cs">
+      <DependentUpon>IoDevices.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Collection\CollectionViewModel.cs" />
+    <Compile Include="MainWindowViewModel.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\ModuleViewModel.cs">
+      <DependentUpon>Module.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Collection\Selectable\NumericTags.xaml.cs">
+      <DependentUpon>NumericTags.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Settings.xaml.cs">
+      <DependentUpon>Settings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\CodeWriter.cs">
+      <DependentUpon>ICodeWriter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\CodeWriterFactory.cs">
+      <DependentUpon>ICodeWriterFactory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\ICodeWriter.cs" />
+    <Compile Include="Utils\ICodeWriterFactory.cs" />
+    <Compile Include="Utils\IResourceBuilder.cs" />
+    <Compile Include="Utils\IResourceBuilderFactory.cs" />
+    <Compile Include="Utils\JetBrains.Annotations.cs" />
+    <Compile Include="Utils\ResourceBuilder.cs">
+      <DependentUpon>IResourceBuilder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\ResourceBuilderFactory.cs">
+      <DependentUpon>IResourceBuilderFactory.cs</DependentUpon>
+    </Compile>
+    <Page Include="Dialogs\BuildClient.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\EditAlarmCategory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\EditAlarmTag.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\EditDigitalTag.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\EditIoDevice.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\EditLog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\InstallService.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="..\PHmiClient\Properties\GlobalAssemblyInfo.cs">
+      <Link>Properties\GlobalAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Dialogs\EditNumericTag.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\EditTrendCategory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\EditTrendTag.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\EditUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\Collection\AlarmCategories.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\Collection\Logs.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\Collection\Selectable\AlarmTags.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\Collection\Selectable\DigitalTags.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\Collection\IoDevices.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\Collection\Selectable\NumericTags.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\Collection\Selectable\TrendTags.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\Collection\TrendCategories.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\Collection\Users.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\Settings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <None Include="app.config" />
+    <AppDesigner Include="Properties\" />
+    <None Include="PHmi Quick start guide.docx" />
+    <None Include="PHmi Quick start guide.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PHmiClient\PHmiClient.csproj">
+      <Project>{14B58393-3958-4C32-B52C-5B76E66632EB}</Project>
+      <Name>PHmiClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PHmiIoDeviceTools\PHmiIoDeviceTools.csproj">
+      <Project>{af80e499-7e69-4ea6-a5e4-33e8c070b567}</Project>
+      <Name>PHmiIoDeviceTools</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PHmiModel\PHmiModel.csproj">
+      <Project>{0D2E637A-481B-4483-AFF3-ED38B7F7BD02}</Project>
+      <Name>PHmiModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PHmiResources\PHmiResources.csproj">
+      <Project>{9B8F6B21-A5CA-4D6E-B8D9-48F2F70462F5}</Project>
+      <Name>PHmiResources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PHmiTools\PHmiTools.csproj">
+      <Project>{7E878D5E-10E7-4E98-8432-21DE131BE90F}</Project>
+      <Name>PHmiTools</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\package_utilities.ico" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

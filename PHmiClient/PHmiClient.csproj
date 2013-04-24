@@ -1,0 +1,541 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{14B58393-3958-4C32-B52C-5B76E66632EB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PHmiClient</RootNamespace>
+    <AssemblyName>PHmiClient</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\bin\PHmi\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Alarms\Alarm.cs" />
+    <Compile Include="Alarms\AlarmCategoryBase.cs">
+      <DependentUpon>AlarmCategoryAbstract.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Alarms\AlarmCategoryAbstract.cs" />
+    <Compile Include="Alarms\AlarmSampleId.cs" />
+    <Compile Include="Alarms\AlarmService.cs">
+      <DependentUpon>IAlarmService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Alarms\AlarmServiceFactory.cs">
+      <DependentUpon>IAlarmServiceFactory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Alarms\IAlarmService.cs" />
+    <Compile Include="Alarms\IAlarmServiceFactory.cs" />
+    <Compile Include="Controls\Animator.cs" />
+    <Compile Include="Controls\ComboBoxBehavior.cs" />
+    <Compile Include="Controls\DisplayItem.cs" />
+    <Compile Include="Controls\DataErrorInfoValidationRule.cs" />
+    <Compile Include="Controls\DataGridBehavior.cs" />
+    <Compile Include="Controls\DateTimePicker.cs" />
+    <Compile Include="Controls\ImageInput.cs" />
+    <Compile Include="Controls\Input\DelegateCommand.cs" />
+    <Compile Include="Controls\IRoot.cs" />
+    <Compile Include="Controls\ListBoxBehavior.cs" />
+    <Compile Include="Controls\ListBoxWithColumns\HeaderGridSplitter.cs" />
+    <Compile Include="Controls\ListBoxWithColumns\ReverseDoubleToThicknesConverter.cs" />
+    <Compile Include="Controls\LoadingControl.cs" />
+    <Compile Include="Controls\NumericInput.cs" />
+    <Compile Include="Controls\NumericUpDown.cs" />
+    <Compile Include="Controls\Pages\AlarmHistoryPage.cs" />
+    <Compile Include="Controls\Pages\AlarmsPage.cs" />
+    <Compile Include="Controls\Pages\IPage.cs" />
+    <Compile Include="Controls\Pages\SystemMessagesPage.cs" />
+    <Compile Include="Controls\Pages\UsersPage.cs" />
+    <Compile Include="Controls\PaginatorControl.cs" />
+    <Compile Include="Controls\PHmiControls.cs" />
+    <Compile Include="Controls\Root.cs">
+      <DependentUpon>IRoot.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TimeSpanPicker.cs" />
+    <Compile Include="Controls\Trends\DateTimeIntervalType.cs" />
+    <Compile Include="Controls\Trends\DoubleToStringConverter.cs" />
+    <Compile Include="Controls\Trends\SliderLineVisibilityConverter.cs" />
+    <Compile Include="Controls\Trends\TrendPresenter.cs" />
+    <Compile Include="Controls\Trends\SliderPresenter.xaml.cs">
+      <DependentUpon>SliderPresenter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Trends\TrendPen.cs" />
+    <Compile Include="Controls\Trends\TrendViewer.cs" />
+    <Compile Include="Controls\Win\AddUserDialog.cs" />
+    <Compile Include="Controls\Win\ChangePasswordDialog.cs" />
+    <Compile Include="Controls\Win\DialogBase.cs" />
+    <Compile Include="Controls\Win\EditUserDialog.cs" />
+    <Compile Include="Controls\Win\LogOnDialog.cs" />
+    <Compile Include="Controls\Win\SetPasswordDialog.cs" />
+    <Compile Include="Converters\DisplayItemConverter.cs" />
+    <Compile Include="Converters\FalseToCollapsedConverter.cs" />
+    <Compile Include="Converters\ByteArrayToImageSourceConverter.cs" />
+    <Compile Include="Converters\ChainConverter.cs" />
+    <Compile Include="Converters\EmptyToFalseConverter.cs" />
+    <Compile Include="Converters\EqualityConverter.cs" />
+    <Compile Include="Converters\FalseToHiddenConverter.cs" />
+    <Compile Include="Converters\Int32ToPrivilegedConverter.cs" />
+    <Compile Include="Converters\IntToStringConverter.cs" />
+    <Compile Include="Converters\InvertConverter.cs" />
+    <Compile Include="Converters\MultiValueConverters\AndConverter.cs" />
+    <Compile Include="Converters\MultiValueConverters\NotPrivilegedToCollapsedConverter.cs" />
+    <Compile Include="Converters\MultiValueConverters\PrivilegedToTrueConverter.cs" />
+    <Compile Include="Converters\MultiValueConverters\OrConverter.cs" />
+    <Compile Include="Converters\PasswordConverter.cs" />
+    <Compile Include="Converters\UniversalToLocalTimeConverter.cs" />
+    <Compile Include="Loc\Res.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Res.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Logs\ILogService.cs" />
+    <Compile Include="Logs\LogAbstract.cs" />
+    <Compile Include="Logs\Log.cs">
+      <DependentUpon>LogAbstract.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Logs\LogItem.cs" />
+    <Compile Include="Logs\LogService.cs">
+      <DependentUpon>ILogService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PHmiSystem\EventRunTarget.cs">
+      <DependentUpon>IEventRunTarget.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PHmiSystem\IEventRunTarget.cs" />
+    <Compile Include="PHmiSystem\IPHmiRunTargetFactory.cs" />
+    <Compile Include="PHmiSystem\IUpdateStatusRunTarget.cs" />
+    <Compile Include="PHmiSystem\IUpdateStatusRunTargetFactory.cs" />
+    <Compile Include="PHmiSystem\PHmiBase.cs">
+      <DependentUpon>PHmiAbstract.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PHmiSystem\PHmiAbstract.cs" />
+    <Compile Include="PHmiSystem\PHmiRunTarget.cs">
+      <DependentUpon>IPHmiRunTarget.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PHmiSystem\PHmiRunTargetFactory.cs">
+      <DependentUpon>IPHmiRunTargetFactory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PHmiSystem\UpdateStatusRunTarget.cs">
+      <DependentUpon>IUpdateStatusRunTarget.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PHmiSystem\UpdateStatusRunTargetFactory.cs">
+      <DependentUpon>IUpdateStatusRunTargetFactory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\GlobalAssemblyInfo.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PHmiSystem\IPHmiRunTarget.cs" />
+    <Compile Include="PHmiSystem\IServiceRunTarget.cs" />
+    <Compile Include="Tags\DigitalTag.cs">
+      <DependentUpon>IDigitalTag.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tags\IDigitalTag.cs" />
+    <Compile Include="Tags\INumericTag.cs" />
+    <Compile Include="Tags\IoDeviceBase.cs">
+      <DependentUpon>IoDeviceAbstract.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tags\IoDeviceAbstract.cs" />
+    <Compile Include="Tags\ITag.cs" />
+    <Compile Include="Tags\ITagService.cs" />
+    <Compile Include="Tags\ITagServiceFactory.cs" />
+    <Compile Include="Tags\NumericTag.cs">
+      <DependentUpon>INumericTag.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tags\Tag.cs">
+      <DependentUpon>TagAbstract.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tags\TagAbstract.cs">
+      <DependentUpon>ITag.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tags\TagService.cs">
+      <DependentUpon>ITagService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tags\TagServiceFactory.cs">
+      <DependentUpon>ITagServiceFactory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Trends\ITrendsService.cs" />
+    <Compile Include="Trends\ITrendsServiceFactory.cs" />
+    <Compile Include="Trends\ITrendTag.cs" />
+    <Compile Include="Trends\TrendsCategoryBase.cs">
+      <DependentUpon>TrendsCategoryAbstract.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Trends\TrendsCategoryAbstract.cs" />
+    <Compile Include="Trends\TrendsService.cs">
+      <DependentUpon>ITrendsService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Trends\TrendsServiceFactory.cs">
+      <DependentUpon>ITrendsServiceFactory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Trends\TrendTag.cs">
+      <DependentUpon>TrendTagAbstract.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Trends\TrendTagAbstract.cs">
+      <DependentUpon>ITrendTag.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Users\UpdateUserResult.cs" />
+    <Compile Include="Users\Identity.cs" />
+    <Compile Include="Users\InsertUserResult.cs" />
+    <Compile Include="Users\IUsers.cs" />
+    <Compile Include="Users\IUsersRunTarget.cs" />
+    <Compile Include="Users\User.cs" />
+    <Compile Include="Users\Users.cs">
+      <DependentUpon>IUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Users\UsersRunTarget.cs">
+      <DependentUpon>IUsersRunTarget.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\ActionHelper.cs">
+      <DependentUpon>IActionHelper.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\ByteConverter.cs" />
+    <Compile Include="Utils\ClipboardHelper.cs">
+      <DependentUpon>IClipboardHelper.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\CollectionUniters\CollectionUniter.cs" />
+    <Compile Include="Utils\Configuration\ISettings.cs" />
+    <Compile Include="Utils\Configuration\IStringKeeper.cs" />
+    <Compile Include="Utils\DispatcherService.cs">
+      <DependentUpon>IDispatcherService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\EditorHelper.cs">
+      <DependentUpon>IEditorHelper.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\IActionHelper.cs" />
+    <Compile Include="Utils\IClipboardHelper.cs" />
+    <Compile Include="Utils\IconHelper.cs" />
+    <Compile Include="Utils\IConnectionStringHelper.cs" />
+    <Compile Include="Utils\IDispatcherService.cs" />
+    <Compile Include="Utils\IEditorHelper.cs" />
+    <Compile Include="Utils\ImageHelper.cs" />
+    <Compile Include="Utils\InDesignModeHelper.cs" />
+    <Compile Include="Utils\Pagination\CriteriaType.cs" />
+    <Compile Include="Utils\Pagination\IPaginationService.cs" />
+    <Compile Include="Utils\Pagination\IPaginator.cs" />
+    <Compile Include="Utils\IStatusService.cs" />
+    <Compile Include="Utils\ITimerService.cs" />
+    <Compile Include="Utils\ITimeService.cs" />
+    <Compile Include="Utils\ListInterfaceExtensions.cs" />
+    <Compile Include="Utils\Notifications\INotificationReporter.cs" />
+    <Compile Include="Utils\Notifications\INotificationReporterFactory.cs" />
+    <Compile Include="Utils\Notifications\IReporter.cs" />
+    <Compile Include="Utils\Notifications\NotificationReporterFactory.cs">
+      <DependentUpon>INotificationReporterFactory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\Pagination\Paginator.cs">
+      <DependentUpon>IPaginator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\Runner\CyclicRunner.cs">
+      <DependentUpon>ICyclicRunner.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\Runner\CyclicRunnerFactory.cs">
+      <DependentUpon>ICyclicRunnerFactory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\Runner\ICyclicRunner.cs" />
+    <Compile Include="Utils\Runner\ICyclicRunnerFactory.cs" />
+    <Compile Include="Utils\Runner\IRunner.cs" />
+    <Compile Include="Utils\Runner\IRunTarget.cs" />
+    <Compile Include="Utils\StatusService.cs">
+      <DependentUpon>IStatusService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\PropertyHelper.cs" />
+    <Compile Include="Utils\Notifications\NotificationReporter.cs">
+      <DependentUpon>INotificationReporter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\Notifications\Notification.cs" />
+    <Compile Include="Utils\TimerService.cs">
+      <DependentUpon>ITimerService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\TimeService.cs">
+      <DependentUpon>ITimeService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\UniqueTimeService.cs" />
+    <Compile Include="Utils\ValidationAttributes\ValidDoubleAttribute.cs" />
+    <Compile Include="Utils\ValidationAttributes\ValidTimeSpanAttribute.cs" />
+    <Compile Include="Utils\ViewInterfaces\IWindow.cs" />
+    <Compile Include="Utils\Configuration\StringKeeper.cs">
+      <DependentUpon>IStringKeeper.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\ConnectionStringHelper.cs">
+      <DependentUpon>IConnectionStringHelper.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\EventHelper.cs" />
+    <Compile Include="Utils\LocDisplayNameAttribute.cs" />
+    <Compile Include="Utils\ReflectionHelper.cs" />
+    <Compile Include="Utils\Configuration\Settings.cs">
+      <DependentUpon>ISettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\Configuration\WindowPositionSettings.cs" />
+    <Compile Include="Utils\Validator.cs" />
+    <Compile Include="Utils\WindowExtentions.cs" />
+    <Compile Include="Utils\WinFormsExtentions.cs" />
+    <Compile Include="Wcf\DefaultBindingFactory.cs">
+      <DependentUpon>IDefaultBindingFactory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\Wcf\HeaderEncriptionContractBehavior.cs" />
+    <Compile Include="Wcf\IDefaultBindingFactory.cs" />
+    <Compile Include="Wcf\IServerUriFactory.cs" />
+    <Compile Include="Wcf\IService.cs" />
+    <Compile Include="Wcf\IServiceClient.cs" />
+    <Compile Include="Wcf\IServiceClientFactory.cs" />
+    <Compile Include="Wcf\ServerUriFactory.cs">
+      <DependentUpon>IServerUriFactory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Wcf\ServiceClient.cs">
+      <DependentUpon>IServiceClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Wcf\ServiceClientFactory.cs">
+      <DependentUpon>IServiceClientFactory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Wcf\ServiceTypes\NotificationsExtender.cs" />
+    <Compile Include="Wcf\ServiceTypes\RemapAlarmsParameter.cs" />
+    <Compile Include="Wcf\ServiceTypes\RemapAlarmResult.cs" />
+    <Compile Include="Wcf\ServiceTypes\RemapLogParameter.cs" />
+    <Compile Include="Wcf\ServiceTypes\RemapLogResult.cs" />
+    <Compile Include="Wcf\ServiceTypes\RemapTrendsParameter.cs" />
+    <Compile Include="Wcf\ServiceTypes\RemapTrendsResult.cs" />
+    <Compile Include="Wcf\ServiceTypes\UpdateStatusResult.cs" />
+    <Compile Include="Wcf\ServiceTypes\WcfNotification.cs" />
+    <Compile Include="Wcf\ServiceTypes\RemapTagsParameter.cs" />
+    <Compile Include="Wcf\ServiceTypes\RemapTagsResult.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Loc\Res.ru.resx" />
+    <EmbeddedResource Include="Loc\Res.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Res.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Controls\Trends\SliderPresenter.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\AllStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\BackButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\PHmiButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\DownButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\ForwardButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\PHmiToggleButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\ToolBarImage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\ChangePasswordDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\AlarmsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\AddUserDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DateTimePicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\EditUserDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\ImageInput.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\LoadingControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\LogOnDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\NumericInput.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\NumericUpDown.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Root.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\UpButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\SetPasswordDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\SystemMessagesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\TimeSpanPicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\TrendViewer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\UsersPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\16\editdelete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\16\filesave.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\16\fileopen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\24\change_password.png" />
+    <Resource Include="Images\24\home.png" />
+    <Resource Include="Images\24\log_on.png" />
+    <Resource Include="Images\24\log_off.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\24\system_warning.png" />
+    <Resource Include="Images\24\system_warning_gray.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\24\reload.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\24\1up_arrow.png" />
+    <Resource Include="Images\24\1down_arrow.png" />
+    <Resource Include="Images\24\2down_arrow.png" />
+    <Resource Include="Images\24\2up_arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\24\delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\24\delete_gray.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\24\clock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\24\apply.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\24\apply_gray.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\24\alarms.png" />
+    <Resource Include="Images\24\alarms_gray.png" />
+    <Resource Include="Images\24\no_alarms.png" />
+    <Resource Include="Images\24\no_alarms_gray.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\24\alarm_history.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\24\back_green.png" />
+    <Resource Include="Images\24\back_blue.png" />
+    <Resource Include="Images\24\cursor.png" />
+    <Resource Include="Images\24\cursor_flags.png" />
+    <Resource Include="Images\24\forward_green.png" />
+    <Resource Include="Images\24\forward_blue.png" />
+    <Resource Include="Images\24\period.png" />
+    <Resource Include="Images\24\play.png" />
+    <Resource Include="Images\24\point.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\24\users.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\24\edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\24\edit_add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\lgpl.txt">
+      <Link>lgpl.txt</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

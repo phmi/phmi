@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="PHmiClientSample.Pages.LogPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:Converters="clr-namespace:PHmiClient.Converters;assembly=PHmiClient"
+             xmlns:SampleConverters="clr-namespace:PHmiClientSample.Converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Message"/>
+            <TextBox x:Name="tbMessage"/>
+            <TextBlock Text="Message2"/>
+            <TextBox x:Name="tbMessage2"/>
+        </StackPanel>
+        <ToolBar Grid.Row="1">
+            <Button Click="BSaveClick">
+                Save
+            </Button>
+            <Button Click="BRefreshClick">
+                Refresh
+            </Button>
+            <Button Click="BUpdateClick">
+                Update
+            </Button>
+            <Button Click="BDeleteClick">
+                Delete
+            </Button>
+        </ToolBar>
+        <ListBox Grid.Row="2" x:Name="lb">
+            <ListBox.Resources>
+                <Converters:UniversalToLocalTimeConverter x:Key="UniversalToLocalTimeConverter"/>
+                <SampleConverters:LogItemToStringConverter x:Key="LogItemToStringConverter"/> 
+            </ListBox.Resources>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Path=Time, Converter={StaticResource UniversalToLocalTimeConverter}}" Margin="2"/>
+                        <TextBlock Text="{Binding Path=Text}" Margin="2"/>
+                        <TextBlock Text="{Binding Converter={StaticResource LogItemToStringConverter}}" Margin="2"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</UserControl>

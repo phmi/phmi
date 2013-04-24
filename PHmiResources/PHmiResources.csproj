@@ -1,0 +1,407 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9B8F6B21-A5CA-4D6E-B8D9-48F2F70462F5}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PHmiResources</RootNamespace>
+    <AssemblyName>PHmiResources</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\PHmiClient\Properties\GlobalAssemblyInfo.cs">
+      <Link>Properties\GlobalAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="ImagesUries.cs" />
+    <Compile Include="Loc\Res.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Res.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="RegexPatterns.cs" />
+    <EmbeddedResource Include="Loc\Res.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Res.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Loc\Res.ru.resx" />
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\256\db_add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\256\db_import.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\256\fileopen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\256\tags_dig.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\256\tags_num.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\256\trend.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\db.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\db_add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\db_export.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\db_import.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\edit_add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\edit_remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\editcopy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\editpaste.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\exit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\fileclose.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\fileopen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\filesave.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\reload.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\stop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\tag_gray.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\tags_dig.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\tags_dig.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\tags_num.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\tags_num.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\trend.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\trend.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PHmiClient\PHmiClient.csproj">
+      <Project>{14B58393-3958-4C32-B52C-5B76E66632EB}</Project>
+      <Name>PHmiClient</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\db_add.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\info.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\error.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\fileopen.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\256\bell.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\bell.ico" />
+    <Resource Include="Images\bell_gray.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\bell.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\trend_gray.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\256\users.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\users.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\users.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\edit_user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\add_user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\delete_user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\add_user.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\edit_user.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\input_device.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\input_device.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\256\input_device.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\system_gray.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\256\system.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\system.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\system.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\help_gray.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\help.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\help.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\db_export.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\editclear.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\db_import.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\folder_closed.png" />
+    <Resource Include="Images\folder_open.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Styles\DataGridComboBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Styles\DataGridTextBlockStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Styles\DataGridTextBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Styles\EditorCheckBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Styles\EditorComboBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Styles\EditorRootPanelStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Styles\EditorTextBlockStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Styles\EditorTextBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Styles\HorizontalStackPanelStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Styles\ModuleCloseButtonStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Styles\ModuleDataGridStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Styles\ModuleProgressBarStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Styles\MultiLineEditorTextBoxStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Styles\SmallImageStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Styles\StatusBarStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Styles\StatusTextBlockStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Styles\ToolBarTextBlockStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\build.ico" />
+    <Resource Include="Images\build.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\256\build.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\log.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\log.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\256\log.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\agt_runit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\256\agt_runit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\kservices.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\editdelete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\kservice.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\settings_gray.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\pdf_document.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

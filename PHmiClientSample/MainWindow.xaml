@@ -1,0 +1,15 @@
+﻿<Window x:Class="PHmiClientSample.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Controls="clr-namespace:PHmiClient.Controls;assembly=PHmiClient"
+        xmlns:Pages="clr-namespace:PHmiClientSample.Pages"
+        xmlns:PHmiClientSample="clr-namespace:PHmiClientSample"
+        Title="MainWindow" Height="550" Width="825">
+    <Grid>
+        <Controls:Root HomePage="{x:Type Pages:HomePage}">
+            <Controls:Root.DataContext>
+                <PHmiClientSample:PHmi/>
+            </Controls:Root.DataContext>
+        </Controls:Root>
+    </Grid>
+</Window>
