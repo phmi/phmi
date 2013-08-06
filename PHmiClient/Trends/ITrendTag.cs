@@ -1,4 +1,5 @@
 ﻿using System;
+using PHmiClient.Utils.Pagination;
 
 namespace PHmiClient.Trends
 {
@@ -10,6 +11,11 @@ namespace PHmiClient.Trends
         string Format { get; }
         string EngUnit { get; }
         void GetSamples(DateTime startTime, DateTime? endTime, int rarerer, Action<Tuple<DateTime, double>[]> callback);
+        void GetPage(
+            CriteriaType criteriaType,
+            DateTime criteria,
+            int maxCount,
+            Action<Tuple<DateTime, double>[]> callback);
         double? MinValue { get; }
         double? MaxValue { get; }
     }

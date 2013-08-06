@@ -164,7 +164,7 @@ namespace PHmiRunner.Utils.Trends
             for (var i = 0; i < TrendTableSelector.TablesCount; i++)
             {
                 var query = _npgQueryHelper.Select(
-                _tableName, columnsArr, whereOp, new[] { DbStr.Time }, asc, limit);
+                _tableName + "_" + i, columnsArr, whereOp, new[] { DbStr.Time }, asc, limit);
                 var samples = _npgHelper.ExecuteReader(_connection, query, reader =>
                     {
                         var time = reader.GetDateTimeFormTicks(0);

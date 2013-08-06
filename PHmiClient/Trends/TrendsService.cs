@@ -48,9 +48,9 @@ namespace PHmiClient.Trends
 
         public void Clean()
         {
-            foreach (var ioDevice in _categories)
+            foreach (var category in _categories)
             {
-                ioDevice.ApplyRemapResult(null);
+                category.ApplyRemapResult(null);
             }
         }
 

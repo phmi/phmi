@@ -76,6 +76,7 @@ namespace PHmiClient.Trends
                             g.Key,
                             g.Select(s => new Tuple<int, Action<Tuple<DateTime, double>[]>>(s.Item1, s.Item3)).ToArray()))
                     .ToArray();
+                _pageQueries.Clear();
             }
             if (!currentSamplesQueries.Any() && !pageSamplesQueries.Any())
             {
