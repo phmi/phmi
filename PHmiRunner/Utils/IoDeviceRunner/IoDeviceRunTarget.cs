@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Collections.Generic;
@@ -226,11 +225,11 @@ namespace PHmiRunner.Utils.IoDeviceRunner
                 var parameters = _valueHoldersToWrite
                     .Select(h => new WriteParameter(h.Address, h.GetWriteValue()))
                     .ToArray();
-                _valueHoldersToWrite.Clear();
                 return parameters;
             }
             finally
             {
+                _valueHoldersToWrite.Clear();
                 ExitWriteLock();
             }
         }
