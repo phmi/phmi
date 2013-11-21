@@ -23,6 +23,7 @@ namespace PHmiIoDevice.Modbus
         {
             var config = ConfigHelper.GetConfig(options);
             _defaultAddress = config.DefaultAddress;
+            _tryCount = config.TryCount;
             switch (config.BytesOrder)
             {
                 case BytesOrder.HL:
@@ -37,7 +38,6 @@ namespace PHmiIoDevice.Modbus
             var comConfig = config as ComConfig;
             if (comConfig != null)
             {
-                _tryCount = comConfig.TryCount;
                 var port = new SerialPort(comConfig.PortName)
                 {
                     BaudRate = comConfig.BaudRate,
@@ -63,7 +63,6 @@ namespace PHmiIoDevice.Modbus
             var enetConfig = config as EnetConfig;
             if (enetConfig != null)
             {
-                _tryCount = 1;
                 var tcpHelper = new TcpClientHelper(enetConfig.Address, enetConfig.Port, config.Timeout, config.MessageEndTimeout);
                 if (enetConfig is RTUviaTCPConfig)
                 {

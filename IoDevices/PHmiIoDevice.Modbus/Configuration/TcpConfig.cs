@@ -6,6 +6,8 @@
 
         public TcpConfig() : base(Name)
         {
+            TryCount = 1;
+            Timeout = 3000;
         }
     }
 }

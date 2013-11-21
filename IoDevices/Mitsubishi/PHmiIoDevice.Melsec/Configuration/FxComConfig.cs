@@ -18,6 +18,7 @@ namespace PHmiIoDevice.Melsec.Configuration
 
         public FxComConfig() : base(Name)
         {
+            Timeout = 1500;
             try
             {
                 _portName = SerialPort.GetPortNames().OrderBy(p => p).First();

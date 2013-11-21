@@ -1,64 +1,64 @@
 ﻿<UserControl x:Class="PHmiIoDevice.Modbus.ModbusOptionsEditor"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:Mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:D="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:Converters="clr-namespace:PHmiClient.Converters;assembly=PHmiClient"
-             xmlns:Collections="clr-namespace:System.Collections;assembly=mscorlib"
-             xmlns:Controls="clr-namespace:PHmiClient.Controls;assembly=PHmiClient"
-             xmlns:Local="clr-namespace:PHmiIoDevice.Modbus"
-             xmlns:Ports="clr-namespace:System.IO.Ports;assembly=System"
-             xmlns:BytesConverters="clr-namespace:PHmiIoDevice.Modbus.BytesConverters"
-             Mc:Ignorable="D" 
-             D:DesignHeight="300" D:DesignWidth="300">
-    <Grid DataContext="{Binding Path=ViewModel, RelativeSource={RelativeSource AncestorType={x:Type Local:ModbusOptionsEditor}}}" Grid.IsSharedSizeScope="True">
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:converters="clr-namespace:PHmiClient.Converters;assembly=PHmiClient"
+             xmlns:collections="clr-namespace:System.Collections;assembly=mscorlib"
+             xmlns:controls="clr-namespace:PHmiClient.Controls;assembly=PHmiClient"
+             xmlns:local="clr-namespace:PHmiIoDevice.Modbus"
+             xmlns:ports="clr-namespace:System.IO.Ports;assembly=System"
+             xmlns:bytesConverters="clr-namespace:PHmiIoDevice.Modbus.BytesConverters"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid DataContext="{Binding Path=ViewModel, RelativeSource={RelativeSource AncestorType={x:Type local:ModbusOptionsEditor}}}" Grid.IsSharedSizeScope="True">
         <Grid.Resources>
-            <Collections:ArrayList x:Key="ConfigTypes">
-                <Controls:DisplayItem>
-                    <Controls:DisplayItem.DisplayValue>
+            <collections:ArrayList x:Key="ConfigTypes">
+                <controls:DisplayItem>
+                    <controls:DisplayItem.DisplayValue>
                         TCP
-                    </Controls:DisplayItem.DisplayValue>
-                    <Local:ConfigType>Tcp</Local:ConfigType>
-                </Controls:DisplayItem>
-                <Controls:DisplayItem>
-                    <Controls:DisplayItem.DisplayValue>
+                    </controls:DisplayItem.DisplayValue>
+                    <local:ConfigType>Tcp</local:ConfigType>
+                </controls:DisplayItem>
+                <controls:DisplayItem>
+                    <controls:DisplayItem.DisplayValue>
                         RTU
-                    </Controls:DisplayItem.DisplayValue>
-                    <Local:ConfigType>Rtu</Local:ConfigType>
-                </Controls:DisplayItem>
-                <Controls:DisplayItem>
-                    <Controls:DisplayItem.DisplayValue>
+                    </controls:DisplayItem.DisplayValue>
+                    <local:ConfigType>Rtu</local:ConfigType>
+                </controls:DisplayItem>
+                <controls:DisplayItem>
+                    <controls:DisplayItem.DisplayValue>
                         RTU via TCP
-                    </Controls:DisplayItem.DisplayValue>
-                    <Local:ConfigType>RtuViaTcp</Local:ConfigType>
-                </Controls:DisplayItem>
-                <Controls:DisplayItem>
-                    <Controls:DisplayItem.DisplayValue>
+                    </controls:DisplayItem.DisplayValue>
+                    <local:ConfigType>RtuViaTcp</local:ConfigType>
+                </controls:DisplayItem>
+                <controls:DisplayItem>
+                    <controls:DisplayItem.DisplayValue>
                         ASCII
-                    </Controls:DisplayItem.DisplayValue>
-                    <Local:ConfigType>Ascii</Local:ConfigType>
-                </Controls:DisplayItem>
-                <Controls:DisplayItem>
-                    <Controls:DisplayItem.DisplayValue>
+                    </controls:DisplayItem.DisplayValue>
+                    <local:ConfigType>Ascii</local:ConfigType>
+                </controls:DisplayItem>
+                <controls:DisplayItem>
+                    <controls:DisplayItem.DisplayValue>
                         ASCII via TCP
-                    </Controls:DisplayItem.DisplayValue>
-                    <Local:ConfigType>AsciiViaTcp</Local:ConfigType>
-                </Controls:DisplayItem>
-            </Collections:ArrayList>
-            <Collections:ArrayList x:Key="BytesOrders">
-                <Controls:DisplayItem>
-                    <Controls:DisplayItem.DisplayValue>
+                    </controls:DisplayItem.DisplayValue>
+                    <local:ConfigType>AsciiViaTcp</local:ConfigType>
+                </controls:DisplayItem>
+            </collections:ArrayList>
+            <collections:ArrayList x:Key="BytesOrders">
+                <controls:DisplayItem>
+                    <controls:DisplayItem.DisplayValue>
                         HL
-                    </Controls:DisplayItem.DisplayValue>
-                    <BytesConverters:BytesOrder>HL</BytesConverters:BytesOrder>
-                </Controls:DisplayItem>
-                <Controls:DisplayItem>
-                    <Controls:DisplayItem.DisplayValue>
+                    </controls:DisplayItem.DisplayValue>
+                    <bytesConverters:BytesOrder>HL</bytesConverters:BytesOrder>
+                </controls:DisplayItem>
+                <controls:DisplayItem>
+                    <controls:DisplayItem.DisplayValue>
                         LH
-                    </Controls:DisplayItem.DisplayValue>
-                    <BytesConverters:BytesOrder>LH</BytesConverters:BytesOrder>
-                </Controls:DisplayItem>
-            </Collections:ArrayList>
+                    </controls:DisplayItem.DisplayValue>
+                    <bytesConverters:BytesOrder>LH</bytesConverters:BytesOrder>
+                </controls:DisplayItem>
+            </collections:ArrayList>
             <Style TargetType="TextBlock">
                 <Setter Property="Margin" Value="4"/>
                 <Setter Property="VerticalAlignment" Value="Center"/>
@@ -89,6 +89,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" SharedSizeGroup="Column1"/>
@@ -96,20 +97,20 @@
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
         <TextBlock Text="Type"/>
-        <ComboBox Grid.Column="1" ItemsSource="{Binding Source={StaticResource ConfigTypes}}" SelectedValue="{Binding Path=ConfigType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" SelectedValuePath="Value" DisplayMemberPath="DisplayValue"/>
-        <Button Grid.Column="2" Margin="0,4,4,4" BorderBrush="Transparent" Background="Transparent" Command="{Binding Path=ShowDocCommand}">
+        <ComboBox Grid.Row="0" Grid.Column="1" ItemsSource="{Binding Source={StaticResource ConfigTypes}}" SelectedValue="{Binding Path=ConfigType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" SelectedValuePath="Value" DisplayMemberPath="DisplayValue"/>
+        <Button Grid.Row="0" Grid.Column="2" Margin="0,4,4,4" BorderBrush="Transparent" Background="Transparent" Command="{Binding Path=ShowDocCommand}">
             <Image Width="16" Height="16" RenderOptions.BitmapScalingMode="NearestNeighbor" Source="/PHmiIoDevice.Modbus;component/Images/pdf_document.png" />
         </Button>
 
-        <Grid Grid.Row="1" Grid.ColumnSpan="3">
+        <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
             <Grid.Visibility>
                 <Binding Path="EnetConfig" ConverterParameter="{x:Null}">
                     <Binding.Converter>
-                        <Converters:FalseToCollapsedConverter>
-                            <Converters:InvertConverter>
-                                <Converters:EqualityConverter/>
-                            </Converters:InvertConverter>
-                        </Converters:FalseToCollapsedConverter>
+                        <converters:FalseToCollapsedConverter>
+                            <converters:InvertConverter>
+                                <converters:EqualityConverter/>
+                            </converters:InvertConverter>
+                        </converters:FalseToCollapsedConverter>
                     </Binding.Converter>
                 </Binding>
             </Grid.Visibility>
@@ -122,85 +123,84 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <TextBlock Text="Address"/>
-            <TextBox Grid.Column="1" Text="{Binding Path=EnetConfig.Address, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"/>
-            <TextBlock Grid.Row="1" Text="Port"/>
+            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=EnetConfig.Address, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"/>
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Port"/>
             <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=EnetConfig.Port, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"/>
         </Grid>
 
-        <Grid Grid.Row="2" Grid.ColumnSpan="3">
+        <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3">
             <Grid.Visibility>
                 <Binding Path="ComConfig" ConverterParameter="{x:Null}">
                     <Binding.Converter>
-                        <Converters:FalseToCollapsedConverter>
-                            <Converters:InvertConverter>
-                                <Converters:EqualityConverter/>
-                            </Converters:InvertConverter>
-                        </Converters:FalseToCollapsedConverter>
+                        <converters:FalseToCollapsedConverter>
+                            <converters:InvertConverter>
+                                <converters:EqualityConverter/>
+                            </converters:InvertConverter>
+                        </converters:FalseToCollapsedConverter>
                     </Binding.Converter>
                 </Binding>
             </Grid.Visibility>
             <Grid.Resources>
-                <Collections:ArrayList x:Key="Parities">
-                    <Controls:DisplayItem>
-                        <Controls:DisplayItem.DisplayValue>
+                <collections:ArrayList x:Key="Parities">
+                    <controls:DisplayItem>
+                        <controls:DisplayItem.DisplayValue>
                             None
-                        </Controls:DisplayItem.DisplayValue>
-                        <Ports:Parity>None</Ports:Parity>
-                    </Controls:DisplayItem>
-                    <Controls:DisplayItem>
-                        <Controls:DisplayItem.DisplayValue>
+                        </controls:DisplayItem.DisplayValue>
+                        <ports:Parity>None</ports:Parity>
+                    </controls:DisplayItem>
+                    <controls:DisplayItem>
+                        <controls:DisplayItem.DisplayValue>
                             Even
-                        </Controls:DisplayItem.DisplayValue>
-                        <Ports:Parity>Even</Ports:Parity>
-                    </Controls:DisplayItem>
-                    <Controls:DisplayItem>
-                        <Controls:DisplayItem.DisplayValue>
+                        </controls:DisplayItem.DisplayValue>
+                        <ports:Parity>Even</ports:Parity>
+                    </controls:DisplayItem>
+                    <controls:DisplayItem>
+                        <controls:DisplayItem.DisplayValue>
                             Odd
-                        </Controls:DisplayItem.DisplayValue>
-                        <Ports:Parity>Odd</Ports:Parity>
-                    </Controls:DisplayItem>
-                    <Controls:DisplayItem>
-                        <Controls:DisplayItem.DisplayValue>
+                        </controls:DisplayItem.DisplayValue>
+                        <ports:Parity>Odd</ports:Parity>
+                    </controls:DisplayItem>
+                    <controls:DisplayItem>
+                        <controls:DisplayItem.DisplayValue>
                             Mark
-                        </Controls:DisplayItem.DisplayValue>
-                        <Ports:Parity>Mark</Ports:Parity>
-                    </Controls:DisplayItem>
-                    <Controls:DisplayItem>
-                        <Controls:DisplayItem.DisplayValue>
+                        </controls:DisplayItem.DisplayValue>
+                        <ports:Parity>Mark</ports:Parity>
+                    </controls:DisplayItem>
+                    <controls:DisplayItem>
+                        <controls:DisplayItem.DisplayValue>
                             Space
-                        </Controls:DisplayItem.DisplayValue>
-                        <Ports:Parity>Space</Ports:Parity>
-                    </Controls:DisplayItem>
-                </Collections:ArrayList>
-                <Collections:ArrayList x:Key="StopBits">
-                    <Controls:DisplayItem>
-                        <Controls:DisplayItem.DisplayValue>
+                        </controls:DisplayItem.DisplayValue>
+                        <ports:Parity>Space</ports:Parity>
+                    </controls:DisplayItem>
+                </collections:ArrayList>
+                <collections:ArrayList x:Key="StopBits">
+                    <controls:DisplayItem>
+                        <controls:DisplayItem.DisplayValue>
                             None
-                        </Controls:DisplayItem.DisplayValue>
-                        <Ports:StopBits>None</Ports:StopBits>
-                    </Controls:DisplayItem>
-                    <Controls:DisplayItem>
-                        <Controls:DisplayItem.DisplayValue>
+                        </controls:DisplayItem.DisplayValue>
+                        <ports:StopBits>None</ports:StopBits>
+                    </controls:DisplayItem>
+                    <controls:DisplayItem>
+                        <controls:DisplayItem.DisplayValue>
                             1
-                        </Controls:DisplayItem.DisplayValue>
-                        <Ports:StopBits>One</Ports:StopBits>
-                    </Controls:DisplayItem>
-                    <Controls:DisplayItem>
-                        <Controls:DisplayItem.DisplayValue>
+                        </controls:DisplayItem.DisplayValue>
+                        <ports:StopBits>One</ports:StopBits>
+                    </controls:DisplayItem>
+                    <controls:DisplayItem>
+                        <controls:DisplayItem.DisplayValue>
                             1.5
-                        </Controls:DisplayItem.DisplayValue>
-                        <Ports:StopBits>OnePointFive</Ports:StopBits>
-                    </Controls:DisplayItem>
-                    <Controls:DisplayItem>
-                        <Controls:DisplayItem.DisplayValue>
+                        </controls:DisplayItem.DisplayValue>
+                        <ports:StopBits>OnePointFive</ports:StopBits>
+                    </controls:DisplayItem>
+                    <controls:DisplayItem>
+                        <controls:DisplayItem.DisplayValue>
                             2
-                        </Controls:DisplayItem.DisplayValue>
-                        <Ports:StopBits>Two</Ports:StopBits>
-                    </Controls:DisplayItem>
-                </Collections:ArrayList>
+                        </controls:DisplayItem.DisplayValue>
+                        <ports:StopBits>Two</ports:StopBits>
+                    </controls:DisplayItem>
+                </collections:ArrayList>
             </Grid.Resources>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -212,26 +212,26 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <TextBlock Text="Port name"/>
-            <ComboBox Grid.Column="1" IsEditable="True" Text="{Binding Path=ComConfig.PortName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" ItemsSource="{Binding Path=ComPorts}"/>
-            <TextBlock Grid.Row="1" Text="Baud rate, bps"/>
+            <ComboBox Grid.Row="0" Grid.Column="1" IsEditable="True" Text="{Binding Path=ComConfig.PortName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" ItemsSource="{Binding Path=ComPorts}"/>
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Baud rate, bps"/>
             <ComboBox Grid.Row="1" Grid.Column="1" IsEditable="True" Text="{Binding Path=ComConfig.BaudRate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" ItemsSource="{Binding Path=BaudRates}"/>
-            <TextBlock Grid.Row="2" Text="Data bits"/>
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Data bits"/>
             <ComboBox Grid.Row="2" Grid.Column="1" IsEditable="True" Text="{Binding Path=ComConfig.DataBits, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" ItemsSource="{Binding Path=DataBits}"/>
-            <TextBlock Grid.Row="3" Text="Parity"/>
+            <TextBlock Grid.Row="3" Grid.Column="0" Text="Parity"/>
             <ComboBox Grid.Row="3" Grid.Column="1" ItemsSource="{Binding Source={StaticResource Parities}}" SelectedValue="{Binding Path=ComConfig.Parity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" SelectedValuePath="Value" DisplayMemberPath="DisplayValue"/>
-            <TextBlock Grid.Row="4" Text="Stop bits"/>
+            <TextBlock Grid.Row="4" Grid.Column="0" Text="Stop bits"/>
             <ComboBox Grid.Row="4" Grid.Column="1" ItemsSource="{Binding Source={StaticResource StopBits}}" SelectedValue="{Binding Path=ComConfig.StopBits, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" SelectedValuePath="Value" DisplayMemberPath="DisplayValue"/>
-            <TextBlock Grid.Row="5" Text="Try count"/>
-            <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding Path=ComConfig.TryCount, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"/>
         </Grid>
 
-        <TextBlock Grid.Row="3" Text="Timeout, ms"/>
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="Timeout, ms"/>
         <TextBox Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" Text="{Binding Path=Config.Timeout, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"/>
-        <TextBlock Grid.Row="4" Text="Message end timeout, ms"/>
-        <TextBox Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" Text="{Binding Path=Config.MessageEndTimeout, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"/>
-        <TextBlock Grid.Row="5" Text="Default address"/>
-        <TextBox Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2" Text="{Binding Path=Config.DefaultAddress, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"/>
-        <TextBlock Grid.Row="6" Text="Bytes order"/>
-        <ComboBox Grid.Row="6" Grid.Column="1" ItemsSource="{Binding Source={StaticResource BytesOrders}}" SelectedValue="{Binding Path=Config.BytesOrder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" SelectedValuePath="Value" DisplayMemberPath="DisplayValue"/>
+        <TextBlock Grid.Row="4" Grid.Column="0" Text="Try count"/>
+        <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding Path=Config.TryCount, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"/>
+        <TextBlock Grid.Row="5" Grid.Column="0" Text="Message end timeout, ms"/>
+        <TextBox Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2" Text="{Binding Path=Config.MessageEndTimeout, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"/>
+        <TextBlock Grid.Row="6" Grid.Column="0" Text="Default address"/>
+        <TextBox Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="2" Text="{Binding Path=Config.DefaultAddress, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"/>
+        <TextBlock Grid.Row="7" Grid.Column="0" Text="Bytes order"/>
+        <ComboBox Grid.Row="7" Grid.Column="1" ItemsSource="{Binding Source={StaticResource BytesOrders}}" SelectedValue="{Binding Path=Config.BytesOrder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" SelectedValuePath="Value" DisplayMemberPath="DisplayValue"/>
     </Grid>
 </UserControl>

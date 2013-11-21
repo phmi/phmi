@@ -10,11 +10,12 @@ namespace PHmiIoDevice.Modbus.Configuration
 {
     public class Config : INotifyPropertyChanged
     {
-        private int _timeout = 3000;
+        private int _timeout = 1500;
         private int _messageEndTimeout = 10;
         private readonly string _name;
         private byte _defaultAddress = 1;
         private BytesOrder _bytesOrder = BytesOrder.HL;
+        private int _tryCount = 3;
 
         public Config(string name)
         {
@@ -22,6 +23,18 @@ namespace PHmiIoDevice.Modbus.Configuration
         }
 
         public string ConfigName { get { return _name; } }
+
+        public int TryCount
+        {
+            get { return _tryCount; }
+            set
+            {
+                if (value <= 0)
+                    throw new Exception("Try count. Must be > 0");
+                _tryCount = value;
+                OnPropertyChanged("TryCount");
+            }
+        }
 
         public byte DefaultAddress
         {
@@ -88,6 +101,7 @@ namespace PHmiIoDevice.Modbus.Configuration
         protected virtual void GetXml(XmlDocument document, XmlNode rootElement)
         {
             AddElement(document, rootElement, "Timeout", Timeout.ToString(CultureInfo.InvariantCulture));
+            AddElement(document, rootElement, "TryCount", TryCount.ToString(CultureInfo.InvariantCulture));
             AddElement(document, rootElement, "MessageEndTimeout", MessageEndTimeout.ToString(CultureInfo.InvariantCulture));
         }
 
@@ -120,6 +134,7 @@ namespace PHmiIoDevice.Modbus.Configuration
         protected virtual void SetXml(XmlNode rootElement)
         {
             Timeout = GetInt(rootElement, "Timeout");
+            TryCount = GetInt(rootElement, "TryCount");
             MessageEndTimeout = GetInt(rootElement, "MessageEndTimeout");
         }
 

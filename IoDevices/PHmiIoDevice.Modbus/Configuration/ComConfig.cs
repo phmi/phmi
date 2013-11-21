@@ -13,7 +13,6 @@ namespace PHmiIoDevice.Modbus.Configuration
         private int _dataBits = 7;
         private Parity _parity = Parity.Even;
         private StopBits _stopBits = StopBits.One;
-        private int _tryCount = 3;
 
         public ComConfig(string name) : base(name)
         {
@@ -77,18 +76,6 @@ namespace PHmiIoDevice.Modbus.Configuration
             }
         }
 
-        public int TryCount
-        {
-            get { return _tryCount; }
-            set
-            {
-                if (value <= 0)
-                    throw new Exception("Try count. Must be > 0");
-                _tryCount = value;
-                OnPropertyChanged("TryCount");
-            }
-        }
-
         protected override void GetXml(XmlDocument document, XmlNode rootElement)
         {
             base.GetXml(document, rootElement);
@@ -97,7 +84,6 @@ namespace PHmiIoDevice.Modbus.Configuration
             AddElement(document, rootElement, "DataBits", DataBits.ToString(CultureInfo.InvariantCulture));
             AddElement(document, rootElement, "Parity", Parity.ToString());
             AddElement(document, rootElement, "StopBits", StopBits.ToString());
-            AddElement(document, rootElement, "TryCount", TryCount.ToString(CultureInfo.InvariantCulture));
         }
 
         protected override void SetXml(XmlNode rootElement)
@@ -108,7 +94,6 @@ namespace PHmiIoDevice.Modbus.Configuration
             DataBits = GetInt(rootElement, "DataBits");
             Parity = (Parity) Enum.Parse(typeof (Parity), GetString(rootElement, "Parity"));
             StopBits = (StopBits) Enum.Parse(typeof (StopBits), GetString(rootElement, "StopBits"));
-            TryCount = GetInt(rootElement, "TryCount");
         }
     }
 }
