@@ -226,12 +226,12 @@
         <TextBlock Grid.Row="3" Grid.Column="0" Text="Timeout, ms"/>
         <TextBox Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" Text="{Binding Path=Config.Timeout, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"/>
         <TextBlock Grid.Row="4" Grid.Column="0" Text="Try count"/>
-        <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding Path=Config.TryCount, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"/>
+        <TextBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Path=Config.TryCount, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"/>
         <TextBlock Grid.Row="5" Grid.Column="0" Text="Message end timeout, ms"/>
         <TextBox Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2" Text="{Binding Path=Config.MessageEndTimeout, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"/>
         <TextBlock Grid.Row="6" Grid.Column="0" Text="Default address"/>
         <TextBox Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="2" Text="{Binding Path=Config.DefaultAddress, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"/>
         <TextBlock Grid.Row="7" Grid.Column="0" Text="Bytes order"/>
-        <ComboBox Grid.Row="7" Grid.Column="1" ItemsSource="{Binding Source={StaticResource BytesOrders}}" SelectedValue="{Binding Path=Config.BytesOrder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" SelectedValuePath="Value" DisplayMemberPath="DisplayValue"/>
+        <ComboBox Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" ItemsSource="{Binding Source={StaticResource BytesOrders}}" SelectedValue="{Binding Path=Config.BytesOrder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}" SelectedValuePath="Value" DisplayMemberPath="DisplayValue"/>
     </Grid>
 </UserControl>
