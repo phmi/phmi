@@ -381,6 +381,7 @@ namespace PHmiIoDevice.Melsec
                 try
                 {
                     WriteOnce(writeParameters);
+                    return;
                 }
                 catch
                 {

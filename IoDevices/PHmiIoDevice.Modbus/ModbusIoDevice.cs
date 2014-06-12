@@ -562,6 +562,7 @@ namespace PHmiIoDevice.Modbus
                 try
                 {
                     WriteOnce(writeParameters);
+                    return;
                 }
                 catch
                 {
