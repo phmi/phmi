@@ -14,6 +14,7 @@ using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Shapes;
+using PHmiClient.Trends;
 using Path = System.Windows.Shapes.Path;
 
 namespace PHmiClient.Controls.Trends
@@ -61,7 +62,6 @@ namespace PHmiClient.Controls.Trends
         private Grid _gSlider;
         private Grid _gVerticalAxes;
         private bool _loaded;
-        private int _maxPeriodGain = 100000;
         private int _maxPoints = 200;
         private Popup _popupPeriod;
         private Popup _popupTime;
@@ -170,12 +170,6 @@ namespace PHmiClient.Controls.Trends
                     trendPresenter.MaxPoints = _maxPoints;
                 } 
             }
-        }
-
-        public int MaxPeriodGain
-        {
-            get { return _maxPeriodGain; }
-            set { _maxPeriodGain = value; }
         }
 
         #endregion
@@ -875,8 +869,9 @@ namespace PHmiClient.Controls.Trends
                     minimalPeriod = trendPen.TrendTag.Category.Period;
                 }
             }
-            if (minimalPeriod.HasValue && Period.Value.Ticks > minimalPeriod.Value.Ticks*MaxPeriodGain)
-                Period = new TimeSpan(minimalPeriod.Value.Ticks*MaxPeriodGain);
+            var maxPeriodGain = (int) Math.Pow(2, TrendsService.MaxRarerer)*_maxPoints;
+            if (minimalPeriod.HasValue && Period.Value.Ticks > minimalPeriod.Value.Ticks*maxPeriodGain)
+                Period = new TimeSpan(minimalPeriod.Value.Ticks*maxPeriodGain);
             if (Period.Value.TotalDays > 3650)
                 Period = new TimeSpan(3650, 0, 0, 0);
             return Period.Value;

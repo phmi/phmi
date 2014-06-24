@@ -9,7 +9,7 @@ namespace PHmiClient.Trends
 {
     internal class TrendsService : ITrendsService
     {
-        public const int MaxRarerer = 9;
+        public const int MaxRarerer = 10;
         private readonly IReporter _reporter;
         private readonly IList<TrendsCategoryAbstract> _categories = new List<TrendsCategoryAbstract>(); 
 
