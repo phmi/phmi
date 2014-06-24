@@ -15,7 +15,7 @@ namespace PHmiRunner.Utils.Trends
             public const string Time = "time";
         }
 
-        private static string[] _columnsOfTime = {DbStr.Time};
+        private static readonly string[] ColumnsOfTime = {DbStr.Time};
 
         public const int MaxSamplesToDeletePerTime = 3;
         public const int MaxSamplesToRetrieve = 1000;
@@ -93,9 +93,9 @@ namespace PHmiRunner.Utils.Trends
                 var tableName = GetTableName(i);
                 var selectQuery = _npgQueryHelper.Select(
                     tableName,
-                    _columnsOfTime,
+                    ColumnsOfTime,
                     new Le(DbStr.Time, oldTime.Ticks),
-                    _columnsOfTime,
+                    ColumnsOfTime,
                     true,
                     MaxSamplesToDeletePerTime,
                     true);
@@ -171,12 +171,12 @@ namespace PHmiRunner.Utils.Trends
                     _tableName + "_" + i,
                     columnsArr,
                     whereOp,
-                    _columnsOfTime,
+                    ColumnsOfTime,
                     asc,
                     limit);
                 queryTexts.Add(queryText);
             }
-            var query = _npgQueryHelper.Union(parameters, queryTexts, new []{ DbStr.Time }, asc, limit);
+            var query = _npgQueryHelper.Union(parameters, queryTexts, ColumnsOfTime, asc, limit);
             var result = _npgHelper.ExecuteReader(_connection, query, reader =>
             {
                 var time = reader.GetDateTimeFormTicks(0);
@@ -217,7 +217,7 @@ namespace PHmiRunner.Utils.Trends
             }
             var query = queryTexts.Count == 1
                 ? new NpgQuery(queryTexts[0], parameters.ToArray())
-                : _npgQueryHelper.Union(parameters, queryTexts, new []{ DbStr.Time }, true, MaxSamplesToRetrieve);
+                : _npgQueryHelper.Union(parameters, queryTexts, ColumnsOfTime, true, MaxSamplesToRetrieve);
             return _npgHelper.ExecuteReader(_connection, query, reader =>
             {
                 var time = reader.GetDateTimeFormTicks(0);
