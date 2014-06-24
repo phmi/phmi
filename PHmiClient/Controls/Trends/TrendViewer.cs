@@ -1069,12 +1069,41 @@ namespace PHmiClient.Controls.Trends
 
         public static readonly DependencyProperty CurrentTrendPenProperty =
             DependencyProperty.Register("CurrentTrendPen", typeof (TrendPen), typeof (TrendViewer),
-                                        new PropertyMetadata(OnScaleChanged));
+                                        new PropertyMetadata(OnCurrentTrendPenChanged));
 
         public TrendPen CurrentTrendPen
         {
             get { return (TrendPen) GetValue(CurrentTrendPenProperty); }
             set { SetValue(CurrentTrendPenProperty, value); }
+        }
+        private static void OnCurrentTrendPenChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var trendViewer = (TrendViewer)d;
+            trendViewer.DrawVerticalAxes();
+            trendViewer.OnCurrentTrendPenChanged(e.OldValue as TrendPen, e.NewValue as TrendPen);
+        }
+
+        private void OnCurrentTrendPenChanged(TrendPen oldPen, TrendPen newPen)
+        {
+            if (oldPen != null)
+            {
+                if (_trendPens.Contains(oldPen))
+                {
+                    var presenter = _trendPresenters[oldPen];
+                    _gTrendPresenters.Children.Remove(presenter);
+                    var index = _trendPens.IndexOf(oldPen);
+                    _gTrendPresenters.Children.Insert(index, presenter);
+                }
+            }
+            if (newPen != null)
+            {
+                if (_trendPens.Contains(newPen))
+                {
+                    var presenter = _trendPresenters[newPen];
+                    _gTrendPresenters.Children.Remove(presenter);
+                    _gTrendPresenters.Children.Insert(_gTrendPresenters.Children.Count, presenter);
+                }
+            }
         }
 
         #endregion
