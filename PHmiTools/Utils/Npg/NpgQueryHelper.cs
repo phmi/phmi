@@ -61,7 +61,8 @@ namespace PHmiTools.Utils.Npg
             }
         }
 
-        public NpgQuery Select(
+        public string Select(
+            IList<NpgsqlParameter> parameters,
             string table, string[] columnsToReturn,
             IWhereOp whereOp,
             string[] columnsOfOrder,
@@ -79,7 +80,6 @@ namespace PHmiTools.Utils.Npg
                 "{0} FROM {1}",
                 string.Join(", ", columnsToReturn.Select(Quote)),
                 Quote(table));
-            var parameters = new List<NpgsqlParameter>();
             if (whereOp != null)
             {
                 text.AppendFormat(" WHERE {0}", whereOp.Build(parameters));
@@ -95,7 +95,43 @@ namespace PHmiTools.Utils.Npg
             {
                 text.AppendFormat(" LIMIT {0}", limit);
             }
+            return text.ToString();
+        }
+
+        public NpgQuery Union(ICollection<NpgsqlParameter> parameters,
+            IEnumerable<string> selectTexts,
+            string[] columnsOfOrder,
+            bool asc,
+            int limit)
+        {
+            var text = new StringBuilder();
+            text.Append(string.Join(" UNION ", selectTexts.Select(t => "(" + t + ")")));
+            if (columnsOfOrder != null)
+            {
+                var sortDirection = asc ? " ASC" : " DESC";
+                text.AppendFormat(
+                    " ORDER BY {0}",
+                    string.Join(", ", columnsOfOrder.Select(c => Quote(c) + sortDirection)));
+            }
+            if (limit != -1)
+            {
+                text.AppendFormat(" LIMIT {0}", limit);
+            }
             return new NpgQuery(text.ToString(), parameters.ToArray());
+        }
+
+        public NpgQuery Select(
+            string table, string[] columnsToReturn,
+            IWhereOp whereOp,
+            string[] columnsOfOrder,
+            bool asc,
+            int limit,
+            bool distinct)
+        {
+
+            var parameters = new List<NpgsqlParameter>();
+            var text = Select(parameters, table, columnsToReturn, whereOp, columnsOfOrder, asc, limit, distinct);
+            return new NpgQuery(text, parameters.ToArray());
         }
 
         public NpgQuery Insert(string table, string[] columns, IEnumerable<object[]> values)

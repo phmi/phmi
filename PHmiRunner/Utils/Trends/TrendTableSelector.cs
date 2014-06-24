@@ -5,7 +5,7 @@ namespace PHmiRunner.Utils.Trends
 {
     public class TrendTableSelector : ITrendTableSelector
     {
-        public const int TablesCount = TrendsService.MaxRarerer + 1;
+        public const int TablesCount = TrendsService.MaxRarerer;
         private static readonly int[] Tables;
         private int _index;
 
@@ -25,8 +25,7 @@ namespace PHmiRunner.Utils.Trends
                 }
             }
         }
-
-
+        
         public int NextTable()
         {
             if (_index >= Tables.Length)

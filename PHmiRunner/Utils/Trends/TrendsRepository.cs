@@ -15,6 +15,8 @@ namespace PHmiRunner.Utils.Trends
             public const string Time = "time";
         }
 
+        private static string[] _columnsOfTime = {DbStr.Time};
+
         public const int MaxSamplesToDeletePerTime = 3;
         public const int MaxSamplesToRetrieve = 1000;
 
@@ -91,9 +93,9 @@ namespace PHmiRunner.Utils.Trends
                 var tableName = GetTableName(i);
                 var selectQuery = _npgQueryHelper.Select(
                     tableName,
-                    new[] {DbStr.Time},
+                    _columnsOfTime,
                     new Le(DbStr.Time, oldTime.Ticks),
-                    new[] {DbStr.Time},
+                    _columnsOfTime,
                     true,
                     MaxSamplesToDeletePerTime,
                     true);
@@ -159,35 +161,42 @@ namespace PHmiRunner.Utils.Trends
             var columns = new List<string>(trendTagIds.Length + 1) { DbStr.Time };
             columns.AddRange(trendTagIds.Select(GetColumnName));
             var columnsArr = columns.ToArray();
-            var result = new List<Tuple<DateTime, double?[]>>();
             var limit = Math.Min(maxCount, MaxSamplesToRetrieve);
+            var parameters = new List<NpgsqlParameter>();
+            var queryTexts = new List<string>();
             for (var i = 0; i < TrendTableSelector.TablesCount; i++)
             {
-                var query = _npgQueryHelper.Select(
-                _tableName + "_" + i, columnsArr, whereOp, new[] { DbStr.Time }, asc, limit);
-                var samples = _npgHelper.ExecuteReader(_connection, query, reader =>
-                    {
-                        var time = reader.GetDateTimeFormTicks(0);
-                        var values = new double?[columns.Count - 1];
-                        for (var j = 1; j < columns.Count; j++)
-                        {
-                            values[j - 1] = reader.GetNullableDouble(j);
-                        }
-                        return new Tuple<DateTime, double?[]>(time, values);
-                    });
-                result.AddRange(samples);
+                var queryText = _npgQueryHelper.Select(
+                    parameters,
+                    _tableName + "_" + i,
+                    columnsArr,
+                    whereOp,
+                    _columnsOfTime,
+                    asc,
+                    limit);
+                queryTexts.Add(queryText);
             }
-            return asc
-                ? result.OrderBy(s => s.Item1).Take(limit).Reverse().ToArray()
-                : result.OrderByDescending(s => s.Item1).Take(limit).ToArray();
+            var query = _npgQueryHelper.Union(parameters, queryTexts, new []{ DbStr.Time }, asc, limit);
+            var result = _npgHelper.ExecuteReader(_connection, query, reader =>
+            {
+                var time = reader.GetDateTimeFormTicks(0);
+                var values = new double?[columns.Count - 1];
+                for (var j = 1; j < columns.Count; j++)
+                {
+                    values[j - 1] = reader.GetNullableDouble(j);
+                }
+                return new Tuple<DateTime, double?[]>(time, values);
+            });
+            return asc ? result.Reverse().ToArray() : result;
         }
 
         public Tuple<DateTime, double?[]>[] GetSamples(int[] trendTagIds, DateTime startTime, DateTime? endTime, int rarerer)
         {
-            var result = new List<Tuple<DateTime, double?[]>>();
             var columns = new List<string>(trendTagIds.Length + 1) { DbStr.Time };
             columns.AddRange(trendTagIds.Select(GetColumnName));
             var columnsArr = columns.ToArray();
+            var parameters = new List<NpgsqlParameter>();
+            var queryTexts = new List<string>();
             for (var i = 0; i < TrendTableSelector.TablesCount; i++)
             {
                 if (rarerer != 0 && rarerer != i + 1)
@@ -198,23 +207,27 @@ namespace PHmiRunner.Utils.Trends
                 {
                     whereOp = new And(whereOp, new Le(DbStr.Time, endTime.Value.Ticks));
                 }
-                var query = _npgQueryHelper.Select(
+                var queryText = _npgQueryHelper.Select(
+                    parameters,
                     tableName,
                     columnsArr,
                     whereOp,
                     limit: MaxSamplesToRetrieve);
-                result.AddRange(_npgHelper.ExecuteReader(_connection, query, reader =>
-                    {
-                        var time = reader.GetDateTimeFormTicks(0);
-                        var values = new double?[columns.Count - 1];
-                        for (var j = 1; j < columns.Count; j++)
-                        {
-                            values[j - 1] = reader.GetNullableDouble(j);
-                        }
-                        return new Tuple<DateTime, double?[]>(time, values);
-                    }));
+                queryTexts.Add(queryText);
             }
-            return result.OrderBy(t => t.Item1).ToArray();
+            var query = queryTexts.Count == 1
+                ? new NpgQuery(queryTexts[0], parameters.ToArray())
+                : _npgQueryHelper.Union(parameters, queryTexts, new []{ DbStr.Time }, true, MaxSamplesToRetrieve);
+            return _npgHelper.ExecuteReader(_connection, query, reader =>
+            {
+                var time = reader.GetDateTimeFormTicks(0);
+                var values = new double?[columns.Count - 1];
+                for (var j = 1; j < columns.Count; j++)
+                {
+                    values[j - 1] = reader.GetNullableDouble(j);
+                }
+                return new Tuple<DateTime, double?[]>(time, values);
+            });
         }
     }
 }
