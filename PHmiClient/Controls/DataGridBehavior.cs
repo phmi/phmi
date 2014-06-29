@@ -153,7 +153,8 @@ namespace PHmiClient.Controls
         private static void UpdateSelectedItems(MultiSelector grid)
         {
             var list = GetSelectedItems(grid);
-            for (var i = 0; i < grid.SelectedItems.Count; i++)
+            var i = 0;
+            for (; i < grid.SelectedItems.Count; i++)
             {
                 var gridItem = grid.SelectedItems[i];
                 while (list.Count > i && !AreEqual(gridItem, list[i]))
@@ -163,8 +164,10 @@ namespace PHmiClient.Controls
                 if (list.Count <= i || !AreEqual(gridItem, list[i]))
                     list.Insert(i, gridItem);
             }
-            if (grid.SelectedItems.Count == 0)
-                list.Clear();
+            while (list.Count > i)
+            {
+                list.RemoveAt(i);
+            }
         }
 
         private static bool AreEqual(object obj1, object obj2)
