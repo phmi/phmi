@@ -19,5 +19,5 @@ using System.Runtime.CompilerServices;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion("2.0.7389.65")]
-[assembly: AssemblyFileVersion("2.0.7389.65")]
+[assembly: AssemblyVersion("2.0.7442.66")]
+[assembly: AssemblyFileVersion("2.0.7442.66")]

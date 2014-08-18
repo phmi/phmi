@@ -332,7 +332,15 @@ namespace PHmiConfigurator.Dialogs
                 var settings = context.Get<settings>().Single();
                 using (w.Block("public sealed partial class PHmi : PHmiClient.PHmiSystem.PHmiBase"))
                 {
-                    using (w.Block("public PHmi() : base(\"{0}\", \"{1}\")", settings.server, settings.guid))
+                    using (w.Block("public PHmi() : this(\"{0}\")", settings.server))
+                    {
+                    }
+                    w.Write();
+                    using (w.Block("public PHmi(string server) : this(server, \"{0}\")", settings.guid))
+                    {
+                    }
+                    w.Write();
+                    using (w.Block("public PHmi(string server, string guid) : base(server, guid)"))
                     {
                         foreach (var ioDevice in ioDevices)
                         {
