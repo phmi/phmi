@@ -30,6 +30,11 @@ namespace PHmiIoDevice.Melsec.Implementation
             get { return 8000; }
         }
 
+        public int LCount
+        {
+            get { return 8000; }
+        }
+
         public int DCount
         {
             get { return 12000; }
@@ -49,6 +54,11 @@ namespace PHmiIoDevice.Melsec.Implementation
         public List<byte> ReadMerkers(int address, int length)
         {
             return ReadBlock(address, length / 16, 0x90);
+        }
+
+        public List<byte> ReadLMerkers(int address, int length)
+        {
+            return ReadBlock(address, length / 16, 0x92);
         }
 
         public List<byte> ReadRegisters(int address, int length)
@@ -166,24 +176,34 @@ namespace PHmiIoDevice.Melsec.Implementation
 
         public void WriteMerker(int address, bool data)
         {
+            WriteBit(address, data, 0x90);
+        }
+        
+        public void WriteLMerker(int address, bool data)
+        {
+            WriteBit(address, data, 0x92);
+        }
+
+        private void WriteBit(int address, bool data, byte code)
+        {
             var msg = new byte[]
-                          {
-                              0x50, 0x00, //Header
-                              _networkNumber, //Network number
-                              _pcNumber, //PC number
-                              0xFF, 0x03, //Dest module I/O number
-                              0x00, //Dest module station number
-                              0x0D, 0x00,//request length
-                              0x0A, 0x00, //CPU timer
-                              0x01, 0x14, //Command
-                              0x01, 0x00, //Subcommand
-                              (byte) (address & 0xFF),
-                              (byte) ((address & 0xFF00) >> 8),
-                              (byte) ((address & 0xFF0000) >> 16), //Address
-                              0x90,
-                              0x01, 0x00, // number of device points
-                              data ? (byte) 0x10 : (byte) 0x00 // data
-                          };
+            {
+                0x50, 0x00, //Header
+                _networkNumber, //Network number
+                _pcNumber, //PC number
+                0xFF, 0x03, //Dest module I/O number
+                0x00, //Dest module station number
+                0x0D, 0x00, //request length
+                0x0A, 0x00, //CPU timer
+                0x01, 0x14, //Command
+                0x01, 0x00, //Subcommand
+                (byte) (address & 0xFF),
+                (byte) ((address & 0xFF00) >> 8),
+                (byte) ((address & 0xFF0000) >> 16), //Address
+                code,
+                0x01, 0x00, // number of device points
+                data ? (byte) 0x10 : (byte) 0x00 // data
+            };
             _tcpHelper.Write(msg);
             const int messageLengthToReceive = 11;
             var answer = _tcpHelper.Read(messageLengthToReceive);

@@ -84,6 +84,8 @@ namespace PHmiIoDevice.Melsec
 
             var merkers = new List<int>();
             var merkerParameters = new Dictionary<ReadParameter, int>();
+            var lMerkers = new List<int>();
+            var lMerkerParameters = new Dictionary<ReadParameter, int>();
             var registers = new List<KeyValuePair<int, int>>();
             var registerParameters = new Dictionary<ReadParameter, KeyValuePair<int, int>>();
 
@@ -104,7 +106,7 @@ namespace PHmiIoDevice.Melsec
                 int? length;
                 if (parameter.ValueType == typeof(bool))
                 {
-                    if (letter != "M")
+                    if (letter != "M" && letter != "L")
                     {
                         throw new Exception("Type " + parameter.ValueType.Name + " is not supported for" + parameter.Address);
                     }
@@ -127,10 +129,12 @@ namespace PHmiIoDevice.Melsec
 
                 #region Check device index
 
-                var deviceLength = length.Value;
-                if ((letter == "M" && deviceLength + index - 1 > _melsec.MCount)
+                var deviceLastIndex = length.Value + index - 1;
+                if ((letter == "M" && deviceLastIndex >= _melsec.MCount)
                     ||
-                    (letter == "D" && deviceLength + index - 1 > _melsec.DCount))
+                    (letter == "L" && deviceLastIndex >= _melsec.LCount)
+                    ||
+                    (letter == "D" && deviceLastIndex >= _melsec.DCount))
                 {
                     throw new Exception(parameter.Address + ": device index is out of range");
                 }
@@ -147,8 +151,14 @@ namespace PHmiIoDevice.Melsec
                         if (!merkerParameters.ContainsKey(parameter))
                             merkerParameters.Add(parameter, index);
                         break;
+                    case "L":
+                        if (!lMerkers.Contains(index))
+                            lMerkers.Add(index);
+                        if (!lMerkerParameters.ContainsKey(parameter))
+                            lMerkerParameters.Add(parameter, index);
+                        break;
                     case "D":
-                        var ir = new KeyValuePair<int, int>(index, deviceLength);
+                        var ir = new KeyValuePair<int, int>(index, length.Value);
                         if (!registers.Contains(ir))
                             registers.Add(ir);
                         if (!registerParameters.ContainsKey(parameter))
@@ -162,23 +172,35 @@ namespace PHmiIoDevice.Melsec
             #region Sort
 
             merkers = merkers.OrderBy(index => index).ToList();
+            lMerkers = lMerkers.OrderBy(index => index).ToList();
             registers = registers.OrderBy(r => r.Key).ThenByDescending(r => r.Value).ToList();
 
             #endregion
 
             var merkersData = new Dictionary<int, bool>(merkers.Count);
-            ReadMerkers(merkers, merkersData, _melsec.ReadMerkers);
+            ReadBits(merkers, merkersData, _melsec.ReadMerkers, "M");
+            var lMerkersData = new Dictionary<int, bool>(lMerkers.Count);
+            ReadBits(lMerkers, lMerkersData, _melsec.ReadLMerkers, "L");
             var registersData = new Dictionary<KeyValuePair<int, int>, byte[]>(registers.Count);
             ReadRegisters(registers, registersData, _melsec.ReadRegisters);
 
             foreach (var parameter in readParameters)
             {
                 int merkerIndex;
+                int lMerkerIndex;
                 KeyValuePair<int, int> registerAddr;
                 if (merkerParameters.TryGetValue(parameter, out merkerIndex))
                 {
                     bool value;
                     if (merkersData.TryGetValue(merkerIndex, out value))
+                        values.Add(value);
+                    else
+                        values.Add(null);
+                }
+                else if (lMerkerParameters.TryGetValue(parameter, out lMerkerIndex))
+                {
+                    bool value;
+                    if (lMerkersData.TryGetValue(lMerkerIndex, out value))
                         values.Add(value);
                     else
                         values.Add(null);
@@ -232,8 +254,8 @@ namespace PHmiIoDevice.Melsec
 
         private delegate List<byte> ReadDelegate(int address, int length);
         
-        private void ReadMerkers(
-            IEnumerable<int> bitsAddresses, IDictionary<int, bool> bitsData, ReadDelegate readDel)
+        private void ReadBits(
+            IEnumerable<int> bitsAddresses, IDictionary<int, bool> bitsData, ReadDelegate readDel, string label)
         {
             var readStart = 0;
             var length = 0;
@@ -258,7 +280,7 @@ namespace PHmiIoDevice.Melsec
                     var maxMerkerLength = _melsec.MaxReadLength*16;
                     if (newLength > maxMerkerLength)
                     {
-                        ReadMerkersFinal(bitsData, readDel, readStart, length, addresses);
+                        ReadBitsFinal(bitsData, readDel, readStart, length, addresses, label);
                         readStart = newAddr;
                         length = 16;
                         addresses.Clear();
@@ -273,20 +295,20 @@ namespace PHmiIoDevice.Melsec
             }
             if (length > 0)
             {
-                ReadMerkersFinal(bitsData, readDel, readStart, length, addresses);
+                ReadBitsFinal(bitsData, readDel, readStart, length, addresses, label);
             }
         }
 
-        private static void ReadMerkersFinal(
+        private static void ReadBitsFinal(
             IDictionary<int, bool> bitsData, ReadDelegate readDel, int readStart,
-            int length, IEnumerable<int> addresses)
+            int length, IEnumerable<int> addresses, string label)
         {
             var bytes = readDel.Invoke(readStart, length);
             if (bytes == null || bytes.Count != length/8)
             {
                 throw new Exception(string.Join(Environment.NewLine,
                     string.Format("Error when reading merkers"),
-                    string.Format("Address M{0}, Length {1}", readStart, length)));
+                    string.Format("Address {0}{1}, Length {2}", label, readStart, length)));
             }
             foreach (var address in addresses)
             {
@@ -396,7 +418,8 @@ namespace PHmiIoDevice.Melsec
             if (writeParameters == null)
                 return;
 
-            var merkers = new List<MerkerWriteInfo>();
+            var merkers = new List<BitWriteInfo>();
+            var lMerkers = new List<BitWriteInfo>();
             var registers = new List<RegisterWriteInfo>();
 
             var ind = -1;
@@ -418,7 +441,7 @@ namespace PHmiIoDevice.Melsec
                 int? length;
                 if (parameter.Value is bool)
                 {
-                    if (letter != "M")
+                    if (letter != "M" && letter != "L")
                     {
                         throw new Exception("Type " + parameter.Value.GetType().Name + " is not supported for" + parameter.Address);
                     }
@@ -441,10 +464,12 @@ namespace PHmiIoDevice.Melsec
 
                 #region Check device index
 
-                var deviceLength = length.Value;
-                if ((letter == "M" && deviceLength + index - 1 > 7680)
+                var deviceLastIndex = length.Value + index - 1;
+                if ((letter == "M" && deviceLastIndex >= _melsec.MCount)
                     ||
-                    (letter == "D" && deviceLength + index - 1 > 8000))
+                    (letter == "L" && deviceLastIndex >= _melsec.LCount)
+                    ||
+                    (letter == "D" && deviceLastIndex >= _melsec.DCount))
                 {
                     throw new Exception(parameter.Address + ": device index is out of range");
                 }
@@ -456,10 +481,13 @@ namespace PHmiIoDevice.Melsec
                 switch (letter)
                 {
                     case "M":
-                        merkers.Add(new MerkerWriteInfo{Address = index, Index = ind, WriteParameter = parameter});
+                        merkers.Add(new BitWriteInfo{Address = index, Index = ind, WriteParameter = parameter});
+                        break;
+                    case "L":
+                        lMerkers.Add(new BitWriteInfo { Address = index, Index = ind, WriteParameter = parameter });
                         break;
                     case "D":
-                        var ir = new KeyValuePair<int, int>(index, deviceLength);
+                        var ir = new KeyValuePair<int, int>(index, length.Value);
                         registers.Add(new RegisterWriteInfo{Address = ir, Index = ind, WriteParameter = parameter});
                         break;
                 }
@@ -469,7 +497,8 @@ namespace PHmiIoDevice.Melsec
 
             #region Sort
 
-            merkers = merkers.OrderBy(index => index.Address).ToList();
+            merkers = merkers.OrderBy(info => info.Address).ToList();
+            lMerkers = lMerkers.OrderBy(info => info.Address).ToList();
             registers = registers.OrderBy(r => r.Address.Key).ThenByDescending(r => r.Address.Value).ToList();
 
             #endregion
@@ -477,6 +506,11 @@ namespace PHmiIoDevice.Melsec
             foreach (var merker in merkers)
             {
                 _melsec.WriteMerker(merker.Address, merker.WriteParameter.Value as bool? == true);
+            }
+
+            foreach (var info in lMerkers)
+            {
+                _melsec.WriteLMerker(info.Address, info.WriteParameter.Value as bool? == true);
             }
 
             for (var i = 0; i < registers.Count; ++i)

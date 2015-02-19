@@ -2,7 +2,7 @@
 
 namespace PHmiIoDevice.Melsec.WriteInfos
 {
-    internal struct MerkerWriteInfo
+    internal struct BitWriteInfo
     {
         public int Address;
         public WriteParameter WriteParameter;

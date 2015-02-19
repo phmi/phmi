@@ -20,6 +20,11 @@ namespace PHmiIoDevice.Melsec.Implementation
             return Read((0x4400 + address/16)*2, length/8);
         }
 
+        public List<byte> ReadLMerkers(int address, int length)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<byte> ReadRegisters(int address, int length)
         {
             return Read((0x2000 + address)*2, length*2);
@@ -174,6 +179,11 @@ namespace PHmiIoDevice.Melsec.Implementation
             throw new Exception(error);
         }
 
+        public void WriteLMerker(int address, bool data)
+        {
+            throw new NotImplementedException();
+        }
+
         public int MaxReadLength
         {
             get { return 127; }
@@ -187,6 +197,11 @@ namespace PHmiIoDevice.Melsec.Implementation
         public int MCount
         {
             get { return 7680; }
+        }
+
+        public int LCount
+        {
+            get { return 0; }
         }
 
         public int DCount

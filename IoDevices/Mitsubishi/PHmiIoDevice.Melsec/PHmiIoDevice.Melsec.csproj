@@ -76,7 +76,7 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="WriteInfos\MerkerWriteInfo.cs" />
+    <Compile Include="WriteInfos\BitWriteInfo.cs" />
     <Compile Include="WriteInfos\RegisterWriteInfo.cs" />
     <AppDesigner Include="Properties\" />
   </ItemGroup>
