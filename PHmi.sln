@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PHmiConfigurator", "PHmiConfigurator\PHmiConfigurator.csproj", "{F23FFD7F-DE24-4C12-9042-9AEC6BD226DE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PHmiModel", "PHmiModel\PHmiModel.csproj", "{0D2E637A-481B-4483-AFF3-ED38B7F7BD02}"
@@ -34,6 +36,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PHmiIoDevice.Melsec", "IoDevices\Mitsubishi\PHmiIoDevice.Melsec\PHmiIoDevice.Melsec.csproj", "{902F8D25-72EA-4893-A547-40C0A750AB9C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PHmiIoDevice.Modbus", "IoDevices\PHmiIoDevice.Modbus\PHmiIoDevice.Modbus.csproj", "{E5404212-CDB5-406C-B510-626812A46FBA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Opc", "Opc", "{4B9DD2FC-8158-44B6-8600-96717F95DE88}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PHmiIoDevice.Opc", "IoDevices\Opc\PHmiIoDevice.Opc\PHmiIoDevice.Opc.csproj", "{B5CB25A8-165D-4980-B0D4-9244DA60BD2D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -195,6 +201,16 @@ Global
 		{E5404212-CDB5-406C-B510-626812A46FBA}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{E5404212-CDB5-406C-B510-626812A46FBA}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{E5404212-CDB5-406C-B510-626812A46FBA}.Release|x86.ActiveCfg = Release|Any CPU
+		{B5CB25A8-165D-4980-B0D4-9244DA60BD2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5CB25A8-165D-4980-B0D4-9244DA60BD2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5CB25A8-165D-4980-B0D4-9244DA60BD2D}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{B5CB25A8-165D-4980-B0D4-9244DA60BD2D}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{B5CB25A8-165D-4980-B0D4-9244DA60BD2D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B5CB25A8-165D-4980-B0D4-9244DA60BD2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5CB25A8-165D-4980-B0D4-9244DA60BD2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5CB25A8-165D-4980-B0D4-9244DA60BD2D}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{B5CB25A8-165D-4980-B0D4-9244DA60BD2D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{B5CB25A8-165D-4980-B0D4-9244DA60BD2D}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -202,7 +218,9 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{9804534C-5925-452B-B345-3775A9DE33F8} = {9C78C96E-BF74-475C-BE66-7BC40AB2A34E}
 		{A925592D-7E93-4C2A-9CCD-A28C96742072} = {9C78C96E-BF74-475C-BE66-7BC40AB2A34E}
-		{E5404212-CDB5-406C-B510-626812A46FBA} = {9C78C96E-BF74-475C-BE66-7BC40AB2A34E}
 		{902F8D25-72EA-4893-A547-40C0A750AB9C} = {A925592D-7E93-4C2A-9CCD-A28C96742072}
+		{E5404212-CDB5-406C-B510-626812A46FBA} = {9C78C96E-BF74-475C-BE66-7BC40AB2A34E}
+		{4B9DD2FC-8158-44B6-8600-96717F95DE88} = {9C78C96E-BF74-475C-BE66-7BC40AB2A34E}
+		{B5CB25A8-165D-4980-B0D4-9244DA60BD2D} = {4B9DD2FC-8158-44B6-8600-96717F95DE88}
 	EndGlobalSection
 EndGlobal
