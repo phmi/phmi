@@ -30,7 +30,16 @@ namespace PHmiClient.Controls
         }
 
         public static readonly DependencyProperty BinarySourceProperty =
-            DependencyProperty.Register("BinarySource", typeof(IEnumerable<byte>), typeof(ImageInput));
+            DependencyProperty.Register("BinarySource", typeof(IEnumerable<byte>), typeof(ImageInput),
+            new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, PropertyChangedCallback));
+
+        private static void PropertyChangedCallback(DependencyObject dependencyObject,
+            DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
+        {
+            var imageInput = (ImageInput)dependencyObject;
+            imageInput._saveCommand.RaiseCanExecuteChanged();
+            imageInput._deleteCommand.RaiseCanExecuteChanged();
+        }
 
         #endregion
 
