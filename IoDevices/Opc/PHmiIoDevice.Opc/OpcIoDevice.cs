@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Opc;
 using Opc.Da;
@@ -11,6 +11,8 @@ namespace PHmiIoDevice.Opc
     {
         private readonly URL _url;
         private readonly Server _server;
+        private Subscription _group;
+        private readonly Dictionary<string, object> _itemValues = new Dictionary<string, object>();
 
         public OpcIoDevice(string options)
         {
@@ -27,34 +29,82 @@ namespace PHmiIoDevice.Opc
         public void Open()
         {
             _server.Connect(_url, new ConnectData(new System.Net.NetworkCredential()));
+            var groupState = new SubscriptionState
+            {
+                Name = "Groups",
+                UpdateRate = 50,
+                Active = true
+            };
+            _group = (Subscription)_server.CreateSubscription(groupState);
+            _group.DataChanged += _group_DataChanged;
+        }
+
+        private void _group_DataChanged(object subscriptionHandle, object requestHandle, ItemValueResult[] values)
+        {
+            lock (_itemValues)
+            {
+                foreach (var value in values)
+                {
+                    _itemValues[value.ItemName] = value.Value;
+                }
+            }
         }
 
         public object[] Read(ReadParameter[] readParameters)
         {
-            var items = new Item[readParameters.Length];
-            for (var i = 0; i < readParameters.Length; i++)
+            lock (_itemValues)
             {
-                items[i] = new Item {ItemName = readParameters[i].Address};
+                SubscribeToRead(readParameters);
+                var result = new object[readParameters.Length];
+                for (var i = 0; i < readParameters.Length; i++)
+                {
+                    result[i] = _itemValues[readParameters[i].Address];
+                }
+                return result;
             }
+        }
+
+        private void SubscribeToRead(ReadParameter[] readParameters)
+        {
+            var newParameters = readParameters.Where(p => !_itemValues.ContainsKey(p.Address)).ToArray();
+            if (!newParameters.Any())
+                return;
+            var items = newParameters.Select(p => new Item
+            {
+                ItemName = p.Address
+            }).ToArray();
+            _group.AddItems(items);
             var itemValues = _server.Read(items);
-            var result = new Object[itemValues.Length];
-            for (var i = 0; i < itemValues.Length; i++)
+            foreach (var itemValue in itemValues)
             {
-                result[i] = itemValues[i].Value;
+                _itemValues.Add(itemValue.ItemName, itemValue.Value);
             }
-            return result;
         }
 
         public void Write(WriteParameter[] writeParameters)
         {
-            var itemValues = new ItemValue[writeParameters.Length];
-            for (var i = 0; i < writeParameters.Length; i++)
+            lock (_itemValues)
             {
-                var writeParameter = writeParameters[i];
-                var item = new Item {ItemName = writeParameter.Address};
-                itemValues[i] = new ItemValue(item) {Value = writeParameter.Value};
+                var itemValues = new ItemValue[writeParameters.Length];
+                var items = new Item[writeParameters.Length];
+                for (var i = 0; i < writeParameters.Length; i++)
+                {
+                    var writeParameter = writeParameters[i];
+                    var item = new Item { ItemName = writeParameter.Address };
+                    items[i] = item;
+                    itemValues[i] = new ItemValue(item) { Value = writeParameter.Value };
+                }
+                _server.Write(itemValues);
+
+                var readResult = _server.Read(items);
+                foreach (var itemValueResult in readResult)
+                {
+                    if (_itemValues.ContainsKey(itemValueResult.ItemName))
+                    {
+                        _itemValues[itemValueResult.ItemName] = itemValueResult.Value;
+                    }
+                }
             }
-            _server.Write(itemValues);
         }
     }
 }
