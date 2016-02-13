@@ -12,10 +12,10 @@ namespace PHmiClient.Wcf
         {
             return new WSHttpBinding
                 {
-                    CloseTimeout = TimeSpan.FromSeconds(10),
+                    CloseTimeout = TimeSpan.FromSeconds(20),
                     OpenTimeout = TimeSpan.FromSeconds(20),
-                    ReceiveTimeout = TimeSpan.FromSeconds(10),
-                    SendTimeout = TimeSpan.FromSeconds(10),
+                    ReceiveTimeout = TimeSpan.FromSeconds(20),
+                    SendTimeout = TimeSpan.FromSeconds(20),
                     BypassProxyOnLocal = false,
                     TransactionFlow = false,
                     HostNameComparisonMode = HostNameComparisonMode.StrongWildcard,
@@ -41,16 +41,16 @@ namespace PHmiClient.Wcf
                         },
                     Security = new WSHttpSecurity
                         {
-                            Mode = SecurityMode.Message,
+                            Mode = SecurityMode.None,
                             Transport = new HttpTransportSecurity
                                 {
-                                    ClientCredentialType = HttpClientCredentialType.Windows,
+                                    ClientCredentialType = HttpClientCredentialType.None,
                                     ProxyCredentialType = HttpProxyCredentialType.None,
                                     Realm = ""
                                 },
                             Message = new NonDualMessageSecurityOverHttp
                                 {
-                                    ClientCredentialType = MessageCredentialType.Windows,
+                                    ClientCredentialType = MessageCredentialType.None,
                                     NegotiateServiceCredential = true,
                                     AlgorithmSuite =
                                         System.ServiceModel.Security.SecurityAlgorithmSuite.Default

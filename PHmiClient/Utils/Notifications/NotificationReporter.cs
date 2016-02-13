@@ -27,7 +27,7 @@ namespace PHmiClient.Utils.Notifications
             }
         }
 
-        private readonly ObservableCollection<Notification> _notificationList = new ObservableCollection<Notification>();
+        private readonly ObservableCollection<Notification> _notificationList;
         private readonly ReadOnlyObservableCollection<Notification> _notificationObs;
         private readonly UniqueTimeService _timeService;
         private readonly ITimerService _timerService;
@@ -43,7 +43,7 @@ namespace PHmiClient.Utils.Notifications
             _timeService = new UniqueTimeService(timeService);
             _timerService = timerService;
             _timerService.TimeSpan = TimeSpan.FromSeconds(1);
-            ExpirationTime = TimeSpan.FromSeconds(15);
+            ExpirationTime = TimeSpan.FromSeconds(25);
             LifeTime = TimeSpan.FromDays(7);
             _timerService.Elapsed += TimerServiceElapsed;
             _timerService.Start();
