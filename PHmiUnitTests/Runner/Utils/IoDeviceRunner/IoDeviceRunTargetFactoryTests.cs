@@ -26,7 +26,7 @@ namespace PHmiUnitTests.Runner.Utils.IoDeviceRunner
             {
                 base.EstablishContext();
                 TimeService = new Mock<ITimeService>();
-                Target = Factory.Create(TimeService.Object, new io_devices { type = "Type" });
+                Target = Factory.Create(TimeService.Object, new PHmiModel.Entities.IoDevice { Type = "Type" });
             }
 
             public class ThenTargetIsCreated : AndCallingCreate

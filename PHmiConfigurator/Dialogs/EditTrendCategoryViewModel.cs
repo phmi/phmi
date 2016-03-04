@@ -1,8 +1,9 @@
 ﻿using PHmiModel;
+using PHmiModel.Entities;
 
 namespace PHmiConfigurator.Dialogs
 {
-    public class EditTrendCategoryViewModel : EditDialogViewModel<trend_categories.TrendCategoriesMetadata>
+    public class EditTrendCategoryViewModel : EditDialogViewModel<TrendCategory.TrendCategoryMetadata>
     {
     }
 }

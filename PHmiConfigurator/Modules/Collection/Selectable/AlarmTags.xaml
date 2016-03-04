@@ -40,7 +40,7 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <TextBlock Text="{x:Static Loc:Res.AlarmCategory}" Style="{StaticResource ToolBarTextBlockStyle}"/>
-            <ComboBox Grid.Column="1" x:Name="cbSelectors" ItemsSource="{Binding Path=Selectors}" SelectedItem="{Binding Path=CurrentSelector, Mode=TwoWay}" DisplayMemberPath="name" IsDropDownOpen="True" SelectionChanged="CbSelectorsSelectionChanged" Style="{StaticResource EditorComboBoxStyle}">
+            <ComboBox Grid.Column="1" x:Name="cbSelectors" ItemsSource="{Binding Path=Selectors}" SelectedItem="{Binding Path=CurrentSelector, Mode=TwoWay}" DisplayMemberPath="Name" IsDropDownOpen="True" SelectionChanged="CbSelectorsSelectionChanged" Style="{StaticResource EditorComboBoxStyle}">
                 <ComboBox.IsEnabled>
                     <Binding Path="HasChanges">
                         <Binding.Converter>
@@ -109,23 +109,23 @@
                 <Converters:Int32ToPrivilegedConverter x:Key="Int32ToPrivilegeConverter" />
             </DataGrid.Resources>
             <DataGrid.Columns>
-                <DataGridTextColumn Header="{x:Static Loc:Res.Name}" Binding="{Binding Path=name, Mode=TwoWay, ValidatesOnDataErrors=True}" EditingElementStyle="{StaticResource DataGridTextBoxStyle}" ElementStyle="{StaticResource DataGridTextBlockStyle}"/>
-                <DataGridTemplateColumn Header="{x:Static Loc:Res.DigitalTag}" SortMemberPath="dig_tags.FullName">
+                <DataGridTextColumn Header="{x:Static Loc:Res.Name}" Binding="{Binding Path=Name, Mode=TwoWay, ValidatesOnDataErrors=True}" EditingElementStyle="{StaticResource DataGridTextBoxStyle}" ElementStyle="{StaticResource DataGridTextBlockStyle}"/>
+                <DataGridTemplateColumn Header="{x:Static Loc:Res.DigitalTag}" SortMemberPath="DigTag.FullName">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Path=dig_tags.FullName, ValidatesOnDataErrors=True}" Style="{StaticResource DataGridTextBlockStyle}"/>
+                            <TextBlock Text="{Binding Path=DigTag.FullName, ValidatesOnDataErrors=True}" Style="{StaticResource DataGridTextBlockStyle}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                     <DataGridTemplateColumn.CellEditingTemplate>
                         <DataTemplate>
-                            <ComboBox SelectedItem="{Binding Path=dig_tags, Mode=TwoWay, ValidatesOnDataErrors=True}" DisplayMemberPath="FullName" ItemsSource="{Binding Path=DigitalTags, Source={StaticResource ViewModel}}" Style="{StaticResource DataGridComboBoxStyle}" Loaded="ComboBoxLoaded"/>
+                            <ComboBox SelectedItem="{Binding Path=DigTag, Mode=TwoWay, ValidatesOnDataErrors=True}" DisplayMemberPath="FullName" ItemsSource="{Binding Path=DigitalTags, Source={StaticResource ViewModel}}" Style="{StaticResource DataGridComboBoxStyle}" Loaded="ComboBoxLoaded"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellEditingTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn Header="{x:Static Loc:Res.Location}" Binding="{Binding Path=location, Mode=TwoWay, ValidatesOnDataErrors=True}" EditingElementStyle="{StaticResource DataGridTextBoxStyle}" ElementStyle="{StaticResource DataGridTextBlockStyle}"/>
-                <DataGridTextColumn Header="{x:Static Loc:Res.Description}" Binding="{Binding Path=description, Mode=TwoWay, ValidatesOnDataErrors=True}" EditingElementStyle="{StaticResource DataGridTextBoxStyle}" ElementStyle="{StaticResource DataGridTextBlockStyle}"/>
-                <DataGridCheckBoxColumn Header="{x:Static Loc:Res.Acknowledgeable}" Binding="{Binding Path=acknowledgeable, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
-                <DataGridTextColumn Header="{x:Static Loc:Res.Privilege}" Binding="{Binding Path=privilege, Mode=TwoWay, ValidatesOnDataErrors=True, Converter={StaticResource Int32ToPrivilegeConverter}}" EditingElementStyle="{StaticResource DataGridTextBoxStyle}" ElementStyle="{StaticResource DataGridTextBlockStyle}"/>
+                <DataGridTextColumn Header="{x:Static Loc:Res.Location}" Binding="{Binding Path=Location, Mode=TwoWay, ValidatesOnDataErrors=True}" EditingElementStyle="{StaticResource DataGridTextBoxStyle}" ElementStyle="{StaticResource DataGridTextBlockStyle}"/>
+                <DataGridTextColumn Header="{x:Static Loc:Res.Description}" Binding="{Binding Path=Description, Mode=TwoWay, ValidatesOnDataErrors=True}" EditingElementStyle="{StaticResource DataGridTextBoxStyle}" ElementStyle="{StaticResource DataGridTextBlockStyle}"/>
+                <DataGridCheckBoxColumn Header="{x:Static Loc:Res.Acknowledgeable}" Binding="{Binding Path=Acknowledgeable, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
+                <DataGridTextColumn Header="{x:Static Loc:Res.Privilege}" Binding="{Binding Path=Privilege, Mode=TwoWay, ValidatesOnDataErrors=True, Converter={StaticResource Int32ToPrivilegeConverter}}" EditingElementStyle="{StaticResource DataGridTextBoxStyle}" ElementStyle="{StaticResource DataGridTextBlockStyle}"/>
             </DataGrid.Columns>
         </DataGrid>
         <StatusBar Grid.Row="3" Style="{StaticResource StatusBarStyle}">

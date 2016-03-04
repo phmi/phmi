@@ -45,14 +45,14 @@ namespace PHmiUnitTests.Configurator.Modules.Collection.Selectable
 
 #pragma warning restore 0067
 
-            public string name { get; set; }
-            public int id { get; set; }
+            public string Name { get; set; }
+            public int Id { get; set; }
         }
 
         public class Selector : INamedEntity, IRepository
         {
-            public string name { get; set; }
-            public int id { get; set; }
+            public string Name { get; set; }
+            public int Id { get; set; }
 
             private readonly List<DataErrorInfo> _repository = new List<DataErrorInfo>();
 
@@ -194,8 +194,8 @@ namespace PHmiUnitTests.Configurator.Modules.Collection.Selectable
         {
             _viewModel.Reload();
             var i = new Selector();
-            var info1 = new DataErrorInfo { id = 2, name = "1" };
-            var info2 = new DataErrorInfo { id = 1, name = "2" };
+            var info1 = new DataErrorInfo { Id = 2, Name = "1" };
+            var info2 = new DataErrorInfo { Id = 1, Name = "2" };
             i.GetRepository<DataErrorInfo>().Add(info1);
             i.GetRepository<DataErrorInfo>().Add(info2);
             _viewModel.CurrentSelector = i;
@@ -210,8 +210,8 @@ namespace PHmiUnitTests.Configurator.Modules.Collection.Selectable
         {
             _viewModel.Reload();
             var selector = new Selector();
-            var info1 = new DataErrorInfo { id = 1, name = "2" };
-            var info2 = new DataErrorInfo { id = 2, name = "1" };
+            var info1 = new DataErrorInfo { Id = 1, Name = "2" };
+            var info2 = new DataErrorInfo { Id = 2, Name = "1" };
             selector.GetRepository<DataErrorInfo>().Add(info1);
             selector.GetRepository<DataErrorInfo>().Add(info2);
             _viewModel.CurrentSelector = selector;
@@ -227,8 +227,8 @@ namespace PHmiUnitTests.Configurator.Modules.Collection.Selectable
         [Test]
         public void ReloadLoadsIoDevicesOrederedByName()
         {
-            var one = new Selector { name = "io2", id = 1 };
-            var two = new Selector { name = "io1", id = 2 };
+            var one = new Selector { Name = "io2", Id = 1 };
+            var two = new Selector { Name = "io1", Id = 2 };
             var selectors = new[] { one, two }.AsQueryable();
             _contextStub.Setup(c => c.Get<Selector>()).Returns(selectors);
             _viewModel.Reload();
@@ -240,8 +240,8 @@ namespace PHmiUnitTests.Configurator.Modules.Collection.Selectable
         [Test]
         public void ReloadClearsSelectors()
         {
-            var one = new Selector { name = "one", id = 1 };
-            var two = new Selector { name = "two", id = 2 };
+            var one = new Selector { Name = "one", Id = 1 };
+            var two = new Selector { Name = "two", Id = 2 };
             var selectors = new[] { one, two }.AsQueryable();
             _contextStub.Setup(c => c.Get<Selector>()).Returns(selectors);
             _viewModel.Reload();
@@ -253,15 +253,15 @@ namespace PHmiUnitTests.Configurator.Modules.Collection.Selectable
         [Test]
         public void ReloadTriesToPreserveCurrentSelector()
         {
-            var one = new Selector { name = "one", id = 1 };
-            var two = new Selector { name = "two", id = 2 };
+            var one = new Selector { Name = "one", Id = 1 };
+            var two = new Selector { Name = "two", Id = 2 };
             var selectors = new[] { one, two }.AsQueryable();
             _contextStub.Setup(c => c.Get<Selector>()).Returns(selectors);
             _viewModel.Reload();
             _viewModel.CurrentSelector = two;
 
-            var one2 = new Selector { name = "one", id = 1 };
-            var two2 = new Selector { name = "two", id = 2 };
+            var one2 = new Selector { Name = "one", Id = 1 };
+            var two2 = new Selector { Name = "two", Id = 2 };
             var selectors2 = new[] { one2, two2 }.AsQueryable();
             _contextStub.Setup(c => c.Get<Selector>()).Returns(selectors2);
             _viewModel.Reload();
@@ -272,15 +272,15 @@ namespace PHmiUnitTests.Configurator.Modules.Collection.Selectable
         [Test]
         public void ReloadDoesNotPreserveCurrentSelectorIfItCannotFindIt()
         {
-            var one = new Selector { name = "one", id = 1 };
-            var two = new Selector { name = "two", id = 2 };
+            var one = new Selector { Name = "one", Id = 1 };
+            var two = new Selector { Name = "two", Id = 2 };
             var selectors = new[] { one, two }.AsQueryable();
             _contextStub.Setup(c => c.Get<Selector>()).Returns(selectors);
             _viewModel.Reload();
             _viewModel.CurrentSelector = two;
 
-            var one2 = new Selector { name = "one", id = 3 };
-            var two2 = new Selector { name = "two", id = 4 };
+            var one2 = new Selector { Name = "one", Id = 3 };
+            var two2 = new Selector { Name = "two", Id = 4 };
             var selectors2 = new[] { one2, two2 }.AsQueryable();
             _contextStub.Setup(c => c.Get<Selector>()).Returns(selectors2);
             _viewModel.Reload();
@@ -290,7 +290,7 @@ namespace PHmiUnitTests.Configurator.Modules.Collection.Selectable
         [Test]
         public void ReloadSetsCurrentSelectorToSingle()
         {
-            var single = new Selector { name = "one", id = 1 };
+            var single = new Selector { Name = "one", Id = 1 };
             var selectors = new[] { single }.AsQueryable();
             _contextStub.Setup(c => c.Get<Selector>()).Returns(selectors);
             _viewModel.Reload();
@@ -300,14 +300,14 @@ namespace PHmiUnitTests.Configurator.Modules.Collection.Selectable
         [Test]
         public void ReloaDoesNotSetCurrentSelectorToSingleIfCurrentSelectorWasNotNull()
         {
-            var one = new Selector { name = "one", id = 1 };
-            var two = new Selector { name = "two", id = 2 };
+            var one = new Selector { Name = "one", Id = 1 };
+            var two = new Selector { Name = "two", Id = 2 };
             var selectors = new[] { one, two }.AsQueryable();
             _contextStub.Setup(c => c.Get<Selector>()).Returns(selectors);
             _viewModel.Reload();
             _viewModel.CurrentSelector = two;
 
-            var single = new Selector { name = "one", id = 1 };
+            var single = new Selector { Name = "one", Id = 1 };
             var selectors2 = new[] { single }.AsQueryable();
             _contextStub.Setup(c => c.Get<Selector>()).Returns(selectors2);
             _viewModel.Reload();

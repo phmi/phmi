@@ -14,6 +14,7 @@ using PHmiResources.Loc;
 using PHmiTools.Utils.Npg;
 using PHmiTools.Utils.Npg.ExIm;
 using PHmiTools.ViewModels;
+using Settings = PHmiClient.Utils.Configuration.Settings;
 
 namespace PHmiTools.Dialogs.Project
 {

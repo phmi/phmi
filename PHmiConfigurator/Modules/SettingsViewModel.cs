@@ -6,7 +6,7 @@ namespace PHmiConfigurator.Modules
 {
     public class SettingsViewModel : ModuleViewModel
     {
-        private settings _settings;
+        private PHmiModel.Entities.Settings _settings;
 
         public SettingsViewModel() : base(null)
         {
@@ -24,10 +24,10 @@ namespace PHmiConfigurator.Modules
 
         protected override void PostReloadAction()
         {
-            Settings = Context.Get<settings>().Single();
+            Settings = Context.Get<PHmiModel.Entities.Settings>().Single();
         }
 
-        public settings Settings
+        public PHmiModel.Entities.Settings Settings
         {
             get { return _settings; }
             set

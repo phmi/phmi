@@ -39,15 +39,15 @@
                 <RowDefinition Height="2*" />
             </Grid.RowDefinitions>
             <TextBlock Text="{x:Static Loc:Res.Name}" />
-            <TextBox Grid.Column="1" x:Name="tbName" Text="{Binding Path=name, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox Grid.Column="1" x:Name="tbName" Text="{Binding Path=Name, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
             <TextBlock Grid.Row="1" Text="{x:Static Loc:Res.Type}" />
-            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=type, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
-            <Controls:IoDeviceTypeEditor x:Name="IoDeviceTypeEditor" Grid.Row="2" Grid.Column="1" Margin="0,4" Type="{Binding Path=type, Mode=TwoWay}" SelectedItemChanged="IoDeviceTypeEditorSelectedItemChanged" />
+            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=Type, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
+            <Controls:IoDeviceTypeEditor x:Name="IoDeviceTypeEditor" Grid.Row="2" Grid.Column="1" Margin="0,4" Type="{Binding Path=Type, Mode=TwoWay}" SelectedItemChanged="IoDeviceTypeEditorSelectedItemChanged" />
             <GridSplitter Grid.Row="2" Grid.ColumnSpan="2" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Height="8" Margin="0,0,0,-4" Background="Transparent"/>
             <TextBlock Grid.Row="3" Text="{x:Static Loc:Res.Options}" VerticalAlignment="Top" Margin="0,7,4,0"/>
             <Border Grid.Row="3" Grid.RowSpan="2" Grid.Column="1" Margin="0,5,0,4" BorderThickness="1" BorderBrush="Gray" SnapsToDevicePixels="True">
                 <Grid>
-                    <TextBox Text="{Binding Path=options, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource MultilineEditorTextBoxStyle}" x:Name="tbOptions" BorderThickness="0" Margin="0"/>
+                    <TextBox Text="{Binding Path=Options, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource MultilineEditorTextBoxStyle}" x:Name="tbOptions" BorderThickness="0" Margin="0"/>
                     <ScrollViewer x:Name="svOptionsEditorHolder" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"/>
                 </Grid>
             </Border>

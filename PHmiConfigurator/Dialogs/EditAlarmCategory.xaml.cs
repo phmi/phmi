@@ -1,12 +1,13 @@
 ﻿using PHmiClient.Utils;
 using PHmiModel;
+using PHmiModel.Entities;
 
 namespace PHmiConfigurator.Dialogs
 {
     /// <summary>
     /// Interaction logic for EditAlarmCategory.xaml
     /// </summary>
-    public partial class EditAlarmCategory : IEditDialog<alarm_categories.AlarmCategoriesMetadata>
+    public partial class EditAlarmCategory : IEditDialog<AlarmCategory.AlarmCategoryMetadata>
     {
         public EditAlarmCategory()
         {
@@ -21,7 +22,7 @@ namespace PHmiConfigurator.Dialogs
             get { return (EditAlarmCategoryViewModel) Resources["ViewModel"]; }
         }
 
-        public alarm_categories.AlarmCategoriesMetadata Entity
+        public AlarmCategory.AlarmCategoryMetadata Entity
         {
             get { return ViewModel.Entity; }
             set { ViewModel.Entity = value; }

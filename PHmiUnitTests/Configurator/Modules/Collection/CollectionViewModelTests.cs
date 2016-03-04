@@ -53,8 +53,8 @@ namespace PHmiUnitTests.Configurator.Modules.Collection
             }
 
             public bool Property { get; set; }
-            public int id { get; set; }
-            public string name { get; set; }
+            public int Id { get; set; }
+            public string Name { get; set; }
         }
 
         public class Service : ModuleViewModelTests.Service, ICollectionService
@@ -158,8 +158,8 @@ namespace PHmiUnitTests.Configurator.Modules.Collection
         [Test]
         public void IsValidReturnsTrueIfAllItemsAreValid()
         {
-            var one = new DataErrorInfo { HasError = false, name = "one" };
-            var two = new DataErrorInfo { HasError = false, name = "two" };
+            var one = new DataErrorInfo { HasError = false, Name = "one" };
+            var two = new DataErrorInfo { HasError = false, Name = "two" };
             _viewModel.SetDataErrorInfo(one);
             _viewModel.SetDataErrorInfo(two);
             Assert.IsTrue(_viewModel.IsValid);
@@ -168,8 +168,8 @@ namespace PHmiUnitTests.Configurator.Modules.Collection
         [Test]
         public void IsValidReturnsFalseIfAnyItemIsInvalid()
         {
-            var one = new DataErrorInfo { HasError = false, name = "one" };
-            var two = new DataErrorInfo { HasError = true, name = "two" };
+            var one = new DataErrorInfo { HasError = false, Name = "one" };
+            var two = new DataErrorInfo { HasError = true, Name = "two" };
             _viewModel.SetDataErrorInfo(one);
             _viewModel.SetDataErrorInfo(two);
             Assert.IsFalse(_viewModel.IsValid);
@@ -178,8 +178,8 @@ namespace PHmiUnitTests.Configurator.Modules.Collection
         [Test]
         public void IsValidReturnsFalseIfDublicateItemsNames()
         {
-            var one = new DataErrorInfo { HasError = false, name = "name" };
-            var two = new DataErrorInfo { HasError = false, name = "name" };
+            var one = new DataErrorInfo { HasError = false, Name = "name" };
+            var two = new DataErrorInfo { HasError = false, Name = "name" };
             _viewModel.SetDataErrorInfo(one);
             _viewModel.SetDataErrorInfo(two);
             Assert.IsFalse(_viewModel.IsValid);
@@ -209,8 +209,8 @@ namespace PHmiUnitTests.Configurator.Modules.Collection
         [Test]
         public void ReloadOrdersById()
         {
-            var one = new DataErrorInfo { id = 2 };
-            var two = new DataErrorInfo { id = 1 };
+            var one = new DataErrorInfo { Id = 2 };
+            var two = new DataErrorInfo { Id = 1 };
             var infos = new[] { one, two }.AsQueryable();
             _contextStub.Setup(c => c.Get<DataErrorInfo>()).Returns(infos);
             _viewModel.Reload();
@@ -222,8 +222,8 @@ namespace PHmiUnitTests.Configurator.Modules.Collection
         [Test]
         public void ReloadClearsIoDevices()
         {
-            var one = new DataErrorInfo { id = 1 };
-            var two = new DataErrorInfo { id = 2 };
+            var one = new DataErrorInfo { Id = 1 };
+            var two = new DataErrorInfo { Id = 2 };
             var ioDevices = new[] { one, two }.AsQueryable();
             _contextStub.Setup(c => c.Get<DataErrorInfo>()).Returns(ioDevices);
             _viewModel.Reload();
@@ -456,8 +456,8 @@ namespace PHmiUnitTests.Configurator.Modules.Collection
         [Test]
         public void CopyCommandExecutedTest()
         {
-            var item1 = new DataErrorInfo {id = 1, name = "item1", Property = true};
-            var item2 = new DataErrorInfo {id = 2, name = "item2", Property = false};
+            var item1 = new DataErrorInfo {Id = 1, Name = "item1", Property = true};
+            var item2 = new DataErrorInfo {Id = 2, Name = "item2", Property = false};
             _viewModel.SelectedItems.Add(item1);
             _viewModel.SelectedItems.Add(item2);
             _viewModel.CopyCommand.Execute(null);
@@ -472,8 +472,8 @@ namespace PHmiUnitTests.Configurator.Modules.Collection
         public void PasteCommandExecutedTest()
         {
             _service.ClipboardHelperStub.Setup(h => h.GetText()).Returns("2\titem22\tTrue\r\n\titem3\tTrue\r\n4\titem3\tTrue");
-            var item1 = new DataErrorInfo { id = 1, name = "item1", Property = true };
-            var item2 = new DataErrorInfo { id = 2, name = "item2", Property = false };
+            var item1 = new DataErrorInfo { Id = 1, Name = "item1", Property = true };
+            var item2 = new DataErrorInfo { Id = 2, Name = "item2", Property = false };
             _viewModel.PostReloadItemsToInsert.Add(item1);
             _viewModel.PostReloadItemsToInsert.Add(item2);
             _viewModel.Reload();
@@ -481,16 +481,16 @@ namespace PHmiUnitTests.Configurator.Modules.Collection
             _service.ClipboardHelperStub.Verify();
             Assert.AreEqual(3, _viewModel.Collection.Count);
             Assert.Contains(item1, _viewModel.Collection);
-            Assert.AreEqual(1, item1.id);
-            Assert.AreEqual("item1", item1.name);
+            Assert.AreEqual(1, item1.Id);
+            Assert.AreEqual("item1", item1.Name);
             Assert.AreEqual(true, item1.Property);
             Assert.Contains(item2, _viewModel.Collection);
-            Assert.AreEqual(2, item2.id);
-            Assert.AreEqual("item22", item2.name);
+            Assert.AreEqual(2, item2.Id);
+            Assert.AreEqual("item22", item2.Name);
             Assert.AreEqual(true, item2.Property);
             var added = _viewModel.Collection.Last();
-            Assert.AreEqual(0, added.id);
-            Assert.AreEqual("item3", added.name);
+            Assert.AreEqual(0, added.Id);
+            Assert.AreEqual("item3", added.Name);
             Assert.AreEqual(true, added.Property);
         }
 

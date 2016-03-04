@@ -40,7 +40,7 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <TextBlock Text="{x:Static Loc:Res.IoDevice}" Style="{StaticResource ToolBarTextBlockStyle}"/>
-            <ComboBox Grid.Column="1" x:Name="cbSelectors" ItemsSource="{Binding Path=Selectors}" SelectedItem="{Binding Path=CurrentSelector, Mode=TwoWay}" DisplayMemberPath="name" IsDropDownOpen="True" SelectionChanged="CbSelectorsSelectionChanged" Style="{StaticResource EditorComboBoxStyle}">
+            <ComboBox Grid.Column="1" x:Name="cbSelectors" ItemsSource="{Binding Path=Selectors}" SelectedItem="{Binding Path=CurrentSelector, Mode=TwoWay}" DisplayMemberPath="Name" IsDropDownOpen="True" SelectionChanged="CbSelectorsSelectionChanged" Style="{StaticResource EditorComboBoxStyle}">
                 <ComboBox.IsEnabled>
                     <Binding Path="HasChanges">
                         <Binding.Converter>
@@ -106,24 +106,24 @@
         </ToolBar>
         <DataGrid Grid.Row="2" Style="{StaticResource ModuleDataGridStyle}" ItemsSource="{Binding Path=Collection}" SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}" Controls:DataGridBehavior.SelectedItems="{Binding Path=SelectedItems}" Controls:DataGridBehavior.ControlCCommand="{Binding Path=CopyCommand}" Controls:DataGridBehavior.ControlVCommand="{Binding Path=PasteCommand}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="{x:Static Loc:Res.Name}" Binding="{Binding Path=name, Mode=TwoWay, ValidatesOnDataErrors=True}" EditingElementStyle="{StaticResource DataGridTextBoxStyle}" ElementStyle="{StaticResource DataGridTextBlockStyle}"/>
-                <DataGridTextColumn Header="{x:Static Loc:Res.AddressInDevice}" Binding="{Binding Path=device, Mode=TwoWay, ValidatesOnDataErrors=True}" EditingElementStyle="{StaticResource DataGridTextBoxStyle}" ElementStyle="{StaticResource DataGridTextBlockStyle}"/>
-                <DataGridTextColumn Header="{x:Static Loc:Res.Description}" Binding="{Binding Path=description, Mode=TwoWay, ValidatesOnDataErrors=True}" EditingElementStyle="{StaticResource DataGridTextBoxStyle}" ElementStyle="{StaticResource DataGridTextBlockStyle}"/>
-                <DataGridCheckBoxColumn Header="{x:Static Loc:Res.CanRead}" Binding="{Binding Path=can_read, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
-                <DataGridTemplateColumn Header="{x:Static Loc:Res.TagType}" SortMemberPath="num_tag_types.name">
+                <DataGridTextColumn Header="{x:Static Loc:Res.Name}" Binding="{Binding Path=Name, Mode=TwoWay, ValidatesOnDataErrors=True}" EditingElementStyle="{StaticResource DataGridTextBoxStyle}" ElementStyle="{StaticResource DataGridTextBlockStyle}"/>
+                <DataGridTextColumn Header="{x:Static Loc:Res.AddressInDevice}" Binding="{Binding Path=Device, Mode=TwoWay, ValidatesOnDataErrors=True}" EditingElementStyle="{StaticResource DataGridTextBoxStyle}" ElementStyle="{StaticResource DataGridTextBlockStyle}"/>
+                <DataGridTextColumn Header="{x:Static Loc:Res.Description}" Binding="{Binding Path=Description, Mode=TwoWay, ValidatesOnDataErrors=True}" EditingElementStyle="{StaticResource DataGridTextBoxStyle}" ElementStyle="{StaticResource DataGridTextBlockStyle}"/>
+                <DataGridCheckBoxColumn Header="{x:Static Loc:Res.CanRead}" Binding="{Binding Path=CanRead, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
+                <DataGridTemplateColumn Header="{x:Static Loc:Res.TagType}" SortMemberPath="NumTagType.Name">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Path=num_tag_types.name, ValidatesOnDataErrors=True}" Style="{StaticResource DataGridTextBlockStyle}"/>
+                            <TextBlock Text="{Binding Path=NumTagType.Name, ValidatesOnDataErrors=True}" Style="{StaticResource DataGridTextBlockStyle}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                     <DataGridTemplateColumn.CellEditingTemplate>
                         <DataTemplate>
-                            <ComboBox SelectedItem="{Binding Path=num_tag_types, Mode=TwoWay, ValidatesOnDataErrors=True}" DisplayMemberPath="name" ItemsSource="{Binding Path=NumTagTypes, Source={StaticResource ViewModel}}" Style="{StaticResource DataGridComboBoxStyle}" Loaded="ComboBoxLoaded"/>
+                            <ComboBox SelectedItem="{Binding Path=NumTagType, Mode=TwoWay, ValidatesOnDataErrors=True}" DisplayMemberPath="Name" ItemsSource="{Binding Path=NumTagTypes, Source={StaticResource ViewModel}}" Style="{StaticResource DataGridComboBoxStyle}" Loaded="ComboBoxLoaded"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellEditingTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn Header="{x:Static Loc:Res.Format}" Binding="{Binding Path=format, Mode=TwoWay, ValidatesOnDataErrors=True}" EditingElementStyle="{StaticResource DataGridTextBoxStyle}" ElementStyle="{StaticResource DataGridTextBlockStyle}"/>
-                <DataGridTextColumn Header="{x:Static Loc:Res.EngUnit}" Binding="{Binding Path=eng_unit, Mode=TwoWay, ValidatesOnDataErrors=True}" EditingElementStyle="{StaticResource DataGridTextBoxStyle}" ElementStyle="{StaticResource DataGridTextBlockStyle}"/>
+                <DataGridTextColumn Header="{x:Static Loc:Res.Format}" Binding="{Binding Path=Format, Mode=TwoWay, ValidatesOnDataErrors=True}" EditingElementStyle="{StaticResource DataGridTextBoxStyle}" ElementStyle="{StaticResource DataGridTextBlockStyle}"/>
+                <DataGridTextColumn Header="{x:Static Loc:Res.EngUnit}" Binding="{Binding Path=EngUnit, Mode=TwoWay, ValidatesOnDataErrors=True}" EditingElementStyle="{StaticResource DataGridTextBoxStyle}" ElementStyle="{StaticResource DataGridTextBlockStyle}"/>
                 <DataGridTextColumn Header="{x:Static Loc:Res.RawMin}" Binding="{Binding Path=RawMin, Mode=TwoWay, ValidatesOnDataErrors=True}" EditingElementStyle="{StaticResource DataGridTextBoxStyle}" ElementStyle="{StaticResource DataGridTextBlockStyle}"/>
                 <DataGridTextColumn Header="{x:Static Loc:Res.RawMax}" Binding="{Binding Path=RawMax, Mode=TwoWay, ValidatesOnDataErrors=True}" EditingElementStyle="{StaticResource DataGridTextBoxStyle}" ElementStyle="{StaticResource DataGridTextBlockStyle}"/>
                 <DataGridTextColumn Header="{x:Static Loc:Res.EngMin}" Binding="{Binding Path=EngMin, Mode=TwoWay, ValidatesOnDataErrors=True}" EditingElementStyle="{StaticResource DataGridTextBoxStyle}" ElementStyle="{StaticResource DataGridTextBlockStyle}"/>

@@ -10,6 +10,7 @@ using PHmiClient.Utils.Notifications;
 using PHmiClient.Utils.Pagination;
 using PHmiClientUnitTests;
 using PHmiModel;
+using PHmiModel.Entities;
 using PHmiResources.Loc;
 using PHmiRunner.Utils;
 using PHmiRunner.Utils.Alarms;
@@ -22,12 +23,12 @@ namespace PHmiUnitTests.Runner.Utils.Alarms
     {
         protected bool Acknowledgeable = true;
         protected long? TimeToStore;
-        protected alarm_categories AlarmCatetory;
+        protected AlarmCategory AlarmCatetory;
         protected Mock<INotificationReporter> Reporter;
         protected Mock<IAlarmsRepository> Repository;
         protected Mock<IProject> Project;
         protected Mock<ITimeService> TimeService;
-        protected alarm_tags AlarmTag;
+        protected AlarmTag AlarmTag;
         protected Mock<INpgsqlConnectionFactory> ConnectionFactory;
         protected NpgsqlConnection Connection;
         protected IAlarmsRunTarget AlarmsRunTarget;
@@ -35,25 +36,25 @@ namespace PHmiUnitTests.Runner.Utils.Alarms
         protected override void EstablishContext()
         {
             base.EstablishContext();
-            AlarmTag = new alarm_tags
+            AlarmTag = new AlarmTag
                            {
-                               dig_tags = new dig_tags
+                               DigTag = new DigTag
                                               {
-                                                  id = RandomGenerator.GetRandomInt32(),
-                                                  io_devices = new io_devices
+                                                  Id = RandomGenerator.GetRandomInt32(),
+                                                  IoDevice = new PHmiModel.Entities.IoDevice
                                                                    {
-                                                                       id = RandomGenerator.GetRandomInt32()
+                                                                       Id = RandomGenerator.GetRandomInt32()
                                                                    }
                                               },
-                               id = RandomGenerator.GetRandomInt32(),
-                               acknowledgeable = Acknowledgeable
+                               Id = RandomGenerator.GetRandomInt32(),
+                               Acknowledgeable = Acknowledgeable
                            };
-            AlarmCatetory = new alarm_categories
+            AlarmCatetory = new AlarmCategory
                                 {
-                                    name = "AlarmCategory",
-                                    time_to_store = TimeToStore
+                                    Name = "AlarmCategory",
+                                    TimeToStoreDb = TimeToStore
                                 };
-            AlarmCatetory.alarm_tags.Add(AlarmTag);
+            AlarmCatetory.AlarmTags.Add(AlarmTag);
             Reporter = new Mock<INotificationReporter>();
             Repository = new Mock<IAlarmsRepository>();
             Project = new Mock<IProject>();
@@ -76,7 +77,7 @@ namespace PHmiUnitTests.Runner.Utils.Alarms
             [Test]
             public void Test()
             {
-                Assert.That(AlarmsRunTarget.Name, Is.EqualTo(string.Format("{0} \"{1}\"", Res.Alarms, AlarmCatetory.name)));
+                Assert.That(AlarmsRunTarget.Name, Is.EqualTo(string.Format("{0} \"{1}\"", Res.Alarms, AlarmCatetory.Name)));
             }
         }
 
@@ -100,7 +101,7 @@ namespace PHmiUnitTests.Runner.Utils.Alarms
                 IoDeviceRunTarget = new Mock<IIoDeviceRunTarget>();
                 IoDeviceRunTargets = new Dictionary<int, IIoDeviceRunTarget>
                                          {
-                                             {AlarmTag.dig_tags.io_devices.id, IoDeviceRunTarget.Object}
+                                             {AlarmTag.DigTag.IoDevice.Id, IoDeviceRunTarget.Object}
                                          };
 
                 Project.Setup(p => p.IoDeviceRunTargets).Returns(IoDeviceRunTargets);
@@ -111,7 +112,7 @@ namespace PHmiUnitTests.Runner.Utils.Alarms
                 protected override void EstablishContext()
                 {
                     base.EstablishContext();
-                    IoDeviceRunTarget.Setup(t => t.GetDigitalValue(AlarmTag.dig_tags.id)).Returns(true);
+                    IoDeviceRunTarget.Setup(t => t.GetDigitalValue(AlarmTag.DigTag.Id)).Returns(true);
                 }
 
                 public class AndRepositoryActiveContainsNoAlarm : AndDigTagValueIsTrue
@@ -137,7 +138,7 @@ namespace PHmiUnitTests.Runner.Utils.Alarms
                             {
                                 Repository.Verify(r => r.Insert(Connection, It.Is<Tuple<DateTime, int, DateTime?>[]>(
                                     tuples => tuples.Any(t => t.Item1 == TimeService.Object.UtcTime
-                                        && t.Item2 == AlarmTag.id
+                                        && t.Item2 == AlarmTag.Id
                                         && t.Item3 == null))),
                                     Times.Once());
                             }
@@ -172,9 +173,9 @@ namespace PHmiUnitTests.Runner.Utils.Alarms
                         ActiveIds = new[]
                                         {
                                             new AlarmSampleId(
-                                                TimeService.Object.UtcTime - TimeSpan.FromDays(1.111), AlarmTag.id),
+                                                TimeService.Object.UtcTime - TimeSpan.FromDays(1.111), AlarmTag.Id),
                                             new AlarmSampleId(
-                                                TimeService.Object.UtcTime - TimeSpan.FromDays(2.222), AlarmTag.id),
+                                                TimeService.Object.UtcTime - TimeSpan.FromDays(2.222), AlarmTag.Id),
                                         };
                         Repository.Setup(r => r.GetActiveIds(Connection)).Returns(ActiveIds);
                     }
@@ -217,7 +218,7 @@ namespace PHmiUnitTests.Runner.Utils.Alarms
                 protected override void EstablishContext()
                 {
                     base.EstablishContext();
-                    IoDeviceRunTarget.Setup(t => t.GetDigitalValue(AlarmTag.dig_tags.id)).Returns(false);
+                    IoDeviceRunTarget.Setup(t => t.GetDigitalValue(AlarmTag.DigTag.Id)).Returns(false);
                 }
 
                 public class AndRepositoryActiveContainsAlarm : AndDigTagValueIsNotTrue
@@ -227,7 +228,7 @@ namespace PHmiUnitTests.Runner.Utils.Alarms
                     protected override void EstablishContext()
                     {
                         base.EstablishContext();
-                        ActiveId = new AlarmSampleId(TimeService.Object.UtcTime - TimeSpan.FromDays(1.111), AlarmTag.id);
+                        ActiveId = new AlarmSampleId(TimeService.Object.UtcTime - TimeSpan.FromDays(1.111), AlarmTag.Id);
                         Repository.Setup(r => r.GetActiveIds(Connection))
                             .Returns(new[]
                                 {

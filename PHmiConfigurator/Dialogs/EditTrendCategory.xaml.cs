@@ -1,12 +1,13 @@
 ﻿using PHmiClient.Utils;
 using PHmiModel;
+using PHmiModel.Entities;
 
 namespace PHmiConfigurator.Dialogs
 {
     /// <summary>
     /// Interaction logic for EditTrendCategory.xaml
     /// </summary>
-    public partial class EditTrendCategory : IEditDialog<trend_categories.TrendCategoriesMetadata>
+    public partial class EditTrendCategory : IEditDialog<TrendCategory.TrendCategoryMetadata>
     {
         public EditTrendCategory()
         {
@@ -21,7 +22,7 @@ namespace PHmiConfigurator.Dialogs
             get { return (EditTrendCategoryViewModel)Resources["ViewModel"]; }
         }
 
-        public trend_categories.TrendCategoriesMetadata Entity
+        public TrendCategory.TrendCategoryMetadata Entity
         {
             get { return ViewModel.Entity; }
             set { ViewModel.Entity = value; }

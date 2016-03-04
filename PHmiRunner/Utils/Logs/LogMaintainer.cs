@@ -18,7 +18,7 @@ namespace PHmiRunner.Utils.Logs
         private readonly DateTime _defaultTime = new DateTime();
 
         public LogMaintainer(
-            logs log,
+            PHmiModel.Entities.Log log,
             ILogRepository repository,
             ITimeService timeService,
             INpgsqlConnectionFactory connectionFactory)
@@ -26,7 +26,7 @@ namespace PHmiRunner.Utils.Logs
             _repository = repository;
             _timeService = timeService;
             _connectionFactory = connectionFactory;
-            _timeToStore = log.time_to_store.HasValue ? new TimeSpan(log.time_to_store.Value) as TimeSpan? : null;
+            _timeToStore = log.TimeToStoreDb.HasValue ? new TimeSpan(log.TimeToStoreDb.Value) as TimeSpan? : null;
         }
         
         public DateTime Save(LogItem item)

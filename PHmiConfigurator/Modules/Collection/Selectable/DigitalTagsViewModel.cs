@@ -5,11 +5,12 @@ using System.Windows;
 using PHmiClient.Utils;
 using PHmiConfigurator.Dialogs;
 using PHmiModel;
+using PHmiModel.Entities;
 using PHmiResources.Loc;
 
 namespace PHmiConfigurator.Modules.Collection.Selectable
 {
-    public class DigitalTagsViewModel : SelectableCollectionViewModel<dig_tags, dig_tags.DigTagsMetadata, io_devices>
+    public class DigitalTagsViewModel : SelectableCollectionViewModel<DigTag, DigTag.DigTagMetadata, PHmiModel.Entities.IoDevice>
     {
         public DigitalTagsViewModel() : base(null) { }
 
@@ -25,15 +26,15 @@ namespace PHmiConfigurator.Modules.Collection.Selectable
                 var error = base.Error;
                 if (CurrentSelector != null)
                 {
-                    var ioDeviceId = CurrentSelector.id;
-                    var numericTagsNames = Context.Get<num_tags>()
-                        .Where(t => t.ref_io_devices == ioDeviceId).Select(t => t.name).Distinct().ToDictionary(n => n);
-                    var names = List.Where(t => numericTagsNames.ContainsKey(t.name)).Select(t => t.name).ToArray();
+                    var ioDeviceId = CurrentSelector.Id;
+                    var numericTagsNames = Context.Get<NumTag>()
+                        .Where(t => t.RefIoDevice == ioDeviceId).Select(t => t.Name).Distinct().ToDictionary(n => n);
+                    var names = List.Where(t => numericTagsNames.ContainsKey(t.Name)).Select(t => t.Name).ToArray();
                     if (names.Any())
                     {
                         if (!string.IsNullOrEmpty(error))
                             error += Environment.NewLine;
-                        error += string.Format(Res.NumericTagPresentMessage, ReflectionHelper.GetDisplayName<dig_tags>(t => t.name))
+                        error += string.Format(Res.NumericTagPresentMessage, ReflectionHelper.GetDisplayName<DigTag>(t => t.Name))
                             + Environment.NewLine
                             + string.Join(", ", names) + ".";
                     }
@@ -42,23 +43,23 @@ namespace PHmiConfigurator.Modules.Collection.Selectable
             }
         }
 
-        protected override IEditDialog<dig_tags.DigTagsMetadata> CreateAddDialog()
+        protected override IEditDialog<DigTag.DigTagMetadata> CreateAddDialog()
         {
             return new EditDigitalTag { Title = Res.AddDigitalTag, Owner = Window.GetWindow(View) };
         }
 
-        protected override IEditDialog<dig_tags.DigTagsMetadata> CreateEditDialog()
+        protected override IEditDialog<DigTag.DigTagMetadata> CreateEditDialog()
         {
             return new EditDigitalTag { Title = Res.EditDigitalTag, Owner = Window.GetWindow(View) };
         }
 
-        protected override string[] GetCopyData(dig_tags item)
+        protected override string[] GetCopyData(DigTag item)
         {
             return new []
                 {
-                    item.device,
-                    item.description,
-                    item.can_read.ToString(CultureInfo.InvariantCulture)
+                    item.Device,
+                    item.Description,
+                    item.CanRead.ToString(CultureInfo.InvariantCulture)
                 };
         }
 
@@ -66,17 +67,17 @@ namespace PHmiConfigurator.Modules.Collection.Selectable
         {
             return new []
                 {
-                    ReflectionHelper.GetDisplayName<dig_tags>(t => t.device),
-                    ReflectionHelper.GetDisplayName<dig_tags>(t => t.description),
-                    ReflectionHelper.GetDisplayName<dig_tags>(t => t.can_read)
+                    ReflectionHelper.GetDisplayName<DigTag>(t => t.Device),
+                    ReflectionHelper.GetDisplayName<DigTag>(t => t.Description),
+                    ReflectionHelper.GetDisplayName<DigTag>(t => t.CanRead)
                 };
         }
 
-        protected override void SetCopyData(dig_tags item, string[] data)
+        protected override void SetCopyData(DigTag item, string[] data)
         {
-            item.device = data[0];
-            item.description = data[1];
-            item.can_read = bool.Parse(data[2]);
+            item.Device = data[0];
+            item.Description = data[1];
+            item.CanRead = bool.Parse(data[2]);
         }
     }
 }

@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using PHmiModel;
+using PHmiModel.Entities;
 
 namespace PHmiConfigurator.Dialogs
 {
-    public class EditTrendTagViewModel : EditDialogViewModel<trend_tags.TrendTagsMetadata>
+    public class EditTrendTagViewModel : EditDialogViewModel<TrendTag.TrendTagMetadata>
     {
-        private IEnumerable<dig_tags> _digitalTags;
-        public IEnumerable<dig_tags> DigitalTags
+        private IEnumerable<DigTag> _digitalTags;
+        public IEnumerable<DigTag> DigitalTags
         {
             get { return _digitalTags; }
             set
@@ -16,8 +17,8 @@ namespace PHmiConfigurator.Dialogs
             }
         }
 
-        private IEnumerable<num_tags> _numericTags;
-        public IEnumerable<num_tags> NumericTags
+        private IEnumerable<NumTag> _numericTags;
+        public IEnumerable<NumTag> NumericTags
         {
             get { return _numericTags; }
             set

@@ -7,6 +7,7 @@ using System.Threading;
 using PHmiClient.Utils.Notifications;
 using PHmiIoDeviceTools;
 using PHmiModel;
+using PHmiModel.Entities;
 using PHmiResources.Loc;
 using PHmiTools;
 
@@ -26,36 +27,36 @@ namespace PHmiRunner.Utils.IoDeviceRunner
         private readonly string _options;
         private readonly INotificationReporter _reporter;
 
-        public IoDeviceRunTarget(io_devices ioDevice, IIoDeviceWrapperFactory wrapperFactory, INotificationReporter reporter)
+        public IoDeviceRunTarget(IoDevice ioDevice, IIoDeviceWrapperFactory wrapperFactory, INotificationReporter reporter)
         {
             _reporter = reporter;
-            Name = string.Format(Res.IoDeviceWithName, ioDevice.name);
-            _filePath = GetFilePath(ioDevice.type);
-            _options = ioDevice.options;
+            Name = string.Format(Res.IoDeviceWithName, ioDevice.Name);
+            _filePath = GetFilePath(ioDevice.Type);
+            _options = ioDevice.Options;
             _wrapperFactory = wrapperFactory;
 
             var digReadParameters = new List<ReadParameter>();
             var digReadValueHolders = new List<ITagValueHolder>();
-            foreach (var t in ioDevice.dig_tags)
+            foreach (var t in ioDevice.DigTags)
             {
                 var holder = new DigTagValueHolder(t);
-                _digValueHolders.Add(t.id, holder);
-                if (t.can_read)
+                _digValueHolders.Add(t.Id, holder);
+                if (t.CanRead)
                 {
                     digReadValueHolders.Add(holder);
-                    digReadParameters.Add(new ReadParameter(t.device, typeof(bool)));
+                    digReadParameters.Add(new ReadParameter(t.Device, typeof(bool)));
                 }
             }
             var numReadParameters = new List<ReadParameter>();
             var numReadValueHolders = new List<ITagValueHolder>();
-            foreach (var t in ioDevice.num_tags)
+            foreach (var t in ioDevice.NumTags)
             {
                 var holder = new NumTagValueHolder(t);
-                _numValueHolders.Add(t.id, holder);
-                if (t.can_read)
+                _numValueHolders.Add(t.Id, holder);
+                if (t.CanRead)
                 {
                     numReadValueHolders.Add(holder);
-                    numReadParameters.Add(new ReadParameter(t.device, t.TagType));
+                    numReadParameters.Add(new ReadParameter(t.Device, t.TagType));
                 }
             }
             _readParameters = digReadParameters.Concat(numReadParameters).ToArray();

@@ -6,19 +6,20 @@ using System.Windows;
 using PHmiClient.Utils;
 using PHmiConfigurator.Dialogs;
 using PHmiModel;
+using PHmiModel.Entities;
 using PHmiResources.Loc;
 
 namespace PHmiConfigurator.Modules.Collection.Selectable
 {
-    public class NumericTagsViewModel : SelectableCollectionViewModel<num_tags, num_tags.NumTagsMetadata, io_devices>
+    public class NumericTagsViewModel : SelectableCollectionViewModel<NumTag, NumTag.NumTagMetadata, PHmiModel.Entities.IoDevice>
     {
-        private IEnumerable<num_tag_types> _numTagTypes;
+        private IEnumerable<NumTagType> _numTagTypes;
 
         public NumericTagsViewModel() : base(null)
         {
         }
 
-        public IEnumerable<num_tag_types> NumTagTypes
+        public IEnumerable<NumTagType> NumTagTypes
         {
             get { return _numTagTypes; }
             set
@@ -40,15 +41,15 @@ namespace PHmiConfigurator.Modules.Collection.Selectable
                 var error = base.Error;
                 if (CurrentSelector != null)
                 {
-                    var ioDeviceId = CurrentSelector.id;
-                    var digitalTagsNames = Context.Get<dig_tags>()
-                        .Where(t => t.ref_io_devices == ioDeviceId).Select(t => t.name).Distinct().ToDictionary(n => n);
-                    var names = List.Where(t => digitalTagsNames.ContainsKey(t.name)).Select(t => t.name).ToArray();
+                    var ioDeviceId = CurrentSelector.Id;
+                    var digitalTagsNames = Context.Get<DigTag>()
+                        .Where(t => t.RefIoDevices == ioDeviceId).Select(t => t.Name).Distinct().ToDictionary(n => n);
+                    var names = List.Where(t => digitalTagsNames.ContainsKey(t.Name)).Select(t => t.Name).ToArray();
                     if (names.Any())
                     {
                         if (!string.IsNullOrEmpty(error))
                             error += Environment.NewLine;
-                        error += string.Format(Res.DigitalTagPresentMessage, ReflectionHelper.GetDisplayName<dig_tags>(t => t.name))
+                        error += string.Format(Res.DigitalTagPresentMessage, ReflectionHelper.GetDisplayName<DigTag>(t => t.Name))
                             + Environment.NewLine
                             + string.Join(", ", names) + ".";
                     }
@@ -59,11 +60,11 @@ namespace PHmiConfigurator.Modules.Collection.Selectable
 
         protected override void PostReloadAction()
         {
-            NumTagTypes = Context.Get<num_tag_types>().OrderBy(t => t.id).ToArray();
+            NumTagTypes = Context.Get<NumTagType>().OrderBy(t => t.Id).ToArray();
             base.PostReloadAction();
         }
 
-        protected override IEditDialog<num_tags.NumTagsMetadata> CreateAddDialog()
+        protected override IEditDialog<NumTag.NumTagMetadata> CreateAddDialog()
         {
             return new EditNumericTag
                 {
@@ -73,7 +74,7 @@ namespace PHmiConfigurator.Modules.Collection.Selectable
                 };
         }
 
-        protected override IEditDialog<num_tags.NumTagsMetadata> CreateEditDialog()
+        protected override IEditDialog<NumTag.NumTagMetadata> CreateEditDialog()
         {
             return new EditNumericTag
                 {
@@ -83,16 +84,16 @@ namespace PHmiConfigurator.Modules.Collection.Selectable
                 };
         }
 
-        protected override string[] GetCopyData(num_tags item)
+        protected override string[] GetCopyData(NumTag item)
         {
             return new[]
                 {
-                    item.device,
-                    item.description,
-                    item.can_read.ToString(CultureInfo.InvariantCulture),
-                    item.num_tag_types.name,
-                    item.format,
-                    item.eng_unit,
+                    item.Device,
+                    item.Description,
+                    item.CanRead.ToString(CultureInfo.InvariantCulture),
+                    item.NumTagType.Name,
+                    item.Format,
+                    item.EngUnit,
                     item.RawMin,
                     item.RawMax,
                     item.EngMin,
@@ -104,27 +105,27 @@ namespace PHmiConfigurator.Modules.Collection.Selectable
         {
             return new[]
                 {
-                    ReflectionHelper.GetDisplayName<num_tags>(t => t.device),
-                    ReflectionHelper.GetDisplayName<num_tags>(t => t.description),
-                    ReflectionHelper.GetDisplayName<num_tags>(t => t.can_read),
-                    ReflectionHelper.GetDisplayName<num_tags>(t => t.num_tag_types),
-                    ReflectionHelper.GetDisplayName<num_tags>(t => t.format),
-                    ReflectionHelper.GetDisplayName<num_tags>(t => t.eng_unit),
-                    ReflectionHelper.GetDisplayName<num_tags>(t => t.RawMin),
-                    ReflectionHelper.GetDisplayName<num_tags>(t => t.RawMax),
-                    ReflectionHelper.GetDisplayName<num_tags>(t => t.EngMin),
-                    ReflectionHelper.GetDisplayName<num_tags>(t => t.EngMax)
+                    ReflectionHelper.GetDisplayName<NumTag>(t => t.Device),
+                    ReflectionHelper.GetDisplayName<NumTag>(t => t.Description),
+                    ReflectionHelper.GetDisplayName<NumTag>(t => t.CanRead),
+                    ReflectionHelper.GetDisplayName<NumTag>(t => t.NumTagType),
+                    ReflectionHelper.GetDisplayName<NumTag>(t => t.Format),
+                    ReflectionHelper.GetDisplayName<NumTag>(t => t.EngUnit),
+                    ReflectionHelper.GetDisplayName<NumTag>(t => t.RawMin),
+                    ReflectionHelper.GetDisplayName<NumTag>(t => t.RawMax),
+                    ReflectionHelper.GetDisplayName<NumTag>(t => t.EngMin),
+                    ReflectionHelper.GetDisplayName<NumTag>(t => t.EngMax)
                 };
         }
 
-        protected override void SetCopyData(num_tags item, string[] data)
+        protected override void SetCopyData(NumTag item, string[] data)
         {
-            item.device = data[0];
-            item.description = data[1];
-            item.can_read = bool.Parse(data[2]);
-            item.num_tag_types = NumTagTypes.First(t => t.name == data[3]);
-            item.format = data[4];
-            item.eng_unit = data[5];
+            item.Device = data[0];
+            item.Description = data[1];
+            item.CanRead = bool.Parse(data[2]);
+            item.NumTagType = NumTagTypes.First(t => t.Name == data[3]);
+            item.Format = data[4];
+            item.EngUnit = data[5];
             item.RawMin = data[6];
             item.RawMax = data[7];
             item.EngMin = data[8];

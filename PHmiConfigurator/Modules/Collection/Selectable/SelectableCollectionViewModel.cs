@@ -26,13 +26,13 @@ namespace PHmiConfigurator.Modules.Collection.Selectable
         protected override void PostReloadAction()
         {
             var oldSelector = CurrentSelector;
-            var selectors = Context.Get<TSelector>().OrderBy(i => i.name).ToArray();
+            var selectors = Context.Get<TSelector>().OrderBy(i => i.Name).ToArray();
             SelectorsList.Clear();
             foreach (var i in selectors)
             {
                 SelectorsList.Add(i);
             }
-            CurrentSelector = oldSelector == null ? null : selectors.FirstOrDefault(i => i.id == oldSelector.id);
+            CurrentSelector = oldSelector == null ? null : selectors.FirstOrDefault(i => i.Id == oldSelector.Id);
             if (CurrentSelector == null && oldSelector == null && selectors.Count() == 1)
                 CurrentSelector = selectors.FirstOrDefault();
             LoadCollection();
@@ -44,7 +44,7 @@ namespace PHmiConfigurator.Modules.Collection.Selectable
             var selector = CurrentSelector;
             if (selector == null)
                 return;
-            foreach (var d in selector.GetRepository<T>().OrderBy(d => d.id))
+            foreach (var d in selector.GetRepository<T>().OrderBy(d => d.Id))
             {
                 List.Add(d);
             }

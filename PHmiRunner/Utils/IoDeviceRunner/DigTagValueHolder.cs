@@ -1,5 +1,6 @@
 ﻿using System;
 using PHmiModel;
+using PHmiModel.Entities;
 
 namespace PHmiRunner.Utils.IoDeviceRunner
 {
@@ -7,9 +8,9 @@ namespace PHmiRunner.Utils.IoDeviceRunner
     {
         private readonly string _address;
 
-        public DigTagValueHolder(dig_tags tag)
+        public DigTagValueHolder(DigTag tag)
         {
-            _address = tag.device;
+            _address = tag.Device;
         }
 
         public override string Address

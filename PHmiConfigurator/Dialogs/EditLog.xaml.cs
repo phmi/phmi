@@ -1,12 +1,13 @@
 ﻿using PHmiClient.Utils;
 using PHmiModel;
+using PHmiModel.Entities;
 
 namespace PHmiConfigurator.Dialogs
 {
     /// <summary>
     /// Interaction logic for EditLog.xaml
     /// </summary>
-    public partial class EditLog : IEditDialog<logs.LogsMetadata>
+    public partial class EditLog : IEditDialog<Log.LogMetadata>
     {
         public EditLog()
         {
@@ -21,7 +22,7 @@ namespace PHmiConfigurator.Dialogs
             get { return (EditLogViewModel)Resources["ViewModel"]; }
         }
 
-        public logs.LogsMetadata Entity
+        public Log.LogMetadata Entity
         {
             get { return ViewModel.Entity; }
             set { ViewModel.Entity = value; }

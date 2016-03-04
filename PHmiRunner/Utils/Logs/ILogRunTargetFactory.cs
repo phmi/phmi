@@ -5,6 +5,6 @@ namespace PHmiRunner.Utils.Logs
 {
     public interface ILogRunTargetFactory
     {
-        ILogMaintainer Create(string connectionString, logs log, ITimeService timeService);
+        ILogMaintainer Create(string connectionString, PHmiModel.Entities.Log log, ITimeService timeService);
     }
 }

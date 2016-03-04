@@ -1,8 +1,9 @@
 ﻿using PHmiModel;
+using PHmiModel.Entities;
 
 namespace PHmiConfigurator.Dialogs
 {
-    public class EditLogViewModel : EditDialogViewModel<logs.LogsMetadata>
+    public class EditLogViewModel : EditDialogViewModel<Log.LogMetadata>
     {
     }
 }

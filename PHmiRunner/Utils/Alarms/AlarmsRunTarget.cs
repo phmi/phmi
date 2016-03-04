@@ -9,6 +9,7 @@ using PHmiClient.Utils;
 using PHmiClient.Utils.Notifications;
 using PHmiClient.Utils.Pagination;
 using PHmiModel;
+using PHmiModel.Entities;
 using PHmiResources.Loc;
 using PHmiTools.Utils.Npg;
 
@@ -41,41 +42,41 @@ namespace PHmiRunner.Utils.Alarms
         private NpgsqlConnection _connection;
 
         public AlarmsRunTarget(
-            alarm_categories alarmCategory,
+            AlarmCategory alarmCategory,
             INotificationReporter reporter,
             IAlarmsRepository repository,
             IProject project,
             ITimeService timeService,
             INpgsqlConnectionFactory connectionFactory) 
         {
-            _name = string.Format("{0} \"{1}\"", Res.Alarms, alarmCategory.name);
+            _name = string.Format("{0} \"{1}\"", Res.Alarms, alarmCategory.Name);
             _reporter = reporter;
             _timeService = timeService;
             _repository = repository;
             _project = project;
             _connectionFactory = connectionFactory;
-            if (alarmCategory.time_to_store.HasValue)
+            if (alarmCategory.TimeToStoreDb.HasValue)
             {
-                _timeToStore = new TimeSpan(alarmCategory.time_to_store.Value);
+                _timeToStore = new TimeSpan(alarmCategory.TimeToStoreDb.Value);
             }
 
-            _alarmDigitalValues = new Dictionary<int, AlarmStatus>(alarmCategory.alarm_tags.Count);
-            foreach (var t in alarmCategory.alarm_tags)
+            _alarmDigitalValues = new Dictionary<int, AlarmStatus>(alarmCategory.AlarmTags.Count);
+            foreach (var t in alarmCategory.AlarmTags)
             {
-                _alarmDigitalValues.Add(t.id, new AlarmStatus(t.acknowledgeable));
-                _alarmPrivileges.Add(t.id, t.privilege);
+                _alarmDigitalValues.Add(t.Id, new AlarmStatus(t.Acknowledgeable));
+                _alarmPrivileges.Add(t.Id, t.Privilege);
             }
 
             _updateAlarmTagsDigitalValues = () => UpdateAlarmDigitalValues(GetIoDeviceGroups(alarmCategory));
         }
 
-        private static IEnumerable<Tuple<int, Tuple<int, int>[]>> GetIoDeviceGroups(alarm_categories alarmCategory)
+        private static IEnumerable<Tuple<int, Tuple<int, int>[]>> GetIoDeviceGroups(AlarmCategory alarmCategory)
         {
-            var ioDeviceGroups = alarmCategory.alarm_tags
-                .GroupBy(a => a.dig_tags.io_devices)
+            var ioDeviceGroups = alarmCategory.AlarmTags
+                .GroupBy(a => a.DigTag.IoDevice)
                 .Select(g => new Tuple<int, Tuple<int, int>[]>(
-                    g.Key.id,
-                    g.Select(a => new Tuple<int, int>(a.dig_tags.id, a.id))
+                    g.Key.Id,
+                    g.Select(a => new Tuple<int, int>(a.DigTag.Id, a.Id))
                     .ToArray()))
                 .ToArray();
             return ioDeviceGroups;

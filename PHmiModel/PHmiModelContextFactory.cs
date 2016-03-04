@@ -10,12 +10,7 @@ namespace PHmiModel
     {
         public IModelContext Create(string connectionString)
         {
-            var entityConnection = new EntityConnection(
-                    new MetadataWorkspace(
-                        new [] { "res://*/" },
-                        new [] { Assembly.GetAssembly(typeof(PHmiModelContext)) }),
-                        new NpgsqlConnection(connectionString));
-            var context = new PHmiModelContext(entityConnection);
+            var context = new PHmiModelContext(connectionString);
             context.StartTrackingChanges();
             return context;
         }

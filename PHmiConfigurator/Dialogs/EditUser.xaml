@@ -30,7 +30,7 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <GroupBox Header="{x:Static loc:Res.Photo}" Margin="0,-4,4,4">
-                <controls:ImageInput Width="100" MaxHeight="200" BinarySource="{Binding Path=photo, Mode=TwoWay}"/>
+                <controls:ImageInput Width="100" MaxHeight="200" BinarySource="{Binding Path=Photo, Mode=TwoWay}"/>
             </GroupBox>
             <Grid Grid.Column="1">
                 <Grid.Resources>
@@ -53,17 +53,17 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <TextBlock Text="{x:Static loc:Res.Name}" />
-                <TextBox Grid.Column="1" x:Name="TbName" Text="{Binding Path=name, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBox Grid.Column="1" x:Name="TbName" Text="{Binding Path=Name, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
                 <TextBlock Grid.Row="1" Text="{x:Static loc:Res.Description}" />
-                <TextBox Grid.Row="1"  Grid.Column="1" Text="{Binding Path=description, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBox Grid.Row="1"  Grid.Column="1" Text="{Binding Path=Description, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
                 <TextBlock Grid.Row="2" Text="{x:Static loc:Res.Password}" />
-                <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=password, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=LostFocus, Converter={StaticResource PasswordConverter}}" />
+                <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=Password, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=LostFocus, Converter={StaticResource PasswordConverter}}" />
                 <TextBlock Grid.Row="3" Text="{x:Static loc:Res.UserEnabled}" />
-                <CheckBox Grid.Row="3" Grid.Column="1" IsChecked="{Binding Path=enabled, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
+                <CheckBox Grid.Row="3" Grid.Column="1" IsChecked="{Binding Path=Enabled, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
                 <TextBlock Grid.Row="4" Text="{x:Static loc:Res.CanChange}" />
-                <CheckBox Grid.Row="4" Grid.Column="1" IsChecked="{Binding Path=can_change, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
+                <CheckBox Grid.Row="4" Grid.Column="1" IsChecked="{Binding Path=CanChange, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
                 <TextBlock Grid.Row="5" Text="{x:Static loc:Res.Privilege}" />
-                <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding Path=privilege, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=LostFocus, Converter={StaticResource Int32ToPrivilegeConverter}}" />
+                <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding Path=Privilege, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=LostFocus, Converter={StaticResource Int32ToPrivilegeConverter}}" />
             </Grid>
         </Grid>
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">

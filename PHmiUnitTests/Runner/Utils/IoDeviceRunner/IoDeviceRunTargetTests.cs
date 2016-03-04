@@ -9,6 +9,7 @@ using PHmiClient.Utils.Notifications;
 using PHmiClientUnitTests;
 using PHmiIoDeviceTools;
 using PHmiModel;
+using PHmiModel.Entities;
 using PHmiResources.Loc;
 using PHmiRunner.Utils.IoDeviceRunner;
 using PHmiTools;
@@ -20,11 +21,11 @@ namespace PHmiUnitTests.Runner.Utils.IoDeviceRunner
         protected IIoDeviceRunTarget IoDeviceRunTarget;
         protected Mock<IIoDeviceWrapperFactory> IoDeviceWrapperFactory;
         protected Mock<IIoDeviceWrapper> IoDeviceWrapper;
-        protected io_devices IoDevice;
-        protected dig_tags DigitalTag;
-        protected dig_tags WriteOnlyDigitalTag;
-        protected num_tags NumericTag;
-        protected num_tags WriteOnlyNumericTag;
+        protected PHmiModel.Entities.IoDevice IoDevice;
+        protected DigTag DigitalTag;
+        protected DigTag WriteOnlyDigitalTag;
+        protected NumTag NumericTag;
+        protected NumTag WriteOnlyNumericTag;
         protected bool? DigitalTagValue;
         protected double? NumericTagValue;
         protected const string IoDeviceFolder = "Folder";
@@ -38,42 +39,42 @@ namespace PHmiUnitTests.Runner.Utils.IoDeviceRunner
             IoDeviceWrapper = new Mock<IIoDeviceWrapper>();
             IoDeviceWrapperFactory = new Mock<IIoDeviceWrapperFactory>();
             IoDeviceWrapperFactory.Setup(f => f.Create()).Returns(IoDeviceWrapper.Object);
-            IoDevice = new io_devices
+            IoDevice = new PHmiModel.Entities.IoDevice
                 {
-                    name = "IoDeviceRunTargetName",
-                    options = IoDeviceOptions,
-                    type = string.Format("{0}{1}{2}", IoDeviceFolder, PHmiConstants.PHmiIoDeviceSeparator, IoDeviceFile)
+                    Name = "IoDeviceRunTargetName",
+                    Options = IoDeviceOptions,
+                    Type = string.Format("{0}{1}{2}", IoDeviceFolder, PHmiConstants.PHmiIoDeviceSeparator, IoDeviceFile)
                 };
-            DigitalTag = new dig_tags
+            DigitalTag = new DigTag
                 {
-                    id = 1,
-                    device = "M0",
-                    can_read = true
+                    Id = 1,
+                    Device = "M0",
+                    CanRead = true
                 };
-            IoDevice.dig_tags.Add(DigitalTag);
-            WriteOnlyDigitalTag = new dig_tags
+            IoDevice.DigTags.Add(DigitalTag);
+            WriteOnlyDigitalTag = new DigTag
                 {
-                    id = 2,
-                    device = "M1",
-                    can_read = false
+                    Id = 2,
+                    Device = "M1",
+                    CanRead = false
                 };
-            IoDevice.dig_tags.Add(WriteOnlyDigitalTag);
-            NumericTag = new num_tags
+            IoDevice.DigTags.Add(WriteOnlyDigitalTag);
+            NumericTag = new NumTag
                 {
-                    id = 1,
-                    device = "D0",
-                    num_tag_types = new num_tag_types {name = "Int32"},
-                    can_read = true
+                    Id = 1,
+                    Device = "D0",
+                    NumTagType = new NumTagType {Name = "Int32"},
+                    CanRead = true
                 };
-            IoDevice.num_tags.Add(NumericTag);
-            WriteOnlyNumericTag = new num_tags
+            IoDevice.NumTags.Add(NumericTag);
+            WriteOnlyNumericTag = new NumTag
                 {
-                    id = 2,
-                    device = "D1",
-                    num_tag_types = new num_tag_types {name = "Int16"},
-                    can_read = false
+                    Id = 2,
+                    Device = "D1",
+                    NumTagType = new NumTagType {Name = "Int16"},
+                    CanRead = false
                 };
-            IoDevice.num_tags.Add(WriteOnlyNumericTag);
+            IoDevice.NumTags.Add(WriteOnlyNumericTag);
             Reporter = new Mock<INotificationReporter>();
             IoDeviceRunTarget = new IoDeviceRunTarget(IoDevice, IoDeviceWrapperFactory.Object, Reporter.Object);
             DigitalTagValue = true;
@@ -88,18 +89,18 @@ namespace PHmiUnitTests.Runner.Utils.IoDeviceRunner
             [Test]
             public void Test()
             {
-                Assert.That(IoDeviceRunTarget.Name, Is.EqualTo(string.Format(Res.IoDeviceWithName, IoDevice.name)));
+                Assert.That(IoDeviceRunTarget.Name, Is.EqualTo(string.Format(Res.IoDeviceWithName, IoDevice.Name)));
             }
         }
 
         protected bool? GetDigitalValue()
         {
-            return IoDeviceRunTarget.GetDigitalValue(DigitalTag.id);
+            return IoDeviceRunTarget.GetDigitalValue(DigitalTag.Id);
         }
 
         protected bool? GetWriteOnlyDigitalValue()
         {
-            return IoDeviceRunTarget.GetDigitalValue(WriteOnlyDigitalTag.id);
+            return IoDeviceRunTarget.GetDigitalValue(WriteOnlyDigitalTag.Id);
         }
 
         public class ThenDigitalValueIsNull : WhenUsingIoDeviceRunTarget
@@ -119,12 +120,12 @@ namespace PHmiUnitTests.Runner.Utils.IoDeviceRunner
 
         protected double? GetNumericValue()
         {
-            return IoDeviceRunTarget.GetNumericValue(NumericTag.id);
+            return IoDeviceRunTarget.GetNumericValue(NumericTag.Id);
         }
 
         protected double? GetWriteOnlyNumericValue()
         {
-            return IoDeviceRunTarget.GetNumericValue(WriteOnlyNumericTag.id);
+            return IoDeviceRunTarget.GetNumericValue(WriteOnlyNumericTag.Id);
         }
 
         public class ThenNumericValueIsNull : WhenUsingIoDeviceRunTarget
@@ -382,13 +383,13 @@ namespace PHmiUnitTests.Runner.Utils.IoDeviceRunner
                 {
                     base.EstablishContext();
                     SettedDigitalValue = false;
-                    IoDeviceRunTarget.SetDigitalValue(DigitalTag.id, SettedDigitalValue);
+                    IoDeviceRunTarget.SetDigitalValue(DigitalTag.Id, SettedDigitalValue);
                     SettedWriteOnlyDigitalValue = false;
-                    IoDeviceRunTarget.SetDigitalValue(WriteOnlyDigitalTag.id, SettedWriteOnlyDigitalValue);
+                    IoDeviceRunTarget.SetDigitalValue(WriteOnlyDigitalTag.Id, SettedWriteOnlyDigitalValue);
                     SettedNumericValue = new Random().Next();
-                    IoDeviceRunTarget.SetNumericValue(NumericTag.id, SettedNumericValue);
+                    IoDeviceRunTarget.SetNumericValue(NumericTag.Id, SettedNumericValue);
                     SettedWriteOnlyNumericValue = new Random().Next();
-                    IoDeviceRunTarget.SetNumericValue(WriteOnlyNumericTag.id, SettedWriteOnlyNumericValue);
+                    IoDeviceRunTarget.SetNumericValue(WriteOnlyNumericTag.Id, SettedWriteOnlyNumericValue);
                 }
 
                 public class ThenSettedDigitalValueIsReturned : AndSettedValue1
@@ -449,14 +450,14 @@ namespace PHmiUnitTests.Runner.Utils.IoDeviceRunner
             {
                 base.EstablishContext();
                 SettedDigitalValue = false;
-                IoDeviceRunTarget.SetDigitalValue(DigitalTag.id, SettedDigitalValue);
+                IoDeviceRunTarget.SetDigitalValue(DigitalTag.Id, SettedDigitalValue);
                 SettedWriteOnlyDigitalValue = false;
-                IoDeviceRunTarget.SetDigitalValue(WriteOnlyDigitalTag.id, SettedWriteOnlyDigitalValue);
+                IoDeviceRunTarget.SetDigitalValue(WriteOnlyDigitalTag.Id, SettedWriteOnlyDigitalValue);
                 var random = new Random();
                 SettedNumericValue = random.Next();
-                IoDeviceRunTarget.SetNumericValue(NumericTag.id, SettedNumericValue);
+                IoDeviceRunTarget.SetNumericValue(NumericTag.Id, SettedNumericValue);
                 SettedWriteOnlyNumericValue = random.Next(Int16.MinValue, Int16.MaxValue);
-                IoDeviceRunTarget.SetNumericValue(WriteOnlyNumericTag.id, SettedWriteOnlyNumericValue);
+                IoDeviceRunTarget.SetNumericValue(WriteOnlyNumericTag.Id, SettedWriteOnlyNumericValue);
             }
 
             public class ThenSettedDigitalValueIsReturned : AndSettedValue
@@ -507,16 +508,16 @@ namespace PHmiUnitTests.Runner.Utils.IoDeviceRunner
                                 if (parameters.Length != 4)
                                     return false;
                                 if (!parameters.Any(
-                                        p => p.Address == DigitalTag.device && p.Value.Equals(SettedDigitalValue)))
+                                        p => p.Address == DigitalTag.Device && p.Value.Equals(SettedDigitalValue)))
                                     return false;
                                 if (!parameters.Any(
-                                        p => p.Address == WriteOnlyDigitalTag.device && p.Value.Equals(SettedWriteOnlyDigitalValue)))
+                                        p => p.Address == WriteOnlyDigitalTag.Device && p.Value.Equals(SettedWriteOnlyDigitalValue)))
                                     return false;
                                 if (!parameters.Any(
-                                        p => p.Address == NumericTag.device && p.Value.Equals((Int32)SettedNumericValue)))
+                                        p => p.Address == NumericTag.Device && p.Value.Equals((Int32)SettedNumericValue)))
                                     return false;
                                 if (!parameters.Any(
-                                        p => p.Address == WriteOnlyNumericTag.device && p.Value.Equals((Int16)SettedWriteOnlyNumericValue)))
+                                        p => p.Address == WriteOnlyNumericTag.Device && p.Value.Equals((Int16)SettedWriteOnlyNumericValue)))
                                     return false;
                                 return true;
                             };

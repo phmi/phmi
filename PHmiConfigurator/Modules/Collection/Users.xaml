@@ -105,12 +105,12 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn Header="{x:Static Loc:Res.Name}" Binding="{Binding Path=name, Mode=TwoWay, ValidatesOnDataErrors=True}" EditingElementStyle="{StaticResource DataGridTextBoxStyle}" ElementStyle="{StaticResource DataGridTextBlockStyle}"/>
-                <DataGridTextColumn Header="{x:Static Loc:Res.Description}" Binding="{Binding Path=description, Mode=TwoWay, ValidatesOnDataErrors=True}" EditingElementStyle="{StaticResource DataGridTextBoxStyle}" ElementStyle="{StaticResource DataGridTextBlockStyle}"/>
-                <DataGridTextColumn Header="{x:Static Loc:Res.Password}" Binding="{Binding Path=password, Mode=TwoWay, ValidatesOnDataErrors=True, Converter={StaticResource PasswordConverter}}" EditingElementStyle="{StaticResource DataGridTextBoxStyle}" ElementStyle="{StaticResource DataGridTextBlockStyle}"/>
-                <DataGridCheckBoxColumn Header="{x:Static Loc:Res.UserEnabled}" Binding="{Binding Path=enabled, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
-                <DataGridCheckBoxColumn Header="{x:Static Loc:Res.CanChange}" Binding="{Binding Path=can_change, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
-                <DataGridTextColumn Header="{x:Static Loc:Res.Privilege}" Binding="{Binding Path=privilege, Mode=TwoWay, ValidatesOnDataErrors=True, Converter={StaticResource Int32ToPrivilegeConverter}}" EditingElementStyle="{StaticResource DataGridTextBoxStyle}" ElementStyle="{StaticResource DataGridTextBlockStyle}"/>
+                <DataGridTextColumn Header="{x:Static Loc:Res.Name}" Binding="{Binding Path=Name, Mode=TwoWay, ValidatesOnDataErrors=True}" EditingElementStyle="{StaticResource DataGridTextBoxStyle}" ElementStyle="{StaticResource DataGridTextBlockStyle}"/>
+                <DataGridTextColumn Header="{x:Static Loc:Res.Description}" Binding="{Binding Path=Description, Mode=TwoWay, ValidatesOnDataErrors=True}" EditingElementStyle="{StaticResource DataGridTextBoxStyle}" ElementStyle="{StaticResource DataGridTextBlockStyle}"/>
+                <DataGridTextColumn Header="{x:Static Loc:Res.Password}" Binding="{Binding Path=Password, Mode=TwoWay, ValidatesOnDataErrors=True, Converter={StaticResource PasswordConverter}}" EditingElementStyle="{StaticResource DataGridTextBoxStyle}" ElementStyle="{StaticResource DataGridTextBlockStyle}"/>
+                <DataGridCheckBoxColumn Header="{x:Static Loc:Res.UserEnabled}" Binding="{Binding Path=Enabled, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
+                <DataGridCheckBoxColumn Header="{x:Static Loc:Res.CanChange}" Binding="{Binding Path=CanChange, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
+                <DataGridTextColumn Header="{x:Static Loc:Res.Privilege}" Binding="{Binding Path=Privilege, Mode=TwoWay, ValidatesOnDataErrors=True, Converter={StaticResource Int32ToPrivilegeConverter}}" EditingElementStyle="{StaticResource DataGridTextBoxStyle}" ElementStyle="{StaticResource DataGridTextBlockStyle}"/>
             </DataGrid.Columns>
         </DataGrid>
         <StatusBar Grid.Row="2" Style="{StaticResource StatusBarStyle}">

@@ -89,8 +89,8 @@
         </ToolBar>
         <DataGrid Grid.Row="1" Style="{StaticResource ModuleDataGridStyle}" ItemsSource="{Binding Path=Collection}" SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}" Controls:DataGridBehavior.SelectedItems="{Binding Path=SelectedItems}" Controls:DataGridBehavior.ControlCCommand="{Binding Path=CopyCommand}" Controls:DataGridBehavior.ControlVCommand="{Binding Path=PasteCommand}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="{x:Static Loc:Res.Name}" Binding="{Binding Path=name, Mode=TwoWay, ValidatesOnDataErrors=True}" EditingElementStyle="{StaticResource DataGridTextBoxStyle}" ElementStyle="{StaticResource DataGridTextBlockStyle}"/>
-                <DataGridTextColumn Header="{x:Static Loc:Res.Description}" Binding="{Binding Path=description, Mode=TwoWay, ValidatesOnDataErrors=True}" EditingElementStyle="{StaticResource DataGridTextBoxStyle}" ElementStyle="{StaticResource DataGridTextBlockStyle}"/>
+                <DataGridTextColumn Header="{x:Static Loc:Res.Name}" Binding="{Binding Path=Name, Mode=TwoWay, ValidatesOnDataErrors=True}" EditingElementStyle="{StaticResource DataGridTextBoxStyle}" ElementStyle="{StaticResource DataGridTextBlockStyle}"/>
+                <DataGridTextColumn Header="{x:Static Loc:Res.Description}" Binding="{Binding Path=Description, Mode=TwoWay, ValidatesOnDataErrors=True}" EditingElementStyle="{StaticResource DataGridTextBoxStyle}" ElementStyle="{StaticResource DataGridTextBlockStyle}"/>
                 <DataGridTextColumn Header="{x:Static Loc:Res.TimeToStore}" Binding="{Binding Path=TimeToStore, Mode=TwoWay, ValidatesOnDataErrors=True}" EditingElementStyle="{StaticResource DataGridTextBoxStyle}" ElementStyle="{StaticResource DataGridTextBlockStyle}"/>
             </DataGrid.Columns>
         </DataGrid>

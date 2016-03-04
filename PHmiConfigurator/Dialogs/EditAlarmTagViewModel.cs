@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using PHmiModel;
+using PHmiModel.Entities;
 
 namespace PHmiConfigurator.Dialogs
 {
-    public class EditAlarmTagViewModel : EditDialogViewModel<alarm_tags.AlarmTagsMetadata>
+    public class EditAlarmTagViewModel : EditDialogViewModel<AlarmTag.AlarmTagMetadata>
     {
-        private IEnumerable<dig_tags> _digitalTags;
-        public IEnumerable<dig_tags> DigitalTags
+        private IEnumerable<DigTag> _digitalTags;
+        public IEnumerable<DigTag> DigitalTags
         {
             get { return _digitalTags; }
             set

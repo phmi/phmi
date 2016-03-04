@@ -9,6 +9,7 @@ using PHmiClient.Utils.Notifications;
 using PHmiClient.Utils.Runner;
 using PHmiClientUnitTests;
 using PHmiModel;
+using PHmiModel.Entities;
 using PHmiModel.Interfaces;
 using PHmiResources.Loc;
 using PHmiRunner.Utils;
@@ -40,7 +41,7 @@ namespace PHmiUnitTests.Runner.Utils
         protected Mock<ILogRunTargetFactory> LogRunTargetFactory;
         protected const string ProjectName = "Project";
         protected const string Server = "Server";
-        protected settings Settings;
+        protected Settings Settings;
         protected const string DataDbConStr = "DataDbConStr";
 
         protected override void EstablishContext()
@@ -78,30 +79,30 @@ namespace PHmiUnitTests.Runner.Utils
                 LogRunTargetFactory.Object);
             ServiceRunner = new Mock<IRunner>();
             ServiceRunnerFactory.Setup(f => f.Create(ProjectRunner, Server, null, TimeService.Object)).Returns(ServiceRunner.Object);
-            Settings = new settings
+            Settings = new Settings
             {
-                server = Server
+                Server = Server
             };
-            Context.Setup(c => c.Get<settings>()).Returns(new EnumerableQuery<settings>(new[] { Settings }));
+            Context.Setup(c => c.Get<Settings>()).Returns(new EnumerableQuery<Settings>(new[] { Settings }));
         }
 
         public class AndContextContainsIoDevices : WhenUsingProjectRunner
         {
-            protected io_devices IoDevice;
-            protected IQueryable<io_devices> IoDevices;
+            protected PHmiModel.Entities.IoDevice IoDevice;
+            protected IQueryable<PHmiModel.Entities.IoDevice> IoDevices;
             protected Mock<IIoDeviceRunTarget> IoDeviceRunTarget;
             protected Mock<ICyclicRunner> CyclicRunner;
             
             protected override void EstablishContext()
             {
                 base.EstablishContext();
-                IoDevice = new io_devices
+                IoDevice = new PHmiModel.Entities.IoDevice
                     {
-                        name = "IoDevice",
-                        id = 1
+                        Name = "IoDevice",
+                        Id = 1
                     };
-                IoDevices = new EnumerableQuery<io_devices>(new [] {IoDevice});
-                Context.Setup(context => context.Get<io_devices>()).Returns(IoDevices);
+                IoDevices = new EnumerableQuery<PHmiModel.Entities.IoDevice>(new [] {IoDevice});
+                Context.Setup(context => context.Get<PHmiModel.Entities.IoDevice>()).Returns(IoDevices);
 
                 IoDeviceRunTarget = new Mock<IIoDeviceRunTarget>();
                 IoDeviceRunTargetFactory.Setup(f => f.Create(TimeService.Object, IoDevice))
@@ -150,7 +151,7 @@ namespace PHmiUnitTests.Runner.Utils
                     [Test]
                     public void Test()
                     {
-                        Assert.That(ProjectRunner.IoDeviceRunTargets[IoDevice.id], Is.SameAs(IoDeviceRunTarget.Object));
+                        Assert.That(ProjectRunner.IoDeviceRunTargets[IoDevice.Id], Is.SameAs(IoDeviceRunTarget.Object));
                     }
                 }
 
@@ -168,7 +169,7 @@ namespace PHmiUnitTests.Runner.Utils
                         public void Test()
                         {
                             CyclicRunner.Verify(r => r.Stop(), Times.Once());
-                            Reporter.Verify(r => r.Report(string.Format(Res.IoDeviceStoppedMessage, IoDevice.name), null, null), Times.Once());
+                            Reporter.Verify(r => r.Report(string.Format(Res.IoDeviceStoppedMessage, IoDevice.Name), null, null), Times.Once());
                         }
                     }
 
@@ -235,7 +236,7 @@ namespace PHmiUnitTests.Runner.Utils
                     [Test]
                     public void Test()
                     {
-                        Reporter.Verify(r => r.Report(string.Format(Res.IoDeviceStartedMessage, IoDevice.name), null, null), Times.Once());
+                        Reporter.Verify(r => r.Report(string.Format(Res.IoDeviceStartedMessage, IoDevice.Name), null, null), Times.Once());
                     }
                 }
 
@@ -291,21 +292,21 @@ namespace PHmiUnitTests.Runner.Utils
 
         public class AndContextContainsAlarmCategories : WhenUsingProjectRunner
         {
-            protected alarm_categories AlarmCategory;
-            protected IQueryable<alarm_categories> Categories;
+            protected AlarmCategory AlarmCategory;
+            protected IQueryable<AlarmCategory> Categories;
             protected Mock<ICyclicRunner> CyclicRunner;
             protected Mock<IAlarmsRunTarget> RunTarget;
 
             protected override void EstablishContext()
             {
                 base.EstablishContext();
-                AlarmCategory = new alarm_categories
+                AlarmCategory = new AlarmCategory
                                     {
-                                        name = "AlarmCategory",
-                                        id = RandomGenerator.GetRandomInt32()
+                                        Name = "AlarmCategory",
+                                        Id = RandomGenerator.GetRandomInt32()
                                     };
-                Categories = new EnumerableQuery<alarm_categories>(new[] { AlarmCategory });
-                Context.Setup(context => context.Get<alarm_categories>()).Returns(Categories);
+                Categories = new EnumerableQuery<AlarmCategory>(new[] { AlarmCategory });
+                Context.Setup(context => context.Get<AlarmCategory>()).Returns(Categories);
 
                 RunTarget = new Mock<IAlarmsRunTarget>();
                 AlarmsRunTargetFactory.Setup(f => f.Create(DataDbConStr, ProjectRunner, AlarmCategory, TimeService.Object))
@@ -354,7 +355,7 @@ namespace PHmiUnitTests.Runner.Utils
                     [Test]
                     public void Test()
                     {
-                        Assert.That(ProjectRunner.AlarmsRunTargets[AlarmCategory.id], Is.SameAs(RunTarget.Object));
+                        Assert.That(ProjectRunner.AlarmsRunTargets[AlarmCategory.Id], Is.SameAs(RunTarget.Object));
                     }
                 }
 
@@ -372,7 +373,7 @@ namespace PHmiUnitTests.Runner.Utils
                         public void Test()
                         {
                             CyclicRunner.Verify(r => r.Stop(), Times.Once());
-                            Reporter.Verify(r => r.Report(string.Format(Res.AlarmsStoppedMessage, AlarmCategory.name), null, null), Times.Once());
+                            Reporter.Verify(r => r.Report(string.Format(Res.AlarmsStoppedMessage, AlarmCategory.Name), null, null), Times.Once());
                         }
                     }
 
@@ -391,7 +392,7 @@ namespace PHmiUnitTests.Runner.Utils
                     [Test]
                     public void Test()
                     {
-                        Reporter.Verify(r => r.Report(string.Format(Res.AlarmsStartedMessage, AlarmCategory.name), null, null), Times.Once());
+                        Reporter.Verify(r => r.Report(string.Format(Res.AlarmsStartedMessage, AlarmCategory.Name), null, null), Times.Once());
                     }
                 }
             }
@@ -405,7 +406,7 @@ namespace PHmiUnitTests.Runner.Utils
             {
                 base.EstablishContext();
                 ContextException = new Exception("ContextException");
-                Context.Setup(context => context.Get<io_devices>()).Throws(ContextException);
+                Context.Setup(context => context.Get<PHmiModel.Entities.IoDevice>()).Throws(ContextException);
             }
 
             public class AndStarted : AndContextThrows

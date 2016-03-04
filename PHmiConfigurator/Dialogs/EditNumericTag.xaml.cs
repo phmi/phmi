@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
 using PHmiClient.Utils;
 using PHmiModel;
+using PHmiModel.Entities;
 
 namespace PHmiConfigurator.Dialogs
 {
     /// <summary>
     /// Interaction logic for EditNumericTag.xaml
     /// </summary>
-    public partial class EditNumericTag : IEditDialog<num_tags.NumTagsMetadata>
+    public partial class EditNumericTag : IEditDialog<NumTag.NumTagMetadata>
     {
         public EditNumericTag()
         {
@@ -22,13 +23,13 @@ namespace PHmiConfigurator.Dialogs
             get { return (EditNumericTagViewModel)Resources["ViewModel"]; }
         }
 
-        public num_tags.NumTagsMetadata Entity
+        public NumTag.NumTagMetadata Entity
         {
             get { return ViewModel.Entity; }
             set { ViewModel.Entity = value; }
         }
 
-        public IEnumerable<num_tag_types> NumTagTypes
+        public IEnumerable<NumTagType> NumTagTypes
         {
             get { return ViewModel.NumTagTypes; }
             set { ViewModel.NumTagTypes = value; }

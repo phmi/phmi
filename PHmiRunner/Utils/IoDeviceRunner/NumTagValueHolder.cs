@@ -1,5 +1,6 @@
 ﻿using System;
 using PHmiModel;
+using PHmiModel.Entities;
 
 namespace PHmiRunner.Utils.IoDeviceRunner
 {
@@ -8,10 +9,10 @@ namespace PHmiRunner.Utils.IoDeviceRunner
         private readonly NumTagValueConverter _converter;
         private readonly string _address;
 
-        public NumTagValueHolder(num_tags tag)
+        public NumTagValueHolder(NumTag tag)
         {
             _converter = new NumTagValueConverter(tag);
-            _address = tag.device;
+            _address = tag.Device;
         }
 
         public override string Address { get { return _address; } }

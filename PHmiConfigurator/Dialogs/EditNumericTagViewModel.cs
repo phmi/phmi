@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
 using PHmiModel;
+using PHmiModel.Entities;
 
 namespace PHmiConfigurator.Dialogs
 {
-    public class EditNumericTagViewModel : EditDialogViewModel<num_tags.NumTagsMetadata>
+    public class EditNumericTagViewModel : EditDialogViewModel<NumTag.NumTagMetadata>
     {
-        private IEnumerable<num_tag_types> _numTagTypes;
+        private IEnumerable<NumTagType> _numTagTypes;
 
-        public IEnumerable<num_tag_types> NumTagTypes
+        public IEnumerable<NumTagType> NumTagTypes
         {
             get { return _numTagTypes; }
             set

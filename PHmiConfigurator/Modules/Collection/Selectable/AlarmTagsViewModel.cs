@@ -5,11 +5,12 @@ using System.Windows;
 using PHmiClient.Converters;
 using PHmiConfigurator.Dialogs;
 using PHmiModel;
+using PHmiModel.Entities;
 using PHmiResources.Loc;
 
 namespace PHmiConfigurator.Modules.Collection.Selectable
 {
-    public class AlarmTagsViewModel : SelectableCollectionViewModel<alarm_tags, alarm_tags.AlarmTagsMetadata, alarm_categories>
+    public class AlarmTagsViewModel : SelectableCollectionViewModel<PHmiModel.Entities.AlarmTag, PHmiModel.Entities.AlarmTag.AlarmTagMetadata, PHmiModel.Entities.AlarmCategory>
     {
         public AlarmTagsViewModel() : base(null)
         {
@@ -22,11 +23,11 @@ namespace PHmiConfigurator.Modules.Collection.Selectable
 
         #region DigitalTags
 
-        private Dictionary<string, dig_tags> _digitalTagsDictionary; 
+        private Dictionary<string, DigTag> _digitalTagsDictionary; 
 
-        private IEnumerable<dig_tags> _digitalTags;
+        private IEnumerable<DigTag> _digitalTags;
 
-        public IEnumerable<dig_tags> DigitalTags
+        public IEnumerable<DigTag> DigitalTags
         {
             get { return _digitalTags; }
             set
@@ -40,19 +41,19 @@ namespace PHmiConfigurator.Modules.Collection.Selectable
 
         protected override void PostReloadAction()
         {
-            var digitalTags = Context.Get<dig_tags>().OrderBy(t => t.io_devices.name).ThenBy(t => t.name).ToArray();
+            var digitalTags = Context.Get<DigTag>().OrderBy(t => t.IoDevice.Name).ThenBy(t => t.Name).ToArray();
             DigitalTags = digitalTags;
-            _digitalTagsDictionary = new Dictionary<string, dig_tags>(digitalTags.Length);
+            _digitalTagsDictionary = new Dictionary<string, DigTag>(digitalTags.Length);
             foreach (var tag in digitalTags)
             {
-                var key = tag.io_devices.name + "." + tag.name;
+                var key = tag.IoDevice.Name + "." + tag.Name;
                 if (!_digitalTagsDictionary.ContainsKey(key))
                     _digitalTagsDictionary.Add(key, tag);
             }
             base.PostReloadAction();
         }
 
-        protected override IEditDialog<alarm_tags.AlarmTagsMetadata> CreateAddDialog()
+        protected override IEditDialog<PHmiModel.Entities.AlarmTag.AlarmTagMetadata> CreateAddDialog()
         {
             return new EditAlarmTag
                 {
@@ -62,7 +63,7 @@ namespace PHmiConfigurator.Modules.Collection.Selectable
                 };
         }
 
-        protected override IEditDialog<alarm_tags.AlarmTagsMetadata> CreateEditDialog()
+        protected override IEditDialog<PHmiModel.Entities.AlarmTag.AlarmTagMetadata> CreateEditDialog()
         {
             return new EditAlarmTag
                 {
@@ -72,16 +73,16 @@ namespace PHmiConfigurator.Modules.Collection.Selectable
                 };
         }
 
-        protected override string[] GetCopyData(alarm_tags item)
+        protected override string[] GetCopyData(PHmiModel.Entities.AlarmTag item)
         {
             return new []
                 {
-                    item.dig_tags.io_devices.name,
-                    item.dig_tags.name,
-                    item.location,
-                    item.description,
-                    item.acknowledgeable.ToString(CultureInfo.InvariantCulture),
-                    Int32ToPrivilegedConverter.Convert(item.privilege)
+                    item.DigTag.IoDevice.Name,
+                    item.DigTag.Name,
+                    item.Location,
+                    item.Description,
+                    item.Acknowledgeable.ToString(CultureInfo.InvariantCulture),
+                    Int32ToPrivilegedConverter.Convert(item.Privilege)
                 };
         }
 
@@ -98,13 +99,13 @@ namespace PHmiConfigurator.Modules.Collection.Selectable
                 };
         }
 
-        protected override void SetCopyData(alarm_tags item, string[] data)
+        protected override void SetCopyData(PHmiModel.Entities.AlarmTag item, string[] data)
         {
-            item.dig_tags = _digitalTagsDictionary[data[0] + "." + data[1]];
-            item.location = data[2];
-            item.description = data[3];
-            item.acknowledgeable = bool.Parse(data[4]);
-            item.privilege = Int32ToPrivilegedConverter.ConvertBack(data[5]);
+            item.DigTag = _digitalTagsDictionary[data[0] + "." + data[1]];
+            item.Location = data[2];
+            item.Description = data[3];
+            item.Acknowledgeable = bool.Parse(data[4]);
+            item.Privilege = Int32ToPrivilegedConverter.ConvertBack(data[5]);
         }
     }
 }

@@ -38,14 +38,14 @@ namespace PHmiRunner.Utils.Users
 
         private void InsertContextUsers(NpgsqlConnection connection)
         {
-            var users = _context.Get<users>().ToList();
+            var users = _context.Get<PHmiModel.Entities.User>().ToList();
             if (!users.Any())
                 return;
-            var minId = -users.Select(u => u.id).Max();
-            var maxId = -users.Select(u => u.id).Min();
+            var minId = -users.Select(u => u.Id).Max();
+            var maxId = -users.Select(u => u.Id).Min();
             var repoUsersIds = _repository.GetIds(connection, minId, maxId);
             foreach (var user in repoUsersIds
-                .Select(t => users.FirstOrDefault(u => u.id == -t.Item1 || u.name == t.Item2))
+                .Select(t => users.FirstOrDefault(u => u.Id == -t.Item1 || u.Name == t.Item2))
                 .Where(user => user != null))
             {
                 users.Remove(user);
@@ -54,15 +54,15 @@ namespace PHmiRunner.Utils.Users
                 return;
             var usersToInsert = users.Select(u => new User
                 {
-                    Id = -u.id,
-                    Name = u.name,
-                    Description = u.description,
-                    Photo = u.photo,
-                    Enabled = u.enabled,
-                    CanChange = u.can_change,
-                    Privilege = u.privilege
+                    Id = -u.Id,
+                    Name = u.Name,
+                    Description = u.Description,
+                    Photo = u.Photo,
+                    Enabled = u.Enabled,
+                    CanChange = u.CanChange,
+                    Privilege = u.Privilege
                 }).ToArray();
-            var usersPasswordsToInsert = users.Select(u => u.password).ToArray();
+            var usersPasswordsToInsert = users.Select(u => u.Password).ToArray();
             _repository.Insert(connection, usersToInsert, usersPasswordsToInsert);
         }
 

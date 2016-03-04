@@ -6,7 +6,7 @@ using PHmiResources.Loc;
 
 namespace PHmiConfigurator.Modules.Collection
 {
-    public class AlarmCategoriesViewModel : CollectionViewModel<alarm_categories, alarm_categories.AlarmCategoriesMetadata>
+    public class AlarmCategoriesViewModel : CollectionViewModel<PHmiModel.Entities.AlarmCategory, PHmiModel.Entities.AlarmCategory.AlarmCategoryMetadata>
     {
         public AlarmCategoriesViewModel() : base(null)
         {
@@ -17,21 +17,21 @@ namespace PHmiConfigurator.Modules.Collection
             get { return Res.AlarmCategories; }
         }
 
-        protected override IEditDialog<alarm_categories.AlarmCategoriesMetadata> CreateAddDialog()
+        protected override IEditDialog<PHmiModel.Entities.AlarmCategory.AlarmCategoryMetadata> CreateAddDialog()
         {
             return new EditAlarmCategory { Title = Res.AddAlarmCategory, Owner = Window.GetWindow(View) };
         }
 
-        protected override IEditDialog<alarm_categories.AlarmCategoriesMetadata> CreateEditDialog()
+        protected override IEditDialog<PHmiModel.Entities.AlarmCategory.AlarmCategoryMetadata> CreateEditDialog()
         {
             return new EditAlarmCategory { Title = Res.EditAlarmCategory, Owner = Window.GetWindow(View) };
         }
 
-        protected override string[] GetCopyData(alarm_categories item)
+        protected override string[] GetCopyData(PHmiModel.Entities.AlarmCategory item)
         {
             return new []
                 {
-                    item.description,
+                    item.Description,
                     item.TimeToStore
                 };
         }
@@ -40,14 +40,14 @@ namespace PHmiConfigurator.Modules.Collection
         {
             return new []
                 {
-                    ReflectionHelper.GetDisplayName<alarm_categories>(a => a.description),
-                    ReflectionHelper.GetDisplayName<alarm_categories>(a => a.TimeToStore)
+                    ReflectionHelper.GetDisplayName<PHmiModel.Entities.AlarmCategory>(a => a.Description),
+                    ReflectionHelper.GetDisplayName<PHmiModel.Entities.AlarmCategory>(a => a.TimeToStore)
                 };
         }
 
-        protected override void SetCopyData(alarm_categories item, string[] data)
+        protected override void SetCopyData(PHmiModel.Entities.AlarmCategory item, string[] data)
         {
-            item.description = data[0];
+            item.Description = data[0];
             item.TimeToStore = data[1];
         }
     }

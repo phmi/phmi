@@ -8,6 +8,7 @@ using System.Windows.Input;
 using PHmiClient.Controls.Input;
 using PHmiClient.Utils;
 using PHmiConfigurator.Dialogs;
+using PHmiModel.Entities;
 using PHmiResources.Loc;
 using PHmiModel.Interfaces;
 
@@ -41,12 +42,12 @@ namespace PHmiConfigurator.Modules.Collection
         {
             get
             {
-                var names = List.GroupBy(i => i.name).Where(g => g.Count() > 1).Select(g => "\"" + g.Key + "\"").ToArray();
+                var names = List.GroupBy(i => i.Name).Where(g => g.Count() > 1).Select(g => "\"" + g.Key + "\"").ToArray();
                 var error = string.Empty;
                 if (names.Any())
                 {
                     error =
-                        string.Format(Res.UniqueErrorMessage, ReflectionHelper.GetDisplayName<T>(t => t.name))
+                        string.Format(Res.UniqueErrorMessage, ReflectionHelper.GetDisplayName<T>(t => t.Name))
                         + Environment.NewLine
                         + string.Join(", ", names) + ".";
                 }
@@ -61,7 +62,7 @@ namespace PHmiConfigurator.Modules.Collection
         protected override void PostReloadAction()
         {
             List.Clear();
-            var result = Context.Get<T>().OrderBy(i => i.id).ToArray();
+            var result = Context.Get<T>().OrderBy(i => i.Id).ToArray();
             foreach (var i in result)
             {
                 List.Add(i);
@@ -242,10 +243,10 @@ namespace PHmiConfigurator.Modules.Collection
         {
             var selectedItems = SelectedItems.ToArray();
             var header = string.Join("\t",
-                ReflectionHelper.GetDisplayName<T>(i => i.id),
-                ReflectionHelper.GetDisplayName<T>(i => i.name),
+                ReflectionHelper.GetDisplayName<T>(i => i.Id),
+                ReflectionHelper.GetDisplayName<T>(i => i.Name),
                 string.Join("\t", GetCopyHeaders()));
-            var text = selectedItems.Select(i => string.Join("\t", i.id + "\t" + i.name, string.Join("\t", GetCopyData(i)))).ToArray();
+            var text = selectedItems.Select(i => string.Join("\t", i.Id + "\t" + i.Name, string.Join("\t", GetCopyData(i)))).ToArray();
             _service.ClipboardHelper.SetText(string.Join("\r\n", header, string.Join("\r\n", text)));
         }
 
@@ -280,7 +281,7 @@ namespace PHmiConfigurator.Modules.Collection
                                 ProgressMax = rows.Length;
                                 Progress = 0;
                             });
-                        var items = List.ToDictionary(i => i.id);
+                        var items = List.ToDictionary(i => i.Id);
                         for (var index = 0; index < rows.Length; index++)
                         {
                             var row = rows[index];
@@ -304,7 +305,7 @@ namespace PHmiConfigurator.Modules.Collection
                                 item = new T();
                                 isNewItem = true;
                             }
-                            else if (columns[0] == ReflectionHelper.GetDisplayName<T>(i => i.id))
+                            else if (columns[0] == ReflectionHelper.GetDisplayName<T>(i => i.Id))
                             {
                                 continue;
                             }
@@ -319,7 +320,7 @@ namespace PHmiConfigurator.Modules.Collection
                                     Progress = progress;
                                     try
                                     {
-                                        item.name = columns[1];
+                                        item.Name = columns[1];
                                         SetCopyData(item, columns.Skip(2).ToArray());
                                         if (isNewItem)
                                         {
@@ -338,9 +339,9 @@ namespace PHmiConfigurator.Modules.Collection
                                 throw new Exception(
                                     String.Format(
                                     Res.PasteRowErrorMessage,
-                                    ReflectionHelper.GetDisplayName<T>(t => t.id),
+                                    ReflectionHelper.GetDisplayName<T>(t => t.Id),
                                     columns[0],
-                                    ReflectionHelper.GetDisplayName<T>(t => t.name),
+                                    ReflectionHelper.GetDisplayName<T>(t => t.Name),
                                     columns[1],
                                     toThrow.Message),
                                     toThrow);

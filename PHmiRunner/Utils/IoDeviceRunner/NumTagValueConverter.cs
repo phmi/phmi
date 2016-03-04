@@ -1,5 +1,6 @@
 ﻿using System;
 using PHmiModel;
+using PHmiModel.Entities;
 
 namespace PHmiRunner.Utils.IoDeviceRunner
 {
@@ -11,17 +12,17 @@ namespace PHmiRunner.Utils.IoDeviceRunner
         private readonly bool _needCalculation;
         private readonly Type _type;
 
-        public NumTagValueConverter(num_tags numericTag)
+        public NumTagValueConverter(NumTag numericTag)
         {
             _type = numericTag.TagType;
-            if (numericTag.raw_min == null || numericTag.raw_max == null || numericTag.eng_min == null ||
-                numericTag.eng_max == null || numericTag.raw_max - numericTag.raw_min == 0)
+            if (numericTag.RawMinDb == null || numericTag.RawMaxDb == null || numericTag.EngMinDb == null ||
+                numericTag.EngMaxDb == null || numericTag.RawMaxDb - numericTag.RawMinDb == 0)
                 return;
             _needCalculation = true;
-            _mul = (double) numericTag.eng_max - (double) numericTag.eng_min;
-            _add = (double) numericTag.eng_min*(double) numericTag.raw_max -
-                   (double) numericTag.eng_max*(double) numericTag.raw_min;
-            _div = (double) numericTag.raw_max - (double) numericTag.raw_min;
+            _mul = (double) numericTag.EngMaxDb - (double) numericTag.EngMinDb;
+            _add = (double) numericTag.EngMinDb*(double) numericTag.RawMaxDb -
+                   (double) numericTag.EngMaxDb*(double) numericTag.RawMinDb;
+            _div = (double) numericTag.RawMaxDb - (double) numericTag.RawMinDb;
         }
 
         public double? RawToEng(dynamic rawValue)

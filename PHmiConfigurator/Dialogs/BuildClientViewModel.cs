@@ -19,6 +19,8 @@ using System.Text;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
+using PHmiModel.Entities;
+using Settings = PHmiModel.Entities.Settings;
 
 namespace PHmiConfigurator.Dialogs
 {
@@ -236,39 +238,39 @@ namespace PHmiConfigurator.Dialogs
             Func<double?, string> num = d => d.HasValue ? d.Value.ToString(CultureInfo.InvariantCulture) : "null";
             using (w.Block("namespace {0}", NameSpace))
             {
-                var ioDevices = context.Get<io_devices>().OrderBy(d => d.name).ToArray();
+                var ioDevices = context.Get<IoDevice>().OrderBy(d => d.Name).ToArray();
 
                 #region IoDevices
 
                 foreach (var ioDevice in ioDevices)
                 {
-                    using (w.Block("public sealed partial class {0} : PHmiClient.Tags.IoDeviceBase", ioDevice.name))
+                    using (w.Block("public sealed partial class {0} : PHmiClient.Tags.IoDeviceBase", ioDevice.Name))
                     {
-                        var digitalTags = ioDevice.dig_tags.OrderBy(t => t.name).ToArray();
-                        var numericTags = ioDevice.num_tags.OrderBy(t => t.name).ToArray();
-                        using (w.Block("public {0}() : base({1}, \"{0}\")", ioDevice.name, ioDevice.id))
+                        var digitalTags = ioDevice.DigTags.OrderBy(t => t.Name).ToArray();
+                        var numericTags = ioDevice.NumTags.OrderBy(t => t.Name).ToArray();
+                        using (w.Block("public {0}() : base({1}, \"{0}\")", ioDevice.Name, ioDevice.Id))
                         {
                             foreach (var t in digitalTags)
                             {
                                 w.Write("{0} = AddDigitalTag({1}, \"{0}\", () => {2});",
-                                    t.name, t.id, res(t.description));
+                                    t.Name, t.Id, res(t.Description));
                             }
                             foreach (var t in numericTags)
                             {
                                 w.Write("{0} = AddNumericTag({1}, \"{0}\", () => {2}, () => {3}, () => {4}, {5}, {6});",
-                                    t.name, t.id, res(t.description), res(t.format),
-                                    res(t.eng_unit), num(t.eng_min), num(t.eng_max));
+                                    t.Name, t.Id, res(t.Description), res(t.Format),
+                                    res(t.EngUnit), num(t.EngMinDb), num(t.EngMaxDb));
                             }
                         }
                         foreach (var t in digitalTags)
                         {
                             w.Write();
-                            w.Write("public PHmiClient.Tags.IDigitalTag {0} {{ get; private set; }}", t.name);
+                            w.Write("public PHmiClient.Tags.IDigitalTag {0} {{ get; private set; }}", t.Name);
                         }
                         foreach (var t in numericTags)
                         {
                             w.Write();
-                            w.Write("public PHmiClient.Tags.INumericTag {0} {{ get; private set; }}", t.name);
+                            w.Write("public PHmiClient.Tags.INumericTag {0} {{ get; private set; }}", t.Name);
                         }
                     }
                     w.Write();
@@ -276,19 +278,19 @@ namespace PHmiConfigurator.Dialogs
 
                 #endregion
 
-                var alarmCategories = context.Get<alarm_categories>().OrderBy(c => c.name).ToArray();
+                var alarmCategories = context.Get<AlarmCategory>().OrderBy(c => c.Name).ToArray();
 
                 #region AlarmCategories
 
                 foreach (var category in alarmCategories)
                 {
-                    using (w.Block("public sealed partial class {0} : PHmiClient.Alarms.AlarmCategoryBase", category.name))
+                    using (w.Block("public sealed partial class {0} : PHmiClient.Alarms.AlarmCategoryBase", category.Name))
                     {
-                        using (w.Block("public {0}() : base({1}, \"{0}\", () => {2})", category.name, category.id, res(category.description)))
+                        using (w.Block("public {0}() : base({1}, \"{0}\", () => {2})", category.Name, category.Id, res(category.Description)))
                         {
-                            foreach (var alarmTag in category.alarm_tags.ToArray())
+                            foreach (var alarmTag in category.AlarmTags.ToArray())
                             {
-                                w.Write("AddAlarmInfo({0}, () => {1}, () => {2});", alarmTag.id, res(alarmTag.location), res(alarmTag.description));
+                                w.Write("AddAlarmInfo({0}, () => {1}, () => {2});", alarmTag.Id, res(alarmTag.Location), res(alarmTag.Description));
                             }
                         }
                     }
@@ -297,29 +299,29 @@ namespace PHmiConfigurator.Dialogs
 
                 #endregion
 
-                var trendsCategories = context.Get<trend_categories>().OrderBy(c => c.name).ToArray();
+                var trendsCategories = context.Get<TrendCategory>().OrderBy(c => c.Name).ToArray();
 
                 #region TrendsCategories
 
                 foreach (var category in trendsCategories)
                 {
-                    using (w.Block("public sealed partial class {0} : PHmiClient.Trends.TrendsCategoryBase", category.name))
+                    using (w.Block("public sealed partial class {0} : PHmiClient.Trends.TrendsCategoryBase", category.Name))
                     {
-                        var trendTags = category.trend_tags.OrderBy(t => t.name).ToArray();
-                        using (w.Block("public {0}() : base({1}, \"{0}\", {2})", category.name, category.id, category.period))
+                        var trendTags = category.TrendTags.OrderBy(t => t.Name).ToArray();
+                        using (w.Block("public {0}() : base({1}, \"{0}\", {2})", category.Name, category.Id, category.PeriodDb))
                         {
                             foreach (var t in trendTags)
                             {
                                 w.Write("{0} = AddTrendTag({1}, \"{0}\", () => {2}, () => {3}, () => {4}, {5}, {6});",
-                                    t.name, t.id, res(t.description), res(t.num_tags.format),
-                                    res(t.num_tags.eng_unit), num(t.num_tags.eng_min), num(t.num_tags.eng_max));
+                                    t.Name, t.Id, res(t.Description), res(t.NumTag.Format),
+                                    res(t.NumTag.EngUnit), num(t.NumTag.EngMinDb), num(t.NumTag.EngMaxDb));
                             }
                         }
 
                         foreach (var t in trendTags)
                         {
                             w.Write();
-                            w.Write("public PHmiClient.Trends.ITrendTag {0} {{ get; private set; }}", t.name);
+                            w.Write("public PHmiClient.Trends.ITrendTag {0} {{ get; private set; }}", t.Name);
                         }
                     }
                     w.Write();
@@ -327,16 +329,16 @@ namespace PHmiConfigurator.Dialogs
 
                 #endregion
 
-                var logs = context.Get<logs>().OrderBy(l => l.name).ToArray();
+                var logs = context.Get<Log>().OrderBy(l => l.Name).ToArray();
 
-                var settings = context.Get<settings>().Single();
+                var settings = context.Get<Settings>().Single();
                 using (w.Block("public sealed partial class PHmi : PHmiClient.PHmiSystem.PHmiBase"))
                 {
-                    using (w.Block("public PHmi() : this(\"{0}\")", settings.server))
+                    using (w.Block("public PHmi() : this(\"{0}\")", settings.Server))
                     {
                     }
                     w.Write();
-                    using (w.Block("public PHmi(string server) : this(server, \"{0}\")", settings.guid))
+                    using (w.Block("public PHmi(string server) : this(server, \"{0}\")", settings.Guid))
                     {
                     }
                     w.Write();
@@ -344,40 +346,40 @@ namespace PHmiConfigurator.Dialogs
                     {
                         foreach (var ioDevice in ioDevices)
                         {
-                            w.Write("{0} = AddIoDevice(new {0}());", ioDevice.name);
+                            w.Write("{0} = AddIoDevice(new {0}());", ioDevice.Name);
                         }
                         foreach (var category in alarmCategories)
                         {
-                            w.Write("{0} = AddAlarmCategory(new {0}());", category.name);
+                            w.Write("{0} = AddAlarmCategory(new {0}());", category.Name);
                         }
                         foreach (var category in trendsCategories)
                         {
-                            w.Write("{0} = AddTrendsCategory(new {0}());", category.name);
+                            w.Write("{0} = AddTrendsCategory(new {0}());", category.Name);
                         }
                         foreach (var log in logs)
                         {
-                            w.Write("{0} = AddLog({1}, \"{0}\");", log.name, log.id);
+                            w.Write("{0} = AddLog({1}, \"{0}\");", log.Name, log.Id);
                         }
                     }
                     foreach (var ioDevice in ioDevices)
                     {
                         w.Write();
-                        w.Write("public {0} {0} {{ get; private set; }}", ioDevice.name);
+                        w.Write("public {0} {0} {{ get; private set; }}", ioDevice.Name);
                     } 
                     foreach (var category in alarmCategories)
                     {
                         w.Write();
-                        w.Write("public {0} {0} {{ get; private set; }}", category.name);
+                        w.Write("public {0} {0} {{ get; private set; }}", category.Name);
                     }
                     foreach (var category in trendsCategories)
                     {
                         w.Write();
-                        w.Write("public {0} {0} {{ get; private set; }}", category.name);
+                        w.Write("public {0} {0} {{ get; private set; }}", category.Name);
                     }
                     foreach (var log in logs)
                     {
                         w.Write();
-                        w.Write("public PHmiClient.Logs.LogAbstract {0} {{ get; private set; }}", log.name);
+                        w.Write("public PHmiClient.Logs.LogAbstract {0} {{ get; private set; }}", log.Name);
                     }
                 }
             }
@@ -416,14 +418,14 @@ namespace PHmiConfigurator.Dialogs
 
         private void LoadFolder()
         {
-            var settings = new Settings(ProjectBuilder);
+            var settings = new PHmiClient.Utils.Configuration.Settings(ProjectBuilder);
             Folder = settings.GetString(FolderName);
             NameSpace = settings.GetString(NameSpaceName);
         }
 
         private void SaveFolder()
         {
-            var settings = new Settings(ProjectBuilder);
+            var settings = new PHmiClient.Utils.Configuration.Settings(ProjectBuilder);
             settings.SetString(FolderName, Folder);
             settings.SetString(NameSpaceName, NameSpace);
             settings.Save();

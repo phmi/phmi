@@ -4,12 +4,13 @@ using System.Linq;
 using System.Windows;
 using PHmiConfigurator.Dialogs;
 using PHmiModel;
+using PHmiModel.Entities;
 using PHmiResources.Loc;
 using PHmiTools;
 
 namespace PHmiConfigurator.Modules.Collection.Selectable
 {
-    public class TrendTagsViewModel : SelectableCollectionViewModel<trend_tags, trend_tags.TrendTagsMetadata, trend_categories>
+    public class TrendTagsViewModel : SelectableCollectionViewModel<PHmiModel.Entities.TrendTag, PHmiModel.Entities.TrendTag.TrendTagMetadata, PHmiModel.Entities.TrendCategory>
     {
         public TrendTagsViewModel() : base(null)
         {
@@ -37,11 +38,11 @@ namespace PHmiConfigurator.Modules.Collection.Selectable
 
         #region DigitalTags
 
-        private Dictionary<string, dig_tags> _digitalTagsDictionary; 
+        private Dictionary<string, DigTag> _digitalTagsDictionary; 
 
-        private IEnumerable<dig_tags> _digitalTags;
+        private IEnumerable<DigTag> _digitalTags;
 
-        public IEnumerable<dig_tags> DigitalTags
+        public IEnumerable<DigTag> DigitalTags
         {
             get { return _digitalTags; }
             set
@@ -55,11 +56,11 @@ namespace PHmiConfigurator.Modules.Collection.Selectable
 
         #region NumericTags
 
-        private Dictionary<string, num_tags> _numericTagsDictionary; 
+        private Dictionary<string, NumTag> _numericTagsDictionary; 
 
-        private IEnumerable<num_tags> _numericTags;
+        private IEnumerable<NumTag> _numericTags;
  
-        public IEnumerable<num_tags> NumericTags
+        public IEnumerable<NumTag> NumericTags
         {
             get { return _numericTags; }
             set
@@ -73,22 +74,22 @@ namespace PHmiConfigurator.Modules.Collection.Selectable
 
         protected override void PostReloadAction()
         {
-            var digitalTags = Context.Get<dig_tags>().OrderBy(t => t.io_devices.name).ThenBy(t => t.name).ToArray();
+            var digitalTags = Context.Get<DigTag>().OrderBy(t => t.IoDevice.Name).ThenBy(t => t.Name).ToArray();
             DigitalTags = digitalTags;
-            _digitalTagsDictionary = new Dictionary<string, dig_tags>(digitalTags.Length);
+            _digitalTagsDictionary = new Dictionary<string, DigTag>(digitalTags.Length);
             foreach (var tag in digitalTags)
             {
-                var key = tag.io_devices.name + "." + tag.name;
+                var key = tag.IoDevice.Name + "." + tag.Name;
                 if (!_digitalTagsDictionary.ContainsKey(key))
                     _digitalTagsDictionary.Add(key, tag);
             }
 
-            var numericTags = Context.Get<num_tags>().OrderBy(t => t.io_devices.name).ThenBy(t => t.name).ToArray();
+            var numericTags = Context.Get<NumTag>().OrderBy(t => t.IoDevice.Name).ThenBy(t => t.Name).ToArray();
             NumericTags = numericTags;
-            _numericTagsDictionary = new Dictionary<string, num_tags>(numericTags.Length);
+            _numericTagsDictionary = new Dictionary<string, NumTag>(numericTags.Length);
             foreach (var tag in numericTags)
             {
-                var key = tag.io_devices.name + "." + tag.name;
+                var key = tag.IoDevice.Name + "." + tag.Name;
                 if (!_numericTagsDictionary.ContainsKey(key))
                     _numericTagsDictionary.Add(key, tag);
             }
@@ -96,7 +97,7 @@ namespace PHmiConfigurator.Modules.Collection.Selectable
             base.PostReloadAction();
         }
 
-        protected override IEditDialog<trend_tags.TrendTagsMetadata> CreateAddDialog()
+        protected override IEditDialog<PHmiModel.Entities.TrendTag.TrendTagMetadata> CreateAddDialog()
         {
             return new EditTrendTag
                 {
@@ -107,7 +108,7 @@ namespace PHmiConfigurator.Modules.Collection.Selectable
                 };
         }
 
-        protected override IEditDialog<trend_tags.TrendTagsMetadata> CreateEditDialog()
+        protected override IEditDialog<PHmiModel.Entities.TrendTag.TrendTagMetadata> CreateEditDialog()
         {
             return new EditTrendTag
                 {
@@ -118,15 +119,15 @@ namespace PHmiConfigurator.Modules.Collection.Selectable
                 };
         }
 
-        protected override string[] GetCopyData(trend_tags item)
+        protected override string[] GetCopyData(PHmiModel.Entities.TrendTag item)
         {
             return new []
                 {
-                    item.num_tags.io_devices.name,
-                    item.num_tags.name,
-                    item.dig_tags == null ? string.Empty : item.dig_tags.io_devices.name,
-                    item.dig_tags == null ? string.Empty : item.dig_tags.name,
-                    item.description
+                    item.NumTag.IoDevice.Name,
+                    item.NumTag.Name,
+                    item.Trigger == null ? string.Empty : item.Trigger.IoDevice.Name,
+                    item.Trigger == null ? string.Empty : item.Trigger.Name,
+                    item.Description
                 };
         }
 
@@ -142,12 +143,12 @@ namespace PHmiConfigurator.Modules.Collection.Selectable
                 };
         }
 
-        protected override void SetCopyData(trend_tags item, string[] data)
+        protected override void SetCopyData(PHmiModel.Entities.TrendTag item, string[] data)
         {
-            item.num_tags = _numericTagsDictionary[data[0] + "." + data[1]];
-            dig_tags digTag;
-            item.dig_tags = _digitalTagsDictionary.TryGetValue(data[2] + "." + data[3], out digTag) ? digTag : null;
-            item.description = data[4];
+            item.NumTag = _numericTagsDictionary[data[0] + "." + data[1]];
+            DigTag digTag;
+            item.Trigger = _digitalTagsDictionary.TryGetValue(data[2] + "." + data[3], out digTag) ? digTag : null;
+            item.Description = data[4];
         }
     }
 }

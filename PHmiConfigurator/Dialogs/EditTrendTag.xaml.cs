@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
 using PHmiClient.Utils;
 using PHmiModel;
+using PHmiModel.Entities;
 
 namespace PHmiConfigurator.Dialogs
 {
     /// <summary>
     /// Interaction logic for EditTrendTag.xaml
     /// </summary>
-    public partial class EditTrendTag : IEditDialog<trend_tags.TrendTagsMetadata>
+    public partial class EditTrendTag : IEditDialog<TrendTag.TrendTagMetadata>
     {
         public EditTrendTag()
         {
@@ -22,19 +23,19 @@ namespace PHmiConfigurator.Dialogs
             get { return (EditTrendTagViewModel)Resources["ViewModel"]; }
         }
 
-        public trend_tags.TrendTagsMetadata Entity
+        public TrendTag.TrendTagMetadata Entity
         {
             get { return ViewModel.Entity; }
             set { ViewModel.Entity = value; }
         }
 
-        public IEnumerable<dig_tags> DigitalTags
+        public IEnumerable<DigTag> DigitalTags
         {
             get { return ViewModel.DigitalTags; }
             set { ViewModel.DigitalTags = value; }
         }
 
-        public IEnumerable<num_tags> NumericTags
+        public IEnumerable<NumTag> NumericTags
         {
             get { return ViewModel.NumericTags; }
             set { ViewModel.NumericTags = value; }

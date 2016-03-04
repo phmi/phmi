@@ -1,12 +1,13 @@
 ﻿using PHmiClient.Utils;
 using PHmiModel;
+using PHmiModel.Entities;
 
 namespace PHmiConfigurator.Dialogs
 {
     /// <summary>
     /// Interaction logic for EditDigitalTag.xaml
     /// </summary>
-    public partial class EditDigitalTag : IEditDialog<dig_tags.DigTagsMetadata>
+    public partial class EditDigitalTag : IEditDialog<DigTag.DigTagMetadata>
     {
         public EditDigitalTag()
         {
@@ -21,7 +22,7 @@ namespace PHmiConfigurator.Dialogs
             get { return (EditDigitalTagViewModel)Resources["ViewModel"]; }
         }
 
-        public dig_tags.DigTagsMetadata Entity
+        public DigTag.DigTagMetadata Entity
         {
             get { return ViewModel.Entity; }
             set { ViewModel.Entity = value; }

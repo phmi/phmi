@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using PHmiClientUnitTests;
 using PHmiModel;
+using PHmiModel.Entities;
 using PHmiRunner.Utils.IoDeviceRunner;
 
 namespace PHmiUnitTests.Runner.Utils.IoDeviceRunner
@@ -10,15 +11,15 @@ namespace PHmiUnitTests.Runner.Utils.IoDeviceRunner
     {
         public class WithNullBounds : WhenUsingNumTagValueConverter
         {
-            protected num_tags NumTag;
+            protected NumTag NumTag;
             protected NumTagValueConverter Converter;
 
             protected override void EstablishContext()
             {
                 base.EstablishContext();
-                NumTag = new num_tags
+                NumTag = new NumTag
                     {
-                        num_tag_types = new num_tag_types { name = "Int32" }
+                        NumTagType = new NumTagType { Name = "Int32" }
                     };
                 Converter = new NumTagValueConverter(NumTag);
             }
@@ -85,19 +86,19 @@ namespace PHmiUnitTests.Runner.Utils.IoDeviceRunner
 
         public class WithNotNullBounds : WhenUsingNumTagValueConverter
         {
-            protected num_tags NumTag;
+            protected NumTag NumTag;
             protected NumTagValueConverter Converter;
 
             protected override void EstablishContext()
             {
                 base.EstablishContext();
-                NumTag = new num_tags
+                NumTag = new NumTag
                 {
-                    num_tag_types = new num_tag_types { name = "Int32" },
-                    raw_min = 0,
-                    raw_max = 100,
-                    eng_min = 0,
-                    eng_max = 10
+                    NumTagType = new NumTagType { Name = "Int32" },
+                    RawMinDb = 0,
+                    RawMaxDb = 100,
+                    EngMinDb = 0,
+                    EngMaxDb = 10
                 };
                 Converter = new NumTagValueConverter(NumTag);
             }

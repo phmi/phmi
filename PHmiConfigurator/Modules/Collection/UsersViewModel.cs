@@ -9,7 +9,7 @@ using PHmiResources.Loc;
 
 namespace PHmiConfigurator.Modules.Collection
 {
-    public class UsersViewModel : CollectionViewModel<users, users.UsersMetadata>
+    public class UsersViewModel : CollectionViewModel<PHmiModel.Entities.User, PHmiModel.Entities.User.UserMetadata>
     {
         public UsersViewModel() : base(null)
         {
@@ -20,7 +20,7 @@ namespace PHmiConfigurator.Modules.Collection
             get { return Res.Users; }
         }
 
-        protected override IEditDialog<users.UsersMetadata> CreateAddDialog()
+        protected override IEditDialog<PHmiModel.Entities.User.UserMetadata> CreateAddDialog()
         {
             return new EditUser
                 {
@@ -30,7 +30,7 @@ namespace PHmiConfigurator.Modules.Collection
                 };
         }
 
-        protected override IEditDialog<users.UsersMetadata> CreateEditDialog()
+        protected override IEditDialog<PHmiModel.Entities.User.UserMetadata> CreateEditDialog()
         {
             return new EditUser
                 {
@@ -40,14 +40,14 @@ namespace PHmiConfigurator.Modules.Collection
                 };
         }
 
-        protected override string[] GetCopyData(users item)
+        protected override string[] GetCopyData(PHmiModel.Entities.User item)
         {
             return new []
                 {
-                    item.description,
-                    item.enabled.ToString(CultureInfo.InvariantCulture),
-                    item.can_change.ToString(CultureInfo.InvariantCulture),
-                    Int32ToPrivilegedConverter.Convert(item.privilege)
+                    item.Description,
+                    item.Enabled.ToString(CultureInfo.InvariantCulture),
+                    item.CanChange.ToString(CultureInfo.InvariantCulture),
+                    Int32ToPrivilegedConverter.Convert(item.Privilege)
                 };
         }
 
@@ -62,12 +62,12 @@ namespace PHmiConfigurator.Modules.Collection
                 };
         }
 
-        protected override void SetCopyData(users item, string[] data)
+        protected override void SetCopyData(PHmiModel.Entities.User item, string[] data)
         {
-            item.description = data[0];
-            item.enabled = bool.Parse(data[1]);
-            item.can_change = bool.Parse(data[2]);
-            item.privilege = Int32ToPrivilegedConverter.ConvertBack(data[3]);
+            item.Description = data[0];
+            item.Enabled = bool.Parse(data[1]);
+            item.CanChange = bool.Parse(data[2]);
+            item.Privilege = Int32ToPrivilegedConverter.ConvertBack(data[3]);
         }
     }
 }

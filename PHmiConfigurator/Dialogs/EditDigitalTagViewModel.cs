@@ -1,8 +1,9 @@
 ﻿using PHmiModel;
+using PHmiModel.Entities;
 
 namespace PHmiConfigurator.Dialogs
 {
-    public class EditDigitalTagViewModel : EditDialogViewModel<dig_tags.DigTagsMetadata>
+    public class EditDigitalTagViewModel : EditDialogViewModel<DigTag.DigTagMetadata>
     {
     }
 }

@@ -40,13 +40,13 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <TextBlock Text="{x:Static Loc:Res.Name}" />
-            <TextBox Grid.Column="1" x:Name="tbName" Text="{Binding Path=name, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox Grid.Column="1" x:Name="tbName" Text="{Binding Path=Name, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
             <TextBlock Grid.Row="1" Text="{x:Static Loc:Res.NumericTag}" />
-            <ComboBox Grid.Row="1" Grid.Column="1" SelectedItem="{Binding Path=num_tags, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Path=NumericTags, Source={StaticResource ViewModel}}" DisplayMemberPath="FullName"/>
+            <ComboBox Grid.Row="1" Grid.Column="1" SelectedItem="{Binding Path=NumTag, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Path=NumericTags, Source={StaticResource ViewModel}}" DisplayMemberPath="FullName"/>
             <TextBlock Grid.Row="2" Text="{x:Static Loc:Res.Trigger}" />
-            <ComboBox Grid.Row="2" Grid.Column="1" SelectedItem="{Binding Path=dig_tags, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Path=DigitalTags, Source={StaticResource ViewModel}}" DisplayMemberPath="FullName"/>
+            <ComboBox Grid.Row="2" Grid.Column="1" SelectedItem="{Binding Path=Trigger, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Path=DigitalTags, Source={StaticResource ViewModel}}" DisplayMemberPath="FullName"/>
             <TextBlock Grid.Row="3"  Text="{x:Static Loc:Res.Description}" />
-            <TextBox Grid.Row="3"  Grid.Column="1" Text="{Binding Path=description, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox Grid.Row="3"  Grid.Column="1" Text="{Binding Path=Description, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" />
         </Grid>
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
             <StackPanel.Resources>

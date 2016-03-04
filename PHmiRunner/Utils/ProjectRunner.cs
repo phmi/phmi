@@ -7,6 +7,7 @@ using PHmiClient.Utils.Runner;
 using PHmiResources.Loc;
 using PHmiClient.Utils.Notifications;
 using PHmiModel;
+using PHmiModel.Entities;
 using PHmiModel.Interfaces;
 using PHmiRunner.Utils.Alarms;
 using PHmiRunner.Utils.IoDeviceRunner;
@@ -103,61 +104,61 @@ namespace PHmiRunner.Utils
 
         private void StartIoDevices()
         {
-            foreach (var ioDevice in _context.Get<io_devices>().ToArray())
+            foreach (var ioDevice in _context.Get<IoDevice>().ToArray())
             {
                 var ioDeviceRunTarget = _ioDeviceRunTargetFactory.Create(_timeService, ioDevice);
-                _ioDeviceRunTargets.Add(ioDevice.id, ioDeviceRunTarget);
+                _ioDeviceRunTargets.Add(ioDevice.Id, ioDeviceRunTarget);
                 var runner = _cyclicRunnerFactory.Create(ioDeviceRunTarget);
-                _ioDeviceRunners.Add(new Tuple<IRunner, string, IIoDeviceRunTarget>(runner, ioDevice.name, ioDeviceRunTarget));
+                _ioDeviceRunners.Add(new Tuple<IRunner, string, IIoDeviceRunTarget>(runner, ioDevice.Name, ioDeviceRunTarget));
                 runner.Start();
-                _reporter.Report(string.Format(Res.IoDeviceStartedMessage, ioDevice.name));
+                _reporter.Report(string.Format(Res.IoDeviceStartedMessage, ioDevice.Name));
             }
         }
 
         private void StartAlarms()
         {
-            foreach (var category in _context.Get<alarm_categories>().ToArray())
+            foreach (var category in _context.Get<AlarmCategory>().ToArray())
             {
                 var alarmRunTarget = _alarmsRunTargetFactory.Create(
                     _dataDbConnectionString, this, category, _timeService);
-                _alarmsRunTargets.Add(category.id, alarmRunTarget);
+                _alarmsRunTargets.Add(category.Id, alarmRunTarget);
                 var runner = _cyclicRunnerFactory.Create(alarmRunTarget);
-                _alarmsRunners.Add(new Tuple<IRunner, string>(runner, category.name));
+                _alarmsRunners.Add(new Tuple<IRunner, string>(runner, category.Name));
                 runner.Start();
-                _reporter.Report(string.Format(Res.AlarmsStartedMessage, category.name));
+                _reporter.Report(string.Format(Res.AlarmsStartedMessage, category.Name));
             }
         }
 
         private void StartTrends()
         {
-            foreach (var category in _context.Get<trend_categories>().ToArray())
+            foreach (var category in _context.Get<TrendCategory>().ToArray())
             {
                 var trendRunTarget = _trendsRunTargetFactory.Create(
                     _dataDbConnectionString, this, category, _timeService);
-                _trendsRunTargets.Add(category.id, trendRunTarget);
+                _trendsRunTargets.Add(category.Id, trendRunTarget);
                 var runner = _cyclicRunnerFactory.Create(trendRunTarget);
-                runner.TimeSpan = new TimeSpan(category.period);
-                _trendsRunners.Add(new Tuple<IRunner, string>(runner, category.name));
+                runner.TimeSpan = new TimeSpan(category.PeriodDb);
+                _trendsRunners.Add(new Tuple<IRunner, string>(runner, category.Name));
                 runner.Start();
-                _reporter.Report(string.Format(Res.TrendsStartedMessage, category.name));
+                _reporter.Report(string.Format(Res.TrendsStartedMessage, category.Name));
             }
         }
 
         private void StartLogs()
         {
-            foreach (var log in _context.Get<logs>().ToArray())
+            foreach (var log in _context.Get<PHmiModel.Entities.Log>().ToArray())
             {
                 var logRunTarget = _logMaintainerFactory.Create(
                     _dataDbConnectionString, log, _timeService);
-                _logMaintainers.Add(log.id, logRunTarget);
-                _reporter.Report(string.Format(Res.LogStargedMessage, log.name));
+                _logMaintainers.Add(log.Id, logRunTarget);
+                _reporter.Report(string.Format(Res.LogStargedMessage, log.Name));
             }
         }
 
         private void StartService()
         {
-            var settings = _context.Get<settings>().Single();
-            _serviceRunner = _serviceRunnerFactory.Create(this, settings.server, settings.guid, _timeService);
+            var settings = _context.Get<Settings>().Single();
+            _serviceRunner = _serviceRunnerFactory.Create(this, settings.Server, settings.Guid, _timeService);
             _serviceRunner.Start();
             _reporter.Report(Res.ServiceIsStarted);
         }

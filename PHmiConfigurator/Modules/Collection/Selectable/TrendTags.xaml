@@ -40,7 +40,7 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <TextBlock Text="{x:Static Loc:Res.TrendCategory}" Style="{StaticResource ToolBarTextBlockStyle}"/>
-            <ComboBox Grid.Column="1" x:Name="cbSelectors" ItemsSource="{Binding Path=Selectors}" SelectedItem="{Binding Path=CurrentSelector, Mode=TwoWay}" DisplayMemberPath="name" IsDropDownOpen="True" SelectionChanged="CbSelectorsSelectionChanged" Style="{StaticResource EditorComboBoxStyle}">
+            <ComboBox Grid.Column="1" x:Name="cbSelectors" ItemsSource="{Binding Path=Selectors}" SelectedItem="{Binding Path=CurrentSelector, Mode=TwoWay}" DisplayMemberPath="Name" IsDropDownOpen="True" SelectionChanged="CbSelectorsSelectionChanged" Style="{StaticResource EditorComboBoxStyle}">
                 <ComboBox.IsEnabled>
                     <Binding Path="HasChanges">
                         <Binding.Converter>
@@ -106,32 +106,32 @@
         </ToolBar>
         <DataGrid Grid.Row="2" Style="{StaticResource ModuleDataGridStyle}" ItemsSource="{Binding Path=Collection}" SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}" Controls:DataGridBehavior.SelectedItems="{Binding Path=SelectedItems}" Controls:DataGridBehavior.ControlCCommand="{Binding Path=CopyCommand}" Controls:DataGridBehavior.ControlVCommand="{Binding Path=PasteCommand}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="{x:Static Loc:Res.Name}" Binding="{Binding Path=name, Mode=TwoWay, ValidatesOnDataErrors=True}" EditingElementStyle="{StaticResource DataGridTextBoxStyle}" ElementStyle="{StaticResource DataGridTextBlockStyle}"/>
-                <DataGridTemplateColumn Header="{x:Static Loc:Res.NumericTag}" SortMemberPath="num_tags.FullName">
+                <DataGridTextColumn Header="{x:Static Loc:Res.Name}" Binding="{Binding Path=Name, Mode=TwoWay, ValidatesOnDataErrors=True}" EditingElementStyle="{StaticResource DataGridTextBoxStyle}" ElementStyle="{StaticResource DataGridTextBlockStyle}"/>
+                <DataGridTemplateColumn Header="{x:Static Loc:Res.NumericTag}" SortMemberPath="NumTag.FullName">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Path=num_tags.FullName, ValidatesOnDataErrors=True}" Style="{StaticResource DataGridTextBlockStyle}"/>
+                            <TextBlock Text="{Binding Path=NumTag.FullName, ValidatesOnDataErrors=True}" Style="{StaticResource DataGridTextBlockStyle}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                     <DataGridTemplateColumn.CellEditingTemplate>
                         <DataTemplate>
-                            <ComboBox SelectedItem="{Binding Path=num_tags, Mode=TwoWay, ValidatesOnDataErrors=True}" DisplayMemberPath="FullName" ItemsSource="{Binding Path=NumericTags, Source={StaticResource ViewModel}}" Style="{StaticResource DataGridComboBoxStyle}" Loaded="ComboBoxLoaded"/>
+                            <ComboBox SelectedItem="{Binding Path=NumTag, Mode=TwoWay, ValidatesOnDataErrors=True}" DisplayMemberPath="FullName" ItemsSource="{Binding Path=NumericTags, Source={StaticResource ViewModel}}" Style="{StaticResource DataGridComboBoxStyle}" Loaded="ComboBoxLoaded"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellEditingTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="{x:Static Loc:Res.Trigger}" SortMemberPath="dig_tags.FullName">
+                <DataGridTemplateColumn Header="{x:Static Loc:Res.Trigger}" SortMemberPath="Trigger.FullName">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Path=dig_tags.FullName, ValidatesOnDataErrors=True}" Style="{StaticResource DataGridTextBlockStyle}"/>
+                            <TextBlock Text="{Binding Path=Trigger.FullName, ValidatesOnDataErrors=True}" Style="{StaticResource DataGridTextBlockStyle}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                     <DataGridTemplateColumn.CellEditingTemplate>
                         <DataTemplate>
-                            <ComboBox SelectedItem="{Binding Path=dig_tags, Mode=TwoWay, ValidatesOnDataErrors=True}" DisplayMemberPath="FullName" ItemsSource="{Binding Path=DigitalTags, Source={StaticResource ViewModel}}" Style="{StaticResource DataGridComboBoxStyle}" Loaded="ComboBoxLoaded"/>
+                            <ComboBox SelectedItem="{Binding Path=Trigger, Mode=TwoWay, ValidatesOnDataErrors=True}" DisplayMemberPath="FullName" ItemsSource="{Binding Path=DigitalTags, Source={StaticResource ViewModel}}" Style="{StaticResource DataGridComboBoxStyle}" Loaded="ComboBoxLoaded"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellEditingTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn Header="{x:Static Loc:Res.Description}" Binding="{Binding Path=description, Mode=TwoWay, ValidatesOnDataErrors=True}" EditingElementStyle="{StaticResource DataGridTextBoxStyle}" ElementStyle="{StaticResource DataGridTextBlockStyle}"/>
+                <DataGridTextColumn Header="{x:Static Loc:Res.Description}" Binding="{Binding Path=Description, Mode=TwoWay, ValidatesOnDataErrors=True}" EditingElementStyle="{StaticResource DataGridTextBoxStyle}" ElementStyle="{StaticResource DataGridTextBlockStyle}"/>
             </DataGrid.Columns>
         </DataGrid>
         <StatusBar Grid.Row="3" Style="{StaticResource StatusBarStyle}">

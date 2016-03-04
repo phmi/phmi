@@ -6,7 +6,7 @@ using PHmiModel;
 
 namespace PHmiConfigurator.Modules.Collection
 {
-    public class IoDevicesViewModel : CollectionViewModel<io_devices, io_devices.IoDevicesMetadata>
+    public class IoDevicesViewModel : CollectionViewModel<PHmiModel.Entities.IoDevice, PHmiModel.Entities.IoDevice.IoDeviceMetadata>
     {
         public IoDevicesViewModel(): base(null)
         {
@@ -17,22 +17,22 @@ namespace PHmiConfigurator.Modules.Collection
             get { return Res.IoDevices; }
         }
 
-        protected override IEditDialog<io_devices.IoDevicesMetadata> CreateAddDialog()
+        protected override IEditDialog<PHmiModel.Entities.IoDevice.IoDeviceMetadata> CreateAddDialog()
         {
             return new EditIoDevice { Title = Res.AddIoDevice, Owner = Window.GetWindow(View) };
         }
 
-        protected override IEditDialog<io_devices.IoDevicesMetadata> CreateEditDialog()
+        protected override IEditDialog<PHmiModel.Entities.IoDevice.IoDeviceMetadata> CreateEditDialog()
         {
             return new EditIoDevice { Title = Res.EditIoDevice, Owner = Window.GetWindow(View) };
         }
 
-        protected override string[] GetCopyData(io_devices item)
+        protected override string[] GetCopyData(PHmiModel.Entities.IoDevice item)
         {
             return new []
                 {
-                    item.type,
-                    item.options
+                    item.Type,
+                    item.Options
                 };
         }
 
@@ -40,15 +40,15 @@ namespace PHmiConfigurator.Modules.Collection
         {
             return new []
                 {
-                    ReflectionHelper.GetDisplayName<io_devices>(d => d.type),
-                    ReflectionHelper.GetDisplayName<io_devices>(d => d.options)
+                    ReflectionHelper.GetDisplayName<PHmiModel.Entities.IoDevice>(d => d.Type),
+                    ReflectionHelper.GetDisplayName<PHmiModel.Entities.IoDevice>(d => d.Options)
                 };
         }
 
-        protected override void SetCopyData(io_devices item, string[] data)
+        protected override void SetCopyData(PHmiModel.Entities.IoDevice item, string[] data)
         {
-            item.type = data[0];
-            item.options = data[1];
+            item.Type = data[0];
+            item.Options = data[1];
         }
     }
 }

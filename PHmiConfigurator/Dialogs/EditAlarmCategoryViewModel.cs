@@ -1,8 +1,9 @@
 ﻿using PHmiModel;
+using PHmiModel.Entities;
 
 namespace PHmiConfigurator.Dialogs
 {
-    public class EditAlarmCategoryViewModel : EditDialogViewModel<alarm_categories.AlarmCategoriesMetadata>
+    public class EditAlarmCategoryViewModel : EditDialogViewModel<AlarmCategory.AlarmCategoryMetadata>
     {
     }
 }

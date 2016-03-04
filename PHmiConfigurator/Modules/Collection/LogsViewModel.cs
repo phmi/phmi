@@ -7,7 +7,7 @@ using PHmiResources.Loc;
 
 namespace PHmiConfigurator.Modules.Collection
 {
-    public class LogsViewModel : CollectionViewModel<logs, logs.LogsMetadata>
+    public class LogsViewModel : CollectionViewModel<PHmiModel.Entities.Log, PHmiModel.Entities.Log.LogMetadata>
     {
         public LogsViewModel()
             : base(null)
@@ -19,17 +19,17 @@ namespace PHmiConfigurator.Modules.Collection
             get { return Res.Logs; }
         }
 
-        protected override IEditDialog<logs.LogsMetadata> CreateAddDialog()
+        protected override IEditDialog<PHmiModel.Entities.Log.LogMetadata> CreateAddDialog()
         {
             return new EditLog { Title = Res.AddLog, Owner = Window.GetWindow(View) };
         }
 
-        protected override IEditDialog<logs.LogsMetadata> CreateEditDialog()
+        protected override IEditDialog<PHmiModel.Entities.Log.LogMetadata> CreateEditDialog()
         {
             return new EditLog { Title = Res.EditLog, Owner = Window.GetWindow(View) };
         }
 
-        protected override string[] GetCopyData(logs item)
+        protected override string[] GetCopyData(PHmiModel.Entities.Log item)
         {
             return new[]
                 {
@@ -41,11 +41,11 @@ namespace PHmiConfigurator.Modules.Collection
         {
             return new[]
                 {
-                    ReflectionHelper.GetDisplayName<logs>(a => a.TimeToStore)
+                    ReflectionHelper.GetDisplayName<PHmiModel.Entities.Log>(a => a.TimeToStore)
                 };
         }
 
-        protected override void SetCopyData(logs item, string[] data)
+        protected override void SetCopyData(PHmiModel.Entities.Log item, string[] data)
         {
             item.TimeToStore = data[0];
         }

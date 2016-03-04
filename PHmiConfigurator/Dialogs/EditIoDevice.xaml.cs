@@ -4,14 +4,16 @@ using PHmiClient.Utils;
 using PHmiClient.Utils.Configuration;
 using PHmiIoDeviceTools;
 using PHmiModel;
+using PHmiModel.Entities;
 using PHmiTools.Controls;
+using Settings = PHmiClient.Utils.Configuration.Settings;
 
 namespace PHmiConfigurator.Dialogs
 {
     /// <summary>
     /// Interaction logic for EditIoDevice.xaml
     /// </summary>
-    public partial class EditIoDevice : IEditDialog<io_devices.IoDevicesMetadata>
+    public partial class EditIoDevice : IEditDialog<IoDevice.IoDeviceMetadata>
     {
         public EditIoDevice()
         {
@@ -34,7 +36,7 @@ namespace PHmiConfigurator.Dialogs
             get { return (EditIoDeviceViewModel) Resources["ViewModel"]; }
         }
 
-        public io_devices.IoDevicesMetadata Entity
+        public IoDevice.IoDeviceMetadata Entity
         {
             get { return ViewModel.Entity; }
             set { ViewModel.Entity = value; }
@@ -60,7 +62,7 @@ namespace PHmiConfigurator.Dialogs
                 tbOptions.Visibility = Visibility.Collapsed;
                 svOptionsEditorHolder.Content = optionsEditor;
                 optionsEditor.OptionsChanged += OptionsEditorOptionsChanged;
-                optionsEditor.SetOptions(Entity.options);
+                optionsEditor.SetOptions(Entity.Options);
                 svOptionsEditorHolder.Visibility = Visibility.Visible;
             }
         }
@@ -68,7 +70,7 @@ namespace PHmiConfigurator.Dialogs
         private void OptionsEditorOptionsChanged(object sender, EventArgs e)
         {
             var editor = (IOptionsEditor) sender;
-            Entity.options = editor.GetOptions();
+            Entity.Options = editor.GetOptions();
         }
 
         private const string EditIoDeviceWindowTypeEditor = "EditIoDeviceWindowTypeEditor";

@@ -5,6 +5,7 @@ using PHmiClient.Utils;
 using PHmiClient.Utils.Notifications;
 using PHmiClient.Utils.Pagination;
 using PHmiModel;
+using PHmiModel.Entities;
 using PHmiResources.Loc;
 
 namespace PHmiRunner.Utils.Trends
@@ -36,35 +37,35 @@ namespace PHmiRunner.Utils.Trends
         private readonly IDictionary<int, TrendTagInfo> _trendsInfo = new Dictionary<int,TrendTagInfo>();
 
         public TrendsRunTarget(
-            trend_categories trendCategory,
+            TrendCategory trendCategory,
             INotificationReporter reporter,
             ITrendsRepositoryFactory repositoryFactory,
             IProject project,
             ITimeService timeService,
             ITrendTableSelector tableSelector)
         {
-            _name = string.Format("{0} \"{1}\"", Res.Trends, trendCategory.name);
-            _timeToStore = trendCategory.time_to_store.HasValue ? new TimeSpan(trendCategory.time_to_store.Value) as TimeSpan? : null; 
-            foreach (var t in trendCategory.trend_tags.ToArray())
+            _name = string.Format("{0} \"{1}\"", Res.Trends, trendCategory.Name);
+            _timeToStore = trendCategory.TimeToStoreDb.HasValue ? new TimeSpan(trendCategory.TimeToStoreDb.Value) as TimeSpan? : null; 
+            foreach (var t in trendCategory.TrendTags.ToArray())
             {
                 Func<bool> triggerValueGetter;
-                if (t.dig_tags == null)
+                if (t.Trigger == null)
                 {
                     triggerValueGetter = () => true;
                 }
                 else
                 {
-                    var trIoDevId = t.dig_tags.io_devices.id;
-                    var trId = t.dig_tags.id;
+                    var trIoDevId = t.Trigger.IoDevice.Id;
+                    var trId = t.Trigger.Id;
                     triggerValueGetter = () => project.IoDeviceRunTargets[trIoDevId].GetDigitalValue(trId) == true;
                 }
-                var ioDeviceId = t.num_tags.io_devices.id;
-                var tagId = t.num_tags.id;
+                var ioDeviceId = t.NumTag.IoDevice.Id;
+                var tagId = t.NumTag.Id;
                 var trendInfo = new TrendTagInfo(
-                    t.id,
+                    t.Id,
                     triggerValueGetter,
                     () => project.IoDeviceRunTargets[ioDeviceId].GetNumericValue(tagId));
-                _trendsInfo.Add(t.id, trendInfo);
+                _trendsInfo.Add(t.Id, trendInfo);
             }
             _reporter = reporter;
             _repositoryFactory = repositoryFactory;

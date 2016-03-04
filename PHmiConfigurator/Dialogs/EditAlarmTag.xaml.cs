@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
 using PHmiClient.Utils;
 using PHmiModel;
+using PHmiModel.Entities;
 
 namespace PHmiConfigurator.Dialogs
 {
     /// <summary>
     /// Interaction logic for EditAlarmTag.xaml
     /// </summary>
-    public partial class EditAlarmTag : IEditDialog<alarm_tags.AlarmTagsMetadata>
+    public partial class EditAlarmTag : IEditDialog<AlarmTag.AlarmTagMetadata>
     {
         public EditAlarmTag()
         {
@@ -22,13 +23,13 @@ namespace PHmiConfigurator.Dialogs
             get { return (EditAlarmTagViewModel) Resources["ViewModel"]; }
         }
 
-        public alarm_tags.AlarmTagsMetadata Entity
+        public AlarmTag.AlarmTagMetadata Entity
         {
             get { return ViewModel.Entity; }
             set { ViewModel.Entity = value; }
         }
 
-        public IEnumerable<dig_tags> DigitalTags
+        public IEnumerable<DigTag> DigitalTags
         {
             get { return ViewModel.DigitalTags; }
             set { ViewModel.DigitalTags = value; }
