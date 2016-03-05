@@ -89,19 +89,19 @@ namespace PHmiModel.Entities
             }
         }
 
-        #region RefDigTags
+        #region RefDigTag
 
-        private int _refDigTags;
+        private int _refDigTag;
 
         [Column("ref_dig_tags")]
-        public int RefDigTags
+        public int RefDigTag
         {
-            get { return _refDigTags; }
+            get { return _refDigTag; }
             set
             {
-                _refDigTags = value;
+                _refDigTag = value;
                 OnPropertyChanged(this, t => t.DigTag);
-                OnPropertyChanged(this, e => RefDigTags);
+                OnPropertyChanged(this, e => RefDigTag);
             }
         }
 
@@ -160,16 +160,16 @@ namespace PHmiModel.Entities
 
         #region RefCategories
 
-        private int _refCategories;
+        private int _refCategory;
 
         [Column("ref_categories")]
-        public int RefCategories
+        public int RefCategory
         {
-            get { return _refCategories; }
+            get { return _refCategory; }
             set
             {
-                _refCategories = value; 
-                OnPropertyChanged(this, e => e.RefCategories);
+                _refCategory = value; 
+                OnPropertyChanged(this, e => e.RefCategory);
             }
         }
 
@@ -192,7 +192,7 @@ namespace PHmiModel.Entities
 
         #endregion
 
-        #region AlarmCategories
+        #region AlarmCategory
 
         private AlarmCategory _alarmCategory;
 
@@ -208,7 +208,7 @@ namespace PHmiModel.Entities
 
         #endregion
 
-        #region DigTags
+        #region DigTag
 
         private DigTag _digTag;
 

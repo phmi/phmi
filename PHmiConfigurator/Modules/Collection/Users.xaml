@@ -97,9 +97,9 @@
                 <DataGridTemplateColumn Header="{x:Static Loc:Res.Photo}" IsReadOnly="True" CanUserResize="False">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Image Source="{Binding Path=photo, Converter={StaticResource ByteArrayToImageSourceConverter}}" Height="16" Width="16" Margin="-1,-2,-1,-3">
+                            <Image Source="{Binding Path=Photo, Converter={StaticResource ByteArrayToImageSourceConverter}}" Height="16" Width="16" Margin="-1,-2,-1,-3">
                                 <Image.ToolTip>
-                                    <Image Source="{Binding Path=photo, Converter={StaticResource ByteArrayToImageSourceConverter}}" Margin="0,4,0,1" Width="150" Height="200" RenderOptions.BitmapScalingMode="Fant"/>
+                                    <Image Source="{Binding Path=Photo, Converter={StaticResource ByteArrayToImageSourceConverter}}" Margin="0,4,0,1" Width="150" Height="200" RenderOptions.BitmapScalingMode="Fant"/>
                                 </Image.ToolTip>
                             </Image>
                         </DataTemplate>

@@ -43,7 +43,7 @@ namespace PHmiConfigurator.Modules.Collection.Selectable
                 {
                     var ioDeviceId = CurrentSelector.Id;
                     var digitalTagsNames = Context.Get<DigTag>()
-                        .Where(t => t.RefIoDevices == ioDeviceId).Select(t => t.Name).Distinct().ToDictionary(n => n);
+                        .Where(t => t.RefIoDevice == ioDeviceId).Select(t => t.Name).Distinct().ToDictionary(n => n);
                     var names = List.Where(t => digitalTagsNames.ContainsKey(t.Name)).Select(t => t.Name).ToArray();
                     if (names.Any())
                     {

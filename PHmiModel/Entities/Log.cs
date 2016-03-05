@@ -78,6 +78,8 @@ namespace PHmiModel.Entities
 
         #endregion
 
+        #region TimeToStoreDb
+
         private long? _timeToStoreDb;
 
         [Column("time_to_store")]
@@ -92,5 +94,7 @@ namespace PHmiModel.Entities
                 OnPropertyChanged(this, e => e.TimeToStoreDb);
             }
         }
+
+        #endregion
     }
 }

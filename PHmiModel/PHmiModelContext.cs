@@ -28,13 +28,13 @@ namespace PHmiModel
                 .Entity<AlarmCategory>()
                 .HasMany<AlarmTag>(e => e.AlarmTags)
                 .WithRequired(e => e.AlarmCategory)
-                .HasForeignKey(e => e.RefCategories);
+                .HasForeignKey(e => e.RefCategory);
 
             modelBuilder
                 .Entity<DigTag>()
                 .HasMany<AlarmTag>(e => e.AlarmTags)
                 .WithRequired(e => e.DigTag)
-                .HasForeignKey(e => e.RefDigTags);
+                .HasForeignKey(e => e.RefDigTag);
 
             modelBuilder
                 .Entity<DigTag>()
@@ -46,7 +46,7 @@ namespace PHmiModel
                 .Entity<IoDevice>()
                 .HasMany<DigTag>(e => e.DigTags)
                 .WithRequired(e => e.IoDevice)
-                .HasForeignKey(e => e.RefIoDevices);
+                .HasForeignKey(e => e.RefIoDevice);
 
             modelBuilder
                 .Entity<IoDevice>()

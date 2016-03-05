@@ -74,18 +74,18 @@ namespace PHmiModel.Entities
 
         public string FullName { get { return IoDevice.Name + "." + Name; } }
 
-        #region RefIoDevices
+        #region RefIoDevice
 
-        private int _refIoDevices;
+        private int _refIoDevice;
 
         [Column("ref_io_devices")]
-        public int RefIoDevices
+        public int RefIoDevice
         {
-            get { return _refIoDevices; }
+            get { return _refIoDevice; }
             set
             {
-                _refIoDevices = value; 
-                OnPropertyChanged(this, e => e.RefIoDevices);
+                _refIoDevice = value; 
+                OnPropertyChanged(this, e => e.RefIoDevice);
             }
         }
 
@@ -154,7 +154,7 @@ namespace PHmiModel.Entities
 
         #endregion
 
-        #region IoDevices
+        #region IoDevice
 
         private IoDevice _ioDevice;
 
