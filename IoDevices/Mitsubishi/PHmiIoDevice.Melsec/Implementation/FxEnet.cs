@@ -6,9 +6,9 @@ namespace PHmiIoDevice.Melsec.Implementation
     {
         private readonly TcpClientHelper _tcpHelper;
 
-        public FxEnet(string address, int timeout, int messageEndTimeout)
+        public FxEnet(string address, int port, int timeout, int messageEndTimeout)
         {
-            _tcpHelper = new TcpClientHelper(address, 5551, timeout, messageEndTimeout);
+            _tcpHelper = new TcpClientHelper(address, port, timeout, messageEndTimeout);
         }
 
         public override void Open()
@@ -29,6 +29,11 @@ namespace PHmiIoDevice.Melsec.Implementation
         protected override IList<byte> Read(int length)
         {
             return _tcpHelper.Read(length);
+        }
+
+        protected override char FirstChar
+        {
+            get { return (char) 0x82; }
         }
     }
 }

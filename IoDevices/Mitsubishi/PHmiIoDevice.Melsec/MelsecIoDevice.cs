@@ -35,7 +35,7 @@ namespace PHmiIoDevice.Melsec
             else if (config is FxEnetConfig)
             {
                 var enetConfig = (FxEnetConfig) config;
-                _melsec = new FxEnet(enetConfig.Address, enetConfig.Timeout, enetConfig.MessageEndTimeout);
+                _melsec = new FxEnet(enetConfig.Address, enetConfig.Port, enetConfig.Timeout, enetConfig.MessageEndTimeout);
             }
             else if (config is QConfig)
             {

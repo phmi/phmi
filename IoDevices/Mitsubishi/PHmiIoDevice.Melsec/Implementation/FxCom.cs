@@ -31,5 +31,10 @@ namespace PHmiIoDevice.Melsec.Implementation
         {
             return _portHelper.Read(length);
         }
+
+        protected override char FirstChar
+        {
+            get { return (char) 0x2; }
+        }
     }
 }

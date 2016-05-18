@@ -15,6 +15,8 @@ namespace PHmiIoDevice.Melsec.Implementation
 
         protected abstract IList<byte> Read(int length);
 
+        protected abstract char FirstChar { get; }
+
         public List<byte> ReadMerkers(int address, int length)
         {
             return Read((0x4400 + address/16)*2, length/8);
@@ -33,7 +35,7 @@ namespace PHmiIoDevice.Melsec.Implementation
         private List<byte> Read(int dataType, int dataSize)
         {
             var message = new StringBuilder();
-            message.Append((char)0x2);
+            message.Append(FirstChar);
             message.Append("E0");
             message.Append(IncludeFirstZero(dataType.ToString("X"), 5));
             message.Append(IncludeFirstZero(dataSize.ToString("X"), 2));
@@ -107,7 +109,7 @@ namespace PHmiIoDevice.Melsec.Implementation
         public void WriteRegisters(int address, List<byte> data)
         {
             var message = new StringBuilder();
-            message.Append((char)2);
+            message.Append(FirstChar);
             message.Append("E1");
             var dataType = (0x2000 + address) * 2;
             message.Append(IncludeFirstZero(dataType.ToString("X"), 5));
@@ -146,7 +148,7 @@ namespace PHmiIoDevice.Melsec.Implementation
         public void WriteMerker(int address, bool data)
         {
             var message = new StringBuilder();
-            message.Append((char)2);
+            message.Append(FirstChar);
 
             message.Append(data ? "E7" : "E8");
             var dataType = 0x4000 + address;

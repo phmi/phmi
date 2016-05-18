@@ -60,6 +60,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" SharedSizeGroup="Column1"/>
@@ -219,9 +220,34 @@
             <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=QConfig.NetworkNumber, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"/>
         </Grid>
 
-        <TextBlock Grid.Row="4" Text="Timeout, ms"/>
-        <TextBox Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" Text="{Binding Path=Config.Timeout, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"/>
-        <TextBlock Grid.Row="5" Text="Message end timeout, ms"/>
-        <TextBox Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2" Text="{Binding Path=Config.MessageEndTimeout, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"/>
+        <Grid Grid.Row="4" Grid.ColumnSpan="3">
+            <Grid.Visibility>
+                <Binding Path="FxEnetConfig" ConverterParameter="{x:Null}">
+                    <Binding.Converter>
+                        <Converters:FalseToCollapsedConverter>
+                            <Converters:InvertConverter>
+                                <Converters:EqualityConverter/>
+                            </Converters:InvertConverter>
+                        </Converters:FalseToCollapsedConverter>
+                    </Binding.Converter>
+                </Binding>
+            </Grid.Visibility>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" SharedSizeGroup="Column1"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="Port"/>
+            <TextBox Grid.Column="1" Text="{Binding Path=FxEnetConfig.Port, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"/>
+        </Grid>
+
+        <TextBlock Grid.Row="5" Text="Timeout, ms"/>
+        <TextBox Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2" Text="{Binding Path=Config.Timeout, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"/>
+        <TextBlock Grid.Row="6" Text="Message end timeout, ms"/>
+        <TextBox Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="2" Text="{Binding Path=Config.MessageEndTimeout, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"/>
     </Grid>
 </UserControl>
