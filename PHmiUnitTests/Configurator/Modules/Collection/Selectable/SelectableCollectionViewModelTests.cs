@@ -126,7 +126,7 @@ namespace PHmiUnitTests.Configurator.Modules.Collection.Selectable
         {
             _service = new Service();
             _contextStub = new Mock<IModelContext>();
-            _service.ContextFactoryStub.Setup(f => f.Create(It.IsAny<string>())).Returns(_contextStub.Object);
+            _service.ContextFactoryStub.Setup(f => f.Create(It.IsAny<string>(), true)).Returns(_contextStub.Object);
             _editDialogStub = new Mock<IEditDialog<Meta>>();
             _viewModel = new ViewModel(_service) { EditDialog = _editDialogStub.Object };
         }

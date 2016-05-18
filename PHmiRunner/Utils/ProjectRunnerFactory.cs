@@ -37,7 +37,7 @@ namespace PHmiRunner.Utils
             var db = _npgHelper.GetDatabase(connectionString);
             var dataDb = db + PHmiConstants.DataDatabaseEnding;
             var dataDbConStr = connectionString.Replace("Database=" + db, "Database=" + dataDb);
-            var context = _contextFactory.Create(connectionString);
+            var context = _contextFactory.Create(connectionString, false);
             return new ProjectRunner(
                 projectName,
                 context,

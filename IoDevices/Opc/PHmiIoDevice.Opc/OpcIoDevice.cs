@@ -99,6 +99,7 @@ namespace PHmiIoDevice.Opc
             }
             catch
             {
+                _server.CancelSubscription(_group);
                 _canSubscribe = false;
             }
             if (_canSubscribe)

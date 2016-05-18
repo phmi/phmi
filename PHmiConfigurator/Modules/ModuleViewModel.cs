@@ -130,7 +130,7 @@ namespace PHmiConfigurator.Modules
                 }
                 if (Context != null)
                     Context.Dispose();
-                Context = _service.ContextFactory.Create(ConnectionString);
+                Context = _service.ContextFactory.Create(ConnectionString, true);
                 PostReloadAction();
                 OnPropertyChanged(this, v => v.HasChanges);
                 return true;

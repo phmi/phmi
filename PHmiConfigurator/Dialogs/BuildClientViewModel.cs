@@ -198,7 +198,7 @@ namespace PHmiConfigurator.Dialogs
             Busy = true;
             try
             {
-                using (var context = _contextFactory.Create(ConnectionString))
+                using (var context = _contextFactory.Create(ConnectionString, false))
                 {
                     using (var codeWriter = _codeWriterFactory.Create(CodeFile))
                     {

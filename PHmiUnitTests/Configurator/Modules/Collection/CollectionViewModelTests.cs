@@ -140,7 +140,7 @@ namespace PHmiUnitTests.Configurator.Modules.Collection
         {
             _contextStub = new Mock<IModelContext>();
             _service = new Service();
-            _service.ContextFactoryStub.Setup(f => f.Create(It.IsAny<string>())).Returns(_contextStub.Object);
+            _service.ContextFactoryStub.Setup(f => f.Create(It.IsAny<string>(), true)).Returns(_contextStub.Object);
             _viewModel = new ViewModel(_service);
             _editDialogStub = new Mock<IEditDialog<Meta>>();
             _viewModel.EditDialog = _editDialogStub.Object;
@@ -461,7 +461,7 @@ namespace PHmiUnitTests.Configurator.Modules.Collection
             _viewModel.SelectedItems.Add(item1);
             _viewModel.SelectedItems.Add(item2);
             _viewModel.CopyCommand.Execute(null);
-            _service.ClipboardHelperStub.Verify(h => h.SetText("id\tname\tProperty\r\n1\titem1\tTrue\r\n2\titem2\tFalse"));
+            _service.ClipboardHelperStub.Verify(h => h.SetText("Id\tName\tProperty\r\n1\titem1\tTrue\r\n2\titem2\tFalse"));
         }
 
         #endregion

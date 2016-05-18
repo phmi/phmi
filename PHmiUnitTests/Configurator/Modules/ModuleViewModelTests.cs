@@ -128,7 +128,7 @@ namespace PHmiUnitTests.Configurator.Modules
         {
             _service = new Service();
             _contextStub = new Mock<IModelContext>();
-            _service.ContextFactoryStub.Setup(c => c.Create("ConnectionString")).Returns(_contextStub.Object);
+            _service.ContextFactoryStub.Setup(c => c.Create("ConnectionString", true)).Returns(_contextStub.Object);
             _viewModel = new ModuleViewModel(_service) { ConnectionString = "ConnectionString" };
         }
 
@@ -283,7 +283,7 @@ namespace PHmiUnitTests.Configurator.Modules
                     It.IsAny<object>()))
                     .Returns(messageResult);
             var result = _viewModel.Reload();
-            _service.ContextFactoryStub.Verify(f => f.Create(_viewModel.ConnectionString), Times.Exactly(messageResult ? 2 : 1));
+            _service.ContextFactoryStub.Verify(f => f.Create(_viewModel.ConnectionString, true), Times.Exactly(messageResult ? 2 : 1));
             Assert.AreEqual(messageResult, result);
         }
 

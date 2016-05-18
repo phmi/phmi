@@ -26,7 +26,7 @@ namespace PHmiUnitTests.Runner.Utils
             Reporter = new Mock<IReporter>();
             RunnerFactory = new ProjectRunnerFactory(
                 TimeService.Object, Reporter.Object, ModelContextFactory.Object, new NpgHelper());
-            ModelContextFactory.Setup(f => f.Create(ConnectionString)).Returns(ModelContext.Object);
+            ModelContextFactory.Setup(f => f.Create(ConnectionString, false)).Returns(ModelContext.Object);
         }
 
         public class AndExecuteCreate : WhenUsingProjectRunnerFactory
@@ -53,7 +53,7 @@ namespace PHmiUnitTests.Runner.Utils
                 [Test]
                 public void Test()
                 {
-                    ModelContextFactory.Verify(f => f.Create(ConnectionString), Times.Once());
+                    ModelContextFactory.Verify(f => f.Create(ConnectionString, false), Times.Once());
                 }
             }
         }

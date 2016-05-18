@@ -8,10 +8,11 @@ namespace PHmiModel
 {
     public class PHmiModelContextFactory : IModelContextFactory
     {
-        public IModelContext Create(string connectionString)
+        public IModelContext Create(string connectionString, bool startTrackingChanges)
         {
             var context = new PHmiModelContext(connectionString);
-            context.StartTrackingChanges();
+            if (startTrackingChanges)
+                context.StartTrackingChanges();
             return context;
         }
     }
