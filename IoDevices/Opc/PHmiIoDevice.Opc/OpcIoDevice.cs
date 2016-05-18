@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Opc;
 using Opc.Da;
@@ -13,6 +14,7 @@ namespace PHmiIoDevice.Opc
         private readonly Server _server;
         private Subscription _group;
         private readonly Dictionary<string, object> _itemValues = new Dictionary<string, object>();
+        private bool _canSubscribe = true;
 
         public OpcIoDevice(string options)
         {
@@ -54,11 +56,29 @@ namespace PHmiIoDevice.Opc
         {
             lock (_itemValues)
             {
-                SubscribeToRead(readParameters);
-                var result = new object[readParameters.Length];
-                for (var i = 0; i < readParameters.Length; i++)
+                if (_canSubscribe)
                 {
-                    result[i] = _itemValues[readParameters[i].Address];
+                    SubscribeToRead(readParameters);
+                }
+                var result = new object[readParameters.Length];
+                if (_canSubscribe)
+                {
+                    for (var i = 0; i < readParameters.Length; i++)
+                    {
+                        result[i] = _itemValues[readParameters[i].Address];
+                    }
+                }
+                else
+                {
+                    var items = readParameters.Select(p => new Item
+                    {
+                        ItemName = p.Address
+                    }).ToArray();
+                    var itemValues = _server.Read(items);
+                    for (var i = 0; i < readParameters.Length; i++)
+                    {
+                        result[i] = itemValues[i].Value;
+                    }
                 }
                 return result;
             }
@@ -73,11 +93,21 @@ namespace PHmiIoDevice.Opc
             {
                 ItemName = p.Address
             }).ToArray();
-            _group.AddItems(items);
-            var itemValues = _server.Read(items);
-            foreach (var itemValue in itemValues)
+            try
             {
-                _itemValues.Add(itemValue.ItemName, itemValue.Value);
+                _group.AddItems(items);
+            }
+            catch
+            {
+                _canSubscribe = false;
+            }
+            if (_canSubscribe)
+            {
+                var itemValues = _server.Read(items);
+                foreach (var itemValue in itemValues)
+                {
+                    _itemValues.Add(itemValue.ItemName, itemValue.Value);
+                }
             }
         }
 
