@@ -7,6 +7,7 @@ using System.Data.Objects.DataClasses;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Windows.Threading;
 using Npgsql;
 using PHmiClient.Utils;
 using PHmiModel.Entities;
@@ -115,68 +116,29 @@ namespace PHmiModel
 
         public void StartTrackingChanges()
         {
-            var manager = ((IObjectContextAdapter)this).ObjectContext.ObjectStateManager;
-            manager.ObjectStateManagerChanged += ObjectStateManagerChanged;
+            var timer = new DispatcherTimer(DispatcherPriority.ApplicationIdle);
+            timer.Tick += timer_Tick;
+            timer.Start();
         }
 
-        private void ObjectStateManagerChanged(object sender, CollectionChangeEventArgs e)
+        private void timer_Tick(object sender, EventArgs eventArgs)
         {
-            var entity = (Entity)e.Element;
-            switch (e.Action)
+            if (_hasChanges)
+                return;
+            var timer = (DispatcherTimer)sender;
+            timer.Stop();
+            try
             {
-                case CollectionChangeAction.Add:
-                    entity.PropertyChanged += EntityPropertyChanged;
-                    foreach (var propertyInfo in entity.GetType().GetProperties())
-                    {
-                        if (!propertyInfo.PropertyType.Name.Contains("EntityCollection"))
-                            continue;
-                        var property = propertyInfo.GetValue(entity, null);
-                        var relatedEnd = property as RelatedEnd;
-                        if (relatedEnd != null)
-                            relatedEnd.AssociationChanged += ModuleAssociationChanged;
-                    }
-                    break;
-                case CollectionChangeAction.Remove:
-                    entity.PropertyChanged -= EntityPropertyChanged;
-                    foreach (var propertyInfo in entity.GetType().GetProperties())
-                    {
-                        if (!propertyInfo.PropertyType.Name.Contains("EntityCollection"))
-                            continue;
-                        var property = propertyInfo.GetValue(entity, null);
-                        var relatedEnd = property as RelatedEnd;
-                        if (relatedEnd != null)
-                            relatedEnd.AssociationChanged -= ModuleAssociationChanged;
-                    }
+                if (ChangeTracker.Entries().Any(e => e.State == EntityState.Added
+                                                 || e.State == EntityState.Modified
+                                                 || e.State == EntityState.Deleted))
+                {
                     HasChanges = true;
-                    break;
+                }
+                timer.Start();
             }
-            if (entity.Id == 0)
+            catch (InvalidOperationException)
             {
-                HasChanges = true;
-            }
-            else if (Entry(entity).State != EntityState.Unchanged)
-            {
-                HasChanges = true;
-            }
-        }
-
-        private void ModuleAssociationChanged(object sender, CollectionChangeEventArgs e)
-        {
-            var entity = (EntityObject) e.Element;
-            if (e.Action != CollectionChangeAction.Refresh && entity.EntityState != EntityState.Unchanged)
-                HasChanges = true;
-        }
-
-        private void EntityPropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            var entity = (Entity)sender;
-            if (entity.Id == 0)
-            {
-                HasChanges = true;
-            }
-            else if (Entry(entity).State != EntityState.Unchanged)
-            {
-                HasChanges = true;
             }
         }
 
