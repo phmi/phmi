@@ -123,18 +123,13 @@ namespace PHmiModel
 
         private void timer_Tick(object sender, EventArgs eventArgs)
         {
-            if (_hasChanges)
-                return;
             var timer = (DispatcherTimer)sender;
             timer.Stop();
             try
             {
-                if (ChangeTracker.Entries().Any(e => e.State == EntityState.Added
+                HasChanges = ChangeTracker.Entries().Any(e => e.State == EntityState.Added
                                                  || e.State == EntityState.Modified
-                                                 || e.State == EntityState.Deleted))
-                {
-                    HasChanges = true;
-                }
+                                                 || e.State == EntityState.Deleted);
                 timer.Start();
             }
             catch (InvalidOperationException)
@@ -151,6 +146,8 @@ namespace PHmiModel
             get { return _hasChanges; }
             private set
             {
+                if (_hasChanges == value)
+                    return;
                 _hasChanges = value;
                 OnPropertyChanged(PropertyHelper.GetPropertyName(this, e => e.HasChanges));
             }
