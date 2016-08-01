@@ -283,9 +283,9 @@ namespace PHmiClient.Controls
         {
             var p = (TimeSpanPicker)d;
             var newMilliseconds = e.NewValue as int?;
-            if (newMilliseconds.HasValue && (newMilliseconds.Value < 0 || newMilliseconds.Value > 59))
+            if (newMilliseconds.HasValue && (newMilliseconds.Value < 0 || newMilliseconds.Value > 999))
             {
-                p.Days = e.OldValue as int?;
+                p.Milliseconds = e.OldValue as int?;
             }
             else
             {
