@@ -238,12 +238,12 @@ namespace PHmiClient.Alarms
                     case CriteriaType.DownFromInfinity:
                     case CriteriaType.DownFrom:
                     case CriteriaType.DownFromOrEqual:
-                        alarms = alarms.OrderByDescending(a => a.StartTime).ThenByDescending(a => a.UserId).Take(currentInfo.Item3);
+                        alarms = alarms.OrderByDescending(a => a.StartTime).ThenByDescending(a => a.AlarmId).Take(currentInfo.Item3);
                         break;
                     case CriteriaType.UpFromInfinity:
                     case CriteriaType.UpFrom:
                     case CriteriaType.UpFromOrEqual:
-                        alarms = alarms.OrderBy(a => a.StartTime).ThenBy(a => a.UserId).Take(currentInfo.Item3).Reverse();
+                        alarms = alarms.OrderBy(a => a.StartTime).ThenBy(a => a.AlarmId).Take(currentInfo.Item3).Reverse();
                         break;
                 }
                 var callback = currentInfo.Item1;
@@ -282,12 +282,12 @@ namespace PHmiClient.Alarms
                     case CriteriaType.DownFromInfinity:
                     case CriteriaType.DownFrom:
                     case CriteriaType.DownFromOrEqual:
-                        alarms = alarms.OrderByDescending(a => a.StartTime).ThenByDescending(a => a.UserId).Take(historyInfo.Item3);
+                        alarms = alarms.OrderByDescending(a => a.StartTime).ThenByDescending(a => a.AlarmId).Take(historyInfo.Item3);
                         break;
                     case CriteriaType.UpFromInfinity:
                     case CriteriaType.UpFrom:
                     case CriteriaType.UpFromOrEqual:
-                        alarms = alarms.OrderBy(a => a.StartTime).ThenBy(a => a.UserId).Take(historyInfo.Item3).Reverse();
+                        alarms = alarms.OrderBy(a => a.StartTime).ThenBy(a => a.AlarmId).Take(historyInfo.Item3).Reverse();
                         break;
                 }
                 var callback = historyInfo.Item1;
